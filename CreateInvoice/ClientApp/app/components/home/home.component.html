@@ -1,0 +1,27 @@
+<h1>Create new invoice</h1>
+<div>
+    <div class="row">
+        <div class="col-lg-2">
+            <p>Invoice date</p>
+        </div>
+        <div class="col-lg-1">
+            <kendo-datepicker [format]="'dd-MM-yyyy'" [(value)]="invoiceDate"></kendo-datepicker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <p>Organization</p>
+        </div>
+        <div class="col-lg-2">
+            <kendo-dropdownlist [data]="organizations"></kendo-dropdownlist>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <p>Payment identification</p>
+        </div>
+        <div class="col-lg-2">
+            <kendo-multiselect [data]="paymentIdentification"></kendo-multiselect>
+        </div>
+    </div>
+</div>

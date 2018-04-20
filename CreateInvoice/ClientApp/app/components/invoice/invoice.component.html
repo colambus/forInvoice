@@ -1,0 +1,63 @@
+﻿<h1>Create new invoice</h1>
+<div>
+    <div class="row">
+        <div class="col-lg-2">
+            <p>Invoice date</p>
+        </div>
+        <div class="col-lg-2">
+            <kendo-datepicker [format]="'dd-MM-yyyy'" [value]="invoice.date"></kendo-datepicker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">Seller</div>
+        <div class="col-lg-2">
+            <kendo-dropdownlist [data]="organizations" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">Buyer</div>
+        <div class="col-lg-2">
+            <kendo-dropdownlist [data]="organizations" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">Contract</div>
+        <div class="col-lg-2">
+            <kendo-dropdownlist [data]="contracts"></kendo-dropdownlist>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">Delivery type</div>
+        <div class="col-lg-2">
+            <kendo-dropdownlist [data]="deliveryTypes" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">Terms of payment</div>
+        <div class="col-lg-2">
+            <kendo-dropdownlist [data]="termsOfPayment" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">Terms of delivery</div>
+        <div class="col-lg-2">
+            <kendo-dropdownlist [data]="termsOfDelivery" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <p>Payment identification</p>
+        </div>
+        <div class="col-lg-4">
+            <kendo-multiselect [data]="invoice.paymentIdentification" (valueChange)="onPaymentIdentificationChange($event)" [allowCustom]="true"></kendo-multiselect>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <p>Orders</p>
+        </div>
+        <div class="col-lg-4">
+            <kendo-multiselect [data]="invoice.orderNo" [allowCustom]="true" (valueChange)="onOrderNoChange($event)"></kendo-multiselect>
+        </div>
+    </div>
+</div>
