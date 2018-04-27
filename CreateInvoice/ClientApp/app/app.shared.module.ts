@@ -17,6 +17,7 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { WindowModule } from '@progress/kendo-angular-dialog';
+import { GridModule } from '@progress/kendo-angular-grid';
 
 import '@progress/kendo-angular-intl/locales/uk/all';
 
@@ -36,6 +37,7 @@ import '@progress/kendo-angular-intl/locales/uk/all';
         DateInputsModule,
         BrowserAnimationsModule,
         ButtonsModule,
+        GridModule,
         DropDownsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },

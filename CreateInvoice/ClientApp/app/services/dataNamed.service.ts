@@ -19,7 +19,5 @@ export class DataNamedService {
                 return <NamedIdObject[]>response.json();
         });
     }
-
-
 }
 

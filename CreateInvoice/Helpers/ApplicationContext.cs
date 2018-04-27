@@ -18,6 +18,18 @@ namespace CreateInvoice.Helpers
         public DbSet<DeliveryType> DeliveryTypes { get; set; }
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<TermOfPayment> TermsOfPayment { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<InvoiceProducts> InvoiceProducts { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Unit> Units { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<ContactType> ContactTypes { get; set; }
+        public DbSet<ContactDetails> ContactDetails { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .HasIndex(p => new { p.CodeNo});
+        }
     }
 }
