@@ -11,5 +11,7 @@ namespace CreateInvoice.Entities
         public Invoice Invoice { get; set; }
         public int ProductPosition { get; set; }
         public Product Product { get; set; }
+        public int Quantity { get; set; }
+        public double UnitPrice { get; set; }
     }
 }

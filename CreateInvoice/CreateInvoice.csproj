@@ -23,23 +23,40 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180426132552_AddEntities.cs" />
+    <Compile Remove="Migrations\20180426132552_AddEntities.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\app\components\invoice\invoice.component.ts" />
+    <None Remove="ClientApp\app\models\countryOfOrigin.model.ts" />
     <None Remove="ClientApp\app\models\deliveryType.model.ts" />
     <None Remove="ClientApp\app\models\invoice.model.ts" />
+    <None Remove="ClientApp\app\models\invoiceProduct.model.ts" />
     <None Remove="ClientApp\app\models\NamedIdObject.model.ts" />
     <None Remove="ClientApp\app\models\organization.model.ts" />
+    <None Remove="ClientApp\app\models\product.model.ts" />
     <None Remove="ClientApp\app\models\termsOfDelivery.model.ts" />
+    <None Remove="ClientApp\app\models\unit.model.ts" />
     <None Remove="ClientApp\app\services\dataNamed.service.ts" />
+    <None Remove="ClientApp\app\services\edit.service.ts" />
+    <None Remove="ClientApp\app\services\products.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoice.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\countryOfOrigin.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\deliveryType.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\invoice.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\invoiceProduct.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\NamedIdObject.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\organization.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\product.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\termsOfDelivery.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\unit.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\dataNamed.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\edit.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\products.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

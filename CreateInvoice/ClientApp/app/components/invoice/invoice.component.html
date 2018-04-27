@@ -60,4 +60,38 @@
             <kendo-multiselect [data]="invoice.orderNo" [allowCustom]="true" (valueChange)="onOrderNoChange($event)"></kendo-multiselect>
         </div>
     </div>
+    <div>
+        <kendo-grid #grid
+                    [data]="gridProducts"
+                    [height]="410"
+                    (add)="addHandler($event)">
+            <ng-template kendoGridToolbarTemplate>
+                <button kendoGridAddCommand>Add new</button>
+            </ng-template>
+            <kendo-grid-column field="Position" title="Position" width="40" [editable]="false">
+            </kendo-grid-column>
+            <kendo-grid-column field="CountryOfOrigin" title="Country of origin" width="40">
+            </kendo-grid-column>
+            <kendo-grid-column field="CodeNo" title="Code No." width="40">
+            </kendo-grid-column>
+            <kendo-grid-column field="DescriptionEn" title="Description" width="250">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                    <kendo-combobox [data]="products" 
+                                    [textField]="'descriptionEn'" 
+                                    [valueField]="'id'"
+                                    [filterable]="true"
+                                    (filterChange)="productHandleFilter($event)">
+                    </kendo-combobox>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="Unit" title="Unit/Pack" width="40">
+            </kendo-grid-column>
+            <kendo-grid-column field="Quantity" title="Unit Qty" editor="numeric" width="80">
+            </kendo-grid-column>
+            <kendo-grid-column field="UnitPrice" title="Unit Price" editor="" width="80" [editable]="false">
+            </kendo-grid-column>
+            <kendo-grid-column field="Amount" title="Amount" width="80" [editable]="false">
+            </kendo-grid-column>
+        </kendo-grid>
+    </div>
 </div>
