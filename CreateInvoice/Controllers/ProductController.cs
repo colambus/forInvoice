@@ -6,6 +6,7 @@ using CreateInvoice.Entities;
 using CreateInvoice.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CreateInvoice.Controllers
 {
@@ -21,9 +22,10 @@ namespace CreateInvoice.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<Product> GetBySeq([FromForm]string queryStr)
+        public IEnumerable<Product> GetBySeq([FromQuery]string queryStr)
         {
             return _context.Products
+                .Include("CountryOfOrigin")
                 .Where(p=>p.CodeNo.Contains(queryStr))
                 .ToList();
         }

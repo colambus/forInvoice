@@ -64,7 +64,9 @@
         <kendo-grid #grid
                     [data]="gridProducts"
                     [height]="410"
-                    (add)="addHandler($event)">
+                    (add)="addHandler($event)"
+                    (save)="saveHandler($event)"
+                    (cellClick)="editClick($event)">
             <ng-template kendoGridToolbarTemplate>
                 <button kendoGridAddCommand>Add new</button>
             </ng-template>
@@ -80,7 +82,8 @@
                                     [textField]="'descriptionEn'" 
                                     [valueField]="'id'"
                                     [filterable]="true"
-                                    (filterChange)="productHandleFilter($event)">
+                                    (filterChange)="productHandleFilter($event)"
+                                    (selectionChange)="productSelectionChange($event)">
                     </kendo-combobox>
                 </ng-template>
             </kendo-grid-column>

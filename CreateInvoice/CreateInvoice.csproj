@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\invoice\invoice.component.ts" />
+    <None Remove="ClientApp\app\components\invoice\invoiceList\invoiceList.component.ts" />
     <None Remove="ClientApp\app\models\countryOfOrigin.model.ts" />
     <None Remove="ClientApp\app\models\deliveryType.model.ts" />
     <None Remove="ClientApp\app\models\invoice.model.ts" />
@@ -40,11 +41,13 @@
     <None Remove="ClientApp\app\models\unit.model.ts" />
     <None Remove="ClientApp\app\services\dataNamed.service.ts" />
     <None Remove="ClientApp\app\services\edit.service.ts" />
+    <None Remove="ClientApp\app\services\invoice.service.ts" />
     <None Remove="ClientApp\app\services\products.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoice.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\invoice\invoiceList\invoiceList.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\countryOfOrigin.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\deliveryType.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\invoice.model.ts" />
@@ -56,6 +59,7 @@
     <TypeScriptCompile Include="ClientApp\app\models\unit.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\dataNamed.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\edit.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\invoice.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\products.service.ts" />
   </ItemGroup>
 
