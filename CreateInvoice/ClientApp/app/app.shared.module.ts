@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
+import { InvoiceListComponent } from './components/invoice/invoiceList/invoiceList.component';
 
 //Kendo UI modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +19,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { WindowModule } from '@progress/kendo-angular-dialog';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { DialogModule } from '@progress/kendo-angular-dialog';
 
 import '@progress/kendo-angular-intl/locales/uk/all';
 
@@ -28,7 +30,8 @@ import '@progress/kendo-angular-intl/locales/uk/all';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        InvoiceComponent
+        InvoiceComponent,
+        InvoiceListComponent
     ],
     imports: [
         CommonModule,
@@ -38,10 +41,12 @@ import '@progress/kendo-angular-intl/locales/uk/all';
         BrowserAnimationsModule,
         ButtonsModule,
         GridModule,
+        DialogModule,
         DropDownsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
+            { path: 'invoiceList', component: InvoiceListComponent },
             { path: 'invoice', component: InvoiceComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },

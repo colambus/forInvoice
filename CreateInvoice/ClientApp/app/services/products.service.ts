@@ -14,20 +14,17 @@ export class ProductService {
     }
 
     getBySeq(seq: string): Observable<ProductModel[]> {
-
-        let headers = new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        });
-
+ 
         let request_data = new URLSearchParams();
-        request_data.set('queryStr', seq);
-        let request_option = new RequestOptions({ headers: headers });
-        request_option.params = request_data;
+        request_data.append('queryStr', seq);
+        let request_option = new RequestOptions();
+        request_option.search = request_data;
         return this.http.get(this.actionUrl + 'GetBySeq',
-            { params: request_option })
+            request_option)
             .map((response: Response) => {
                 return <ProductModel[]>response.json();
-            });
+            })
+            ;
     }
+
 }
