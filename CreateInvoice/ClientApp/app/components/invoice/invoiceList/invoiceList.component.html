@@ -7,17 +7,20 @@
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
         </ng-template>
-        <div kendoDialogContainer></div>
-        <kendo-dialog title="Please confirm" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
-            <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
-            <kendo-dialog-actions>
-                <button kendoButton (click)="close()">No</button>
-                <button kendoButton (click)="close()" primary="true">Yes</button>
-            </kendo-dialog-actions>
-        </kendo-dialog>
+
+
         <kendo-grid-column field="InvoiceNumber" title="Invoice No." width="40" [editable]="false">
         </kendo-grid-column>
         <kendo-grid-column field="Date" title="Invoice Date" width="40" [editable]="false">
         </kendo-grid-column>
     </kendo-grid>
+    <div kendoDialogContainer></div>
+    <!--<kendo-dialog title="New invoice" *ngIf="opened" (close)="close()" [minWidth]="550" [width]="750">
+        <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
+        
+        <kendo-dialog-actions>
+            <button kendoButton (click)="close()">No</button>
+            <button kendoButton (click)="close()" primary="true">Yes</button>
+        </kendo-dialog-actions>
+    </kendo-dialog>-->
 </div>

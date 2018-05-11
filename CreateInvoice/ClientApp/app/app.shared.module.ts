@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+//Components
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -19,7 +20,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { WindowModule } from '@progress/kendo-angular-dialog';
 import { GridModule } from '@progress/kendo-angular-grid';
-import { DialogModule } from '@progress/kendo-angular-dialog';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
 
 import '@progress/kendo-angular-intl/locales/uk/all';
 
@@ -41,7 +42,7 @@ import '@progress/kendo-angular-intl/locales/uk/all';
         BrowserAnimationsModule,
         ButtonsModule,
         GridModule,
-        DialogModule,
+        DialogsModule,
         DropDownsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },

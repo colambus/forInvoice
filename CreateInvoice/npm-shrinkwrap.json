@@ -150,11 +150,12 @@
       }
     },
     "@progress/kendo-angular-buttons": {
-      "version": "4.0.0",
-      "resolved": "https://registry.npmjs.org/@progress/kendo-angular-buttons/-/kendo-angular-buttons-4.0.0.tgz",
-      "integrity": "sha512-qcd8AQgozFM9ETXEz06O+C0SUWo5mDMzf0aMSJ5/etfX3MT4dPlDhGq3F7dG4yJyi6MipBBtoSSF3Ec1pgC2+g==",
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/@progress/kendo-angular-buttons/-/kendo-angular-buttons-4.1.0.tgz",
+      "integrity": "sha512-c3Dor3UopS0mmcNMPe/ntVM3HPVLmcqk6bcRP+k6k5xMtFpMtezigfVVGRKa88lnRN0eAL+HJQYW+LVeJAA1zw==",
       "requires": {
-        "@progress/kendo-angular-popup": "2.2.0",
+        "@progress/kendo-angular-popup": "2.3.0",
+        "@progress/kendo-schematics": "0.2.1",
         "tslib": "1.9.0"
       }
     },
@@ -163,17 +164,18 @@
       "resolved": "https://registry.npmjs.org/@progress/kendo-angular-dateinputs/-/kendo-angular-dateinputs-2.2.0.tgz",
       "integrity": "sha512-txs+9CnM8n50W6cFpz8jOsQCptFHH1apK59At1RAff0zzRZNZU2AqG1kRbwMcws/JF3Pb1AKe5ZUH9BtamNe+A==",
       "requires": {
-        "@progress/kendo-angular-popup": "2.2.0",
+        "@progress/kendo-angular-popup": "2.3.0",
         "@progress/kendo-date-math": "1.2.0",
         "tslib": "1.9.0"
       }
     },
     "@progress/kendo-angular-dialog": {
-      "version": "3.4.0",
-      "resolved": "https://registry.npmjs.org/@progress/kendo-angular-dialog/-/kendo-angular-dialog-3.4.0.tgz",
-      "integrity": "sha512-twSx4DjzIWVO2idu5uLIn07BDC1potGwQXEbqkQY7PhkZ7P8YQnKWAIR0JMRYS27uljPWDiN7QcJU1ESofvC4w==",
+      "version": "3.6.0",
+      "resolved": "https://registry.npmjs.org/@progress/kendo-angular-dialog/-/kendo-angular-dialog-3.6.0.tgz",
+      "integrity": "sha512-g0MCT1u4pEvZ0vzx6gLHaiK3CSjcbjOKq9hS69s54satcAtGs008BOLbrT5sfbmsUHWcyrFUaSzfgq7WM/XvKw==",
       "requires": {
         "@progress/kendo-popup-common": "1.5.1",
+        "@progress/kendo-schematics": "0.2.1",
         "@telerik/kendo-draggable": "1.7.1",
         "tslib": "1.9.0"
       }
@@ -183,7 +185,7 @@
       "resolved": "https://registry.npmjs.org/@progress/kendo-angular-dropdowns/-/kendo-angular-dropdowns-2.1.0.tgz",
       "integrity": "sha512-+Fj6LgV9Uzfw+8cERAoJjLgH6etKWWR4jEDOaqgTFc/ZI+/lrm1VfspfQ+2OvEwA7qF/09CIhpkWT6DZF41sPw==",
       "requires": {
-        "@progress/kendo-angular-popup": "2.2.0",
+        "@progress/kendo-angular-popup": "2.3.0",
         "@progress/kendo-angular-resize-sensor": "3.0.2",
         "tslib": "1.9.0"
       }
@@ -231,9 +233,9 @@
       }
     },
     "@progress/kendo-angular-l10n": {
-      "version": "1.1.0",
-      "resolved": "https://registry.npmjs.org/@progress/kendo-angular-l10n/-/kendo-angular-l10n-1.1.0.tgz",
-      "integrity": "sha512-byp/fB2OWApxjxrPXMjr6Uy6e0NR6kQAsDHJRiXXwpll8YnSDqNKYSG2Lcoqs6cqUdM3jKM+xcUC9hPEvqF9kA==",
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/@progress/kendo-angular-l10n/-/kendo-angular-l10n-1.2.0.tgz",
+      "integrity": "sha512-XwZqk/MKS81AA2/7/9eGirpcppD3H5yKF9g9AlMydVmWdE54MPrTPR4OjRd3JN1d0I9lJOyae34v+BC33nHyGg==",
       "requires": {
         "tslib": "1.9.0"
       }
@@ -248,11 +250,12 @@
       }
     },
     "@progress/kendo-angular-popup": {
-      "version": "2.2.0",
-      "resolved": "https://registry.npmjs.org/@progress/kendo-angular-popup/-/kendo-angular-popup-2.2.0.tgz",
-      "integrity": "sha512-EsnhcYgNy9zJ6YuxJnWa1w9IcoNqPZmSp7nBjoeRq/bFphVkfz5zA4yLa7igdAw7Lomtucaui3QbR8GRe1YPnA==",
+      "version": "2.3.0",
+      "resolved": "https://registry.npmjs.org/@progress/kendo-angular-popup/-/kendo-angular-popup-2.3.0.tgz",
+      "integrity": "sha512-Dw++U/rj+iEtosDgDYOZP2YLPWcMeGAOxJ+URA9eOGiDMrA6g+yR39EcHRNbvlHCv3iw+023b58SDGSHGAtxOw==",
       "requires": {
         "@progress/kendo-popup-common": "1.5.1",
+        "@progress/kendo-schematics": "0.2.1",
         "tslib": "1.9.0"
       }
     },
@@ -313,6 +316,11 @@
       "resolved": "https://registry.npmjs.org/@progress/kendo-popup-common/-/kendo-popup-common-1.5.1.tgz",
       "integrity": "sha512-C4lOuZ5aEturzT84U8jtwf1/JMxqPtMbtqnJMns5oFqhql7dalBTY88jjahatLe1X+gD7xbfIoUnRh76mnlk1Q=="
     },
+    "@progress/kendo-schematics": {
+      "version": "0.2.1",
+      "resolved": "https://registry.npmjs.org/@progress/kendo-schematics/-/kendo-schematics-0.2.1.tgz",
+      "integrity": "sha512-r98NRjDQyW+Ujiwcb4H1E8beOATKmKEg3lvD0M4nmiy0iUZslnEENKULRoKcXOMUPakWOMc0/U7cd4v317b+hA=="
+    },
     "@progress/kendo-theme-default": {
       "version": "2.38.1",
       "resolved": "https://registry.npmjs.org/@progress/kendo-theme-default/-/kendo-theme-default-2.38.1.tgz",
@@ -332,6 +340,11 @@
       "version": "1.4.0",
       "resolved": "https://registry.npmjs.org/@telerik/kendo-intl/-/kendo-intl-1.4.0.tgz",
       "integrity": "sha1-bOAcNRegVL2VBvr8DtdAYUHCVdI="
+    },
+    "@telerik/kendo-theme-default": {
+      "version": "1.33.4",
+      "resolved": "https://registry.npmjs.org/@telerik/kendo-theme-default/-/kendo-theme-default-1.33.4.tgz",
+      "integrity": "sha1-XCWfTcD57xfWpo7FbmuNrVW3oUE="
     },
     "@types/chai": {
       "version": "4.0.1",

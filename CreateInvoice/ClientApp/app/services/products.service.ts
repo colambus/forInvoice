@@ -23,8 +23,6 @@ export class ProductService {
             request_option)
             .map((response: Response) => {
                 return <ProductModel[]>response.json();
-            })
-            ;
+            });
     }
-
 }

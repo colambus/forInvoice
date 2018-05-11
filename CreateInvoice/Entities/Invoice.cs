@@ -16,5 +16,7 @@ namespace CreateInvoice.Entities
         public DeliveryType DeliveryType { get; set; }
         public TermsOfDelivery TermsOfDelivery { get; set; }
         public TermOfPayment TermOfPayment { get; set; }
+        public string PaymentIdentification { get; set; }
+        public string OrderNo { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace CreateInvoice.Controllers
                 .ToList();
         }
 
-        [HttpPost("[action]")]
+        [HttpGet("[action]")]
         public Invoice CreateNewInvoice()
         {
             Invoice invoice = new Invoice();
