@@ -1,4 +1,5 @@
 ﻿import { Organization } from './organization.model';
+import { NamedIdObject } from './NamedIdObject.model';
 
 export class InvoiceModel {
     id: number;
@@ -7,8 +8,9 @@ export class InvoiceModel {
     seller: Organization;
     buyer: Organization;
     contract: string;
-    deliveryType: string;
-    termsOfDelivery: string;
-    paymentIdentification: Array<string>;
-    orderNo: Array<string>;
+    deliveryType: NamedIdObject;
+    termsOfDelivery: NamedIdObject;
+    termOfPayment: NamedIdObject;
+    paymentIdentification: string;
+    orderNo: string;
 }

@@ -2,6 +2,7 @@
 import { InvoiceModel } from '../../../models/invoice.model';
 import { InvoiceService } from '../../../services/invoice.service';
 import { DialogService } from '@progress/kendo-angular-dialog';
+import { InvoiceComponent } from '../invoice.component';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { DialogService } from '@progress/kendo-angular-dialog';
 export class InvoiceListComponent implements OnInit {
     gridInvoices: InvoiceModel[];
     private opened: boolean = false;
+    private isNew: boolean = false;
+    private currInvoice: InvoiceModel;
 
     constructor(private invoiceService: InvoiceService,
         private dialogService: DialogService) {
@@ -25,17 +28,21 @@ export class InvoiceListComponent implements OnInit {
     }
 
     public addHandler({ sender }: any) {
-        console.log("Add invoice");
-        this.opened = true;
+        console.log("New Invoice");
+        this.isNew = true;
+        this.invoiceService.create().subscribe(
+            result => this.currInvoice = result,
+            error => console.log("Error :: " + error));
+
         const dialogRef = this.dialogService.open({
-            title: 'Please confirm',
+            title: 'New invoice',
 
             // Show component
-            content: '<h1>Invoices</h1>',
+            content: InvoiceComponent,
 
             actions: [
-                { text: 'Cancel' },
-                { text: 'Delete', primary: true }
+                { text: 'Save', primary: true },
+                { text: 'Close' }
             ]
         });
     }

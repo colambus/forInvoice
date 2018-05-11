@@ -131,6 +131,10 @@ namespace CreateInvoice.Migrations
 
                     b.Property<string>("InvoiceNo");
 
+                    b.Property<string>("OrderNo");
+
+                    b.Property<string>("PaymentIdentification");
+
                     b.Property<int?>("SellerId");
 
                     b.Property<int?>("TermOfPaymentId");

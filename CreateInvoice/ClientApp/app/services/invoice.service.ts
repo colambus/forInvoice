@@ -20,4 +20,10 @@ export class InvoiceService {
             });
     }
 
+    create(): Observable<InvoiceModel> {
+        return this.http.get(this.actionUrl + 'CreateNewInvoice')
+            .map((response: Response) => {
+                return <InvoiceModel>response.json();
+            });
+    }
 }

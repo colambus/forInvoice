@@ -14,11 +14,13 @@ import { GridDataResult, GridComponent, EditEvent } from '@progress/kendo-angula
 import { State, process } from '@progress/kendo-data-query';
 import { map } from 'rxjs/operators/map';
 import { ProductService } from '../../services/products.service';
+import { InvoiceProductService } from '../../services/invoiceProduct.service';
+
 
 @Component({
     selector: 'invoice',
     templateUrl: './invoice.component.html',
-    providers: [DataNamedService, EditService, ProductService]
+    providers: [DataNamedService, EditService, ProductService, InvoiceProductService]
 })
 export class InvoiceComponent implements OnInit {
 
@@ -29,10 +31,11 @@ export class InvoiceComponent implements OnInit {
         seller: { id: 0, name: "" },
         buyer: { id: 0, name: "" },
         contract: "",
-        deliveryType: "",
-        termsOfDelivery: "",
-        paymentIdentification: [],
-        orderNo: []
+        termOfPayment: { id: 0, name: "" },
+        deliveryType: { id: 0, name: "" },
+        termsOfDelivery: { id: 0, name: "" },
+        paymentIdentification: "",
+        orderNo: ""
     };
     termsOfDelivery: NamedIdObject[];
     deliveryTypes: NamedIdObject[];
@@ -50,7 +53,8 @@ export class InvoiceComponent implements OnInit {
     constructor(private dataNamedService: DataNamedService,
         private formBuilder: FormBuilder,
         public editService: EditService,
-        private productService: ProductService) {
+        private productService: ProductService,
+        private invoiceProduct: InvoiceProductService) {
     }
 
     ngOnInit() {
@@ -79,6 +83,14 @@ export class InvoiceComponent implements OnInit {
 
     public get isInEditingMode(): boolean {
         return this.editedRowIndex !== undefined || this.isNew;
+    }
+
+    valueChange(value: any) {
+        alert("Value prodcut");
+        let newItem = new InvoiceProductModel();
+        newItem.product = value;
+        this.gridProducts.push(newItem);
+        this.invoiceProduct.add(newItem);
     }
 
     onPaymentIdentificationChange(value: any) {
@@ -127,7 +139,6 @@ export class InvoiceComponent implements OnInit {
             return;
         }
 
-
         this.formGroup = this.createFormGroup(dataItem);
         this.editedRowIndex = rowIndex;
         sender.editRow(rowIndex, this.formGroup);
@@ -166,13 +177,6 @@ export class InvoiceComponent implements OnInit {
             .subscribe(
             resultArray => this.products = resultArray,
             error => console.log("Error :: " + error));
-    }
-
-    public productSelectionChange(value: ProductModel) {
-        console.log(value);
-        let newItem = new InvoiceProductModel();
-        newItem.product = value;
-        this.gridProducts.push(newItem);
     }
 
     public createFormGroup(dataItem: any): FormGroup {

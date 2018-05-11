@@ -61,17 +61,19 @@
     "zone.js": "0.8.12"
   },
   "dependencies": {
-    "@progress/kendo-angular-buttons": "^4.0.0",
+    "@progress/kendo-angular-buttons": "^4.1.0",
     "@progress/kendo-angular-dateinputs": "^2.2.0",
-    "@progress/kendo-angular-dialog": "^3.4.0",
+    "@progress/kendo-angular-dialog": "^3.6.0",
     "@progress/kendo-angular-dropdowns": "^2.1.0",
     "@progress/kendo-angular-excel-export": "^1.0.7",
     "@progress/kendo-angular-grid": "^3.0.0",
     "@progress/kendo-angular-inputs": "^2.2.0",
     "@progress/kendo-angular-intl": "^1.4.0",
-    "@progress/kendo-angular-l10n": "^1.1.0",
+    "@progress/kendo-angular-l10n": "^1.2.0",
+    "@progress/kendo-angular-popup": "^2.3.0",
     "@progress/kendo-data-query": "^1.2.2",
     "@progress/kendo-drawing": "^1.5.2",
-    "@progress/kendo-theme-default": "^2.38.1"
+    "@progress/kendo-theme-default": "^2.38.1",
+    "@telerik/kendo-theme-default": "^1.33.4"
   }
 }

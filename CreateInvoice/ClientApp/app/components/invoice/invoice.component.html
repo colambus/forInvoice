@@ -81,9 +81,9 @@
                     <kendo-combobox [data]="products" 
                                     [textField]="'descriptionEn'" 
                                     [valueField]="'id'"
+                                    (valueChange)="valueChange($event)"
                                     [filterable]="true"
-                                    (filterChange)="productHandleFilter($event)"
-                                    (selectionChange)="productSelectionChange($event)">
+                                    (filterChange)="productHandleFilter($event)">
                     </kendo-combobox>
                 </ng-template>
             </kendo-grid-column>
