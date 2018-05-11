@@ -36,5 +36,17 @@ namespace CreateInvoice.Controllers
 
             return invoice;
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Invoice invoice = _context.Invoices.FirstOrDefault(x => x.Id == id);
+            if (invoice != null)
+            {
+                _context.Invoices.Remove(invoice);
+                _context.SaveChanges();
+            }
+            return Ok(invoice);
+        }
     }
 }
