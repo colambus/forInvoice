@@ -9,18 +9,17 @@
         </ng-template>
 
 
-        <kendo-grid-column field="InvoiceNumber" title="Invoice No." width="40" [editable]="false">
+        <kendo-grid-column field="invoiceNo" title="Invoice No." width="40" [editable]="false">
         </kendo-grid-column>
-        <kendo-grid-column field="Date" title="Invoice Date" width="40" [editable]="false">
+        <kendo-grid-column field="date" title="Invoice Date" width="40" [editable]="false">
         </kendo-grid-column>
+        <kendo-grid-command-column title="command" width="220">
+            <button kendoGridRemoveCommand type="button">Remove</button>
+        </kendo-grid-command-column>
     </kendo-grid>
+    <kendo-dialog-actions *ngIf="confirmDelete">
+        <button kendoButton (click)="onDeleteData()" primary="true">Delete</button>
+        <button kendoButton (click)="onDialogClose()">Cancel</button>
+    </kendo-dialog-actions>
     <div kendoDialogContainer></div>
-    <!--<kendo-dialog title="New invoice" *ngIf="opened" (close)="close()" [minWidth]="550" [width]="750">
-        <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
-        
-        <kendo-dialog-actions>
-            <button kendoButton (click)="close()">No</button>
-            <button kendoButton (click)="close()" primary="true">Yes</button>
-        </kendo-dialog-actions>
-    </kendo-dialog>-->
 </div>

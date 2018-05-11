@@ -26,4 +26,8 @@ export class InvoiceService {
                 return <InvoiceModel>response.json();
             });
     }
+
+    deleteItem(id: number) {
+        return this.http.delete(this.actionUrl + '/' + id);
+    };
 }
