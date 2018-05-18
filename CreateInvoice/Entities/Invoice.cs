@@ -18,5 +18,10 @@ namespace CreateInvoice.Entities
         public TermOfPayment TermOfPayment { get; set; }
         public string PaymentIdentification { get; set; }
         public string OrderNo { get; set; }
+
+        public Invoice()
+        {
+            Date = DateTime.Now;
+        }
     }
 }

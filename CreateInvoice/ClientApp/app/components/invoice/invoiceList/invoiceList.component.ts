@@ -41,12 +41,13 @@ export class InvoiceListComponent implements OnInit {
 
         let newInvoice: InvoiceModel = new InvoiceModel(); 
         this.isNew = true;
+        let loaded = false;
         this.invoiceService.create()
             .subscribe(
-            result => newInvoice = result,
+            result => {
+                newInvoice = result, loaded = true;
+            },
             error => console.log("Error :: " + error));
-
-        //console.log(newInvoice);
 
         const dialogRef = this.dialogService.open({
             title: 'New invoice',
@@ -61,6 +62,8 @@ export class InvoiceListComponent implements OnInit {
         });
 
         dialogRef.content.instance.invoice = newInvoice;
+
+        console.log("Test");
     }
 
     public createFormGroup(dataItem: any): FormGroup {
