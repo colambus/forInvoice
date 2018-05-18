@@ -3,7 +3,8 @@
     <kendo-grid #grid
                 [data]="gridInvoices"
                 [height]="410"
-                (add)="addHandler($event, myForm)">
+                (add)="addHandler($event, myForm)"
+                (remove)="removeHandler($event)">
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
         </ng-template>
@@ -13,13 +14,11 @@
         </kendo-grid-column>
         <kendo-grid-column field="date" title="Invoice Date" width="40" [editable]="false">
         </kendo-grid-column>
-        <kendo-grid-command-column title="command" width="220">
-            <button kendoGridRemoveCommand type="button">Remove</button>
+        <kendo-grid-command-column title="Command" width="20">
+            <ng-template kendoGridCellTemplate>
+                <button kendoGridRemoveCommand type="button">Remove</button>
+            </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>
-    <kendo-dialog-actions *ngIf="confirmDelete">
-        <button kendoButton (click)="onDeleteData()" primary="true">Delete</button>
-        <button kendoButton (click)="onDialogClose()">Cancel</button>
-    </kendo-dialog-actions>
     <div kendoDialogContainer></div>
 </div>

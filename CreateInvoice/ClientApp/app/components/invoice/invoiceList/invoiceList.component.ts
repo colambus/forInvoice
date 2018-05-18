@@ -1,10 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { InvoiceModel } from '../../../models/invoice.model';
 import { InvoiceService } from '../../../services/invoice.service';
-import { DialogService } from '@progress/kendo-angular-dialog';
+import { DialogService, DialogCloseResult } from '@progress/kendo-angular-dialog';
 import { InvoiceComponent } from '../invoice.component';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { EditService } from '../../../services/edit.service';
+import { DialogAction } from '@progress/kendo-angular-dialog/dist/es2015/dialog/dialog-settings';
 
 @Component({
     selector: 'invoiceList',
@@ -16,7 +17,7 @@ export class InvoiceListComponent implements OnInit {
     gridInvoices: InvoiceModel[];
     private confirmDelete: boolean = false;
     private isNew: boolean = false;
-    private currInvoice: InvoiceModel;
+    public currInvoice: InvoiceModel;
     public formGroup: FormGroup | undefined;
 
     constructor(private invoiceService: InvoiceService,
@@ -36,11 +37,16 @@ export class InvoiceListComponent implements OnInit {
     }
 
     public addHandler({ sender }: any) {
-        console.log("New Invoice");
+        //console.log(newInvoice);
+
+        let newInvoice: InvoiceModel = new InvoiceModel(); 
         this.isNew = true;
-        this.invoiceService.create().subscribe(
-            result => this.currInvoice = result,
+        this.invoiceService.create()
+            .subscribe(
+            result => newInvoice = result,
             error => console.log("Error :: " + error));
+
+        //console.log(newInvoice);
 
         const dialogRef = this.dialogService.open({
             title: 'New invoice',
@@ -54,7 +60,7 @@ export class InvoiceListComponent implements OnInit {
             ]
         });
 
-        dialogRef.content.instance.invoice = this.currInvoice;
+        dialogRef.content.instance.invoice = newInvoice;
     }
 
     public createFormGroup(dataItem: any): FormGroup {
@@ -65,17 +71,35 @@ export class InvoiceListComponent implements OnInit {
     }
 
     public removeHandler({ dataItem }: any) {
-        this.confirmDelete = true;
+        //this.confirmDelete = true;
 
+        const dialogRef = this.dialogService.open({
+            title: 'Confirmation',
+
+            // Show component
+            content: 'Are you sure?',
+
+            actions: [
+                { text: 'Yes'},
+                { text: 'No', primary: true }
+            ]
+        });
+
+        dialogRef.result.subscribe((result) => {
+            if (result instanceof DialogCloseResult) {
+                console.log('close');
+            } else {
+                if ((result as DialogAction).text === 'Yes') 
+                    this.onDeleteData(dataItem.id);
+                else
+                    console.log('Action close');
+                ;
+            }         
+        });       
     }
 
-    onDeleteData() {
-        this.editService.remove(dataItem);
-        this.invoiceService.deleteItem(dataItem.id)
+    onDeleteData(id: number) {
+        this.invoiceService.deleteItem(id)
             .subscribe(data => this.load());
-    }
-
-    public close() {
-        this.confirmDelete = false;
     }
 }
