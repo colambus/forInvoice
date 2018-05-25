@@ -32,4 +32,17 @@ export class InvoiceProductService {
             });
     }
 
+    save(product: InvoiceProductModel, isNew: boolean): Observable<InvoiceProductModel> {
+        if (isNew) {
+            return this.http.put(this.actionUrl + 'Add', product)
+                .map((response: Response) => {
+                    return <InvoiceProductModel>response.json();
+                });
+        } else {
+            return this.http.post(this.actionUrl + 'Save', product)
+                .map((response: Response) => {
+                    return <InvoiceProductModel>response.json();
+                });
+        }   
+    }
 }

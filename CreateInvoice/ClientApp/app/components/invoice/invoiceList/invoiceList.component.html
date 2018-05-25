@@ -1,15 +1,17 @@
 ﻿<h1>Invoices</h1>
 <div>
     <kendo-grid #grid
+                [selectable]="true"
                 [data]="gridInvoices"
                 [height]="410"
                 (add)="addHandler($event, myForm)"
-                (remove)="removeHandler($event)">
+                (remove)="removeHandler($event)"
+                (dblclick)="editInvoice(grid, $event)"
+                (selectionChange) = "onSelectionRowChange($event)"
+                >
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
         </ng-template>
-
-
         <kendo-grid-column field="invoiceNo" title="Invoice No." width="40" [editable]="false">
         </kendo-grid-column>
         <kendo-grid-column field="date" title="Invoice Date" width="40" [editable]="false">

@@ -9,7 +9,7 @@ namespace CreateInvoice.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Organization Buyer { get; set; }
-        public Organization Seller { get; set; }
+        public virtual Organization Buyer { get; set; }
+        public virtual Organization Seller { get; set; }
     }
 }

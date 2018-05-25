@@ -19,6 +19,7 @@ export class InvoiceListComponent implements OnInit {
     private isNew: boolean = false;
     public currInvoice: InvoiceModel;
     public formGroup: FormGroup | undefined;
+    public invoiceSelection: number;
 
     constructor(private invoiceService: InvoiceService,
         private dialogService: DialogService,
@@ -36,19 +37,63 @@ export class InvoiceListComponent implements OnInit {
             error => console.log("Error :: " + error));
     }
 
+    onSelectionRowChange(invoice: any) {
+        if (invoice.selectedRows[0])
+            this.currInvoice = invoice.selectedRows[0].dataItem;
+    }
+
     public addHandler({ sender }: any) {
         //console.log(newInvoice);
 
-        let newInvoice: InvoiceModel = new InvoiceModel(); 
+        let newInvoice: InvoiceModel = new InvoiceModel();
         this.isNew = true;
         let loaded = false;
         this.invoiceService.create()
             .subscribe(
             result => {
-                newInvoice = result, loaded = true;
+                newInvoice = result;
+                this.createNewInvoiceForm(newInvoice);
             },
             error => console.log("Error :: " + error));
+    }
 
+    private editSelectedInvoice(invoice: InvoiceModel) {
+        const dialogRef = this.dialogService.open({
+            title: 'Edit invoice',
+
+            // Show component
+            content: InvoiceComponent,
+
+            actions: [
+                { text: 'Save', primary: true },
+                { text: 'Close' }
+            ]
+        });
+
+        dialogRef.content.instance.invoice = invoice;
+
+        dialogRef.result.subscribe((result) => {
+            if ((result as DialogAction).text === 'Save')
+                this.invoiceService.save(dialogRef.content.instance.invoice).subscribe(result => {
+                    this.load();
+                });
+        });
+    }
+
+    public editInvoice(sender: any, eventArgs: any) {
+        if (this.currInvoice) {
+            this.isNew = false;
+            this.invoiceService.getById(this.currInvoice)
+                .subscribe(
+                result => {
+                    this.currInvoice = result;
+                    this.editSelectedInvoice(this.currInvoice);
+                },
+                error => console.log("Error :: " + error));
+        }
+    }
+
+    public createNewInvoiceForm(invoice: InvoiceModel) {
         const dialogRef = this.dialogService.open({
             title: 'New invoice',
 
@@ -61,9 +106,20 @@ export class InvoiceListComponent implements OnInit {
             ]
         });
 
-        dialogRef.content.instance.invoice = newInvoice;
+        dialogRef.content.instance.invoice = invoice;
 
-        console.log("Test");
+        dialogRef.result.subscribe((result) => {
+            if (result instanceof DialogCloseResult) {
+                this.onDeleteData(invoice.id)
+            } else {
+                if ((result as DialogAction).text === 'Save')
+                    this.invoiceService.save(dialogRef.content.instance.invoice).subscribe(result => {
+                        this.load()
+                    });
+                else
+                    this.onDeleteData(invoice.id);
+            }
+        })
     }
 
     public createFormGroup(dataItem: any): FormGroup {
@@ -83,7 +139,7 @@ export class InvoiceListComponent implements OnInit {
             content: 'Are you sure?',
 
             actions: [
-                { text: 'Yes'},
+                { text: 'Yes' },
                 { text: 'No', primary: true }
             ]
         });
@@ -92,13 +148,13 @@ export class InvoiceListComponent implements OnInit {
             if (result instanceof DialogCloseResult) {
                 console.log('close');
             } else {
-                if ((result as DialogAction).text === 'Yes') 
+                if ((result as DialogAction).text === 'Yes')
                     this.onDeleteData(dataItem.id);
                 else
                     console.log('Action close');
                 ;
-            }         
-        });       
+            }
+        });
     }
 
     onDeleteData(id: number) {

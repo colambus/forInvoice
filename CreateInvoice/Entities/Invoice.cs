@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CreateInvoice.Helpers;
 
 namespace CreateInvoice.Entities
 {
@@ -10,18 +8,13 @@ namespace CreateInvoice.Entities
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string InvoiceNo { get; set; }
-        public Organization Seller { get; set; }
-        public Organization Buyer { get; set; }
-        public Contract Contract { get; set; }
-        public DeliveryType DeliveryType { get; set; }
-        public TermsOfDelivery TermsOfDelivery { get; set; }
-        public TermOfPayment TermOfPayment { get; set; }
+        public virtual Organization Seller { get; set; }
+        public virtual Organization Buyer { get; set; }
+        public virtual Contract Contract { get; set; }
+        public virtual DeliveryType DeliveryType { get; set; }
+        public virtual TermsOfDelivery TermsOfDelivery { get; set; }
+        public virtual TermOfPayment TermOfPayment { get; set; }
         public string PaymentIdentification { get; set; }
         public string OrderNo { get; set; }
-
-        public Invoice()
-        {
-            Date = DateTime.Now;
-        }
     }
 }

@@ -10,6 +10,6 @@ namespace CreateInvoice.Entities
         public int Id { get; set; }
         public string DescriptionEn { get; set; }
         public string DescriptionUa { get; set; }
-        public Certificate Certificate { get; set; }
+        public virtual Certificate Certificate { get; set; }
     }
 }
