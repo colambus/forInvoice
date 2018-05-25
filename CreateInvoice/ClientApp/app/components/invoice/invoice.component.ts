@@ -1,11 +1,11 @@
-﻿import { Component, OnInit, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Inject, ElementRef, Renderer2 } from '@angular/core';
 import { Data } from '@angular/router/src/config';
 import { getToday } from '@progress/kendo-angular-dateinputs/dist/es2015/util';
 import { InvoiceModel } from '../../models/invoice.model';
 import { NamedIdObject } from '../../models/NamedIdObject.model';
 import { Organization } from '../../models/organization.model';
 import { DataNamedService } from '../../services/dataNamed.service';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { EditService } from '../../services/edit.service';
 import { InvoiceProductModel } from '../../models/invoiceProduct.model';
 import { ProductModel } from '../../models/product.model';
@@ -16,6 +16,18 @@ import { map } from 'rxjs/operators/map';
 import { ProductService } from '../../services/products.service';
 import { InvoiceProductService } from '../../services/invoiceProduct.service';
 
+
+const hasClass = (el: any, className: any) => new RegExp(className).test(el.className);
+
+const isChildOf = (el: any, className: any) => {
+    while (el && el.parentElement) {
+        if (hasClass(el.parentElement, className)) {
+            return true;
+        }
+        el = el.parentElement;
+    }
+    return false;
+};
 
 @Component({
     selector: 'invoice',
@@ -54,11 +66,15 @@ export class InvoiceComponent implements OnInit {
         private formBuilder: FormBuilder,
         public editService: EditService,
         private productService: ProductService,
+        private renderer: Renderer2,
         private invoiceProduct: InvoiceProductService) {
     }
 
     ngOnInit() {
-        this.gridProducts = new Array<InvoiceProductModel>();
+        this.invoiceProduct.getAll(this.invoice.id)
+            .subscribe(
+            result => this.gridProducts = result,
+            error => console.log("Error :: " + error));
 
         this.dataNamedService.getAll('Organization')
             .subscribe(
@@ -78,19 +94,20 @@ export class InvoiceComponent implements OnInit {
         this.dataNamedService.getAll('TermsOfDelivery')
             .subscribe(
             resultArray => this.termsOfPayment = resultArray,
-            error => console.log("Error :: " + error));       
+            error => console.log("Error :: " + error));     
+
+        this.renderer.listen(
+            'document',
+            'click',
+            ({ target }) => {
+                if (!isChildOf(target, 'k-grid-content') && !isChildOf(target, 'k-grid-toolbar')) {
+                    this.saveClick();
+                }
+            });
     }
 
-    public get isInEditingMode(): boolean {
-        return this.editedRowIndex !== undefined || this.isNew;
-    }
-
-    valueChange(value: any) {
-        alert("Value prodcut");
-        let newItem = new InvoiceProductModel();
-        newItem.product = value;
-        this.gridProducts.push(newItem);
-        this.invoiceProduct.add(newItem);
+    onDateChange(value: any) {
+        console.log(value);
     }
 
     onPaymentIdentificationChange(value: any) {
@@ -109,28 +126,10 @@ export class InvoiceComponent implements OnInit {
         this.invoice.orderNo = value;
     }
 
-    public saveHandler({ sender, formGroup, rowIndex }: any) {
-        if (formGroup.valid) {
-            this.editService.create(formGroup.value);
-            sender.closeRow(rowIndex);
-        }
-    }
-
-    public cellCloseHandler(args: any) {
-        const { formGroup, dataItem } = args;
-
-        if (!formGroup.valid) {
-            // prevent closing the edited cell if there are invalid values.
-            args.preventDefault();
-        } else if (formGroup.dirty) {
-            this.editService.assignValues(dataItem, formGroup.value);
-            this.editService.update(dataItem);
-        }
-    }
-
     public addHandler({ sender }: any) {
         this.closeEditor(sender);
-        sender.addRow(this.createFormGroup(new InvoiceProductModel()));
+        this.formGroup = this.createFormGroup(new InvoiceProductModel());
+        sender.addRow(this.formGroup);
         this.isNew = true;
     }
 
@@ -139,6 +138,9 @@ export class InvoiceComponent implements OnInit {
             return;
         }
 
+        if (!dataItem) return;
+
+        this.saveRow();
         this.formGroup = this.createFormGroup(dataItem);
         this.editedRowIndex = rowIndex;
         sender.editRow(rowIndex, this.formGroup);
@@ -152,23 +154,52 @@ export class InvoiceComponent implements OnInit {
                 sender: this.grid,
                 isNew: this.isNew
             });
+        } else {
+
         }
     }
 
+    handleValueChange(value: any) {
+        if (value) {
+            this.formGroup!.get('Product')!.setValue(value);
+            this.formGroup!.get('CountryOfOrigin')!.setValue(value.countryOfOrigin.id);
+            this.formGroup!.get('CodeNo')!.setValue(value.codeNo);
+        }
+    }
+
+    public saveClick(): void {
+        if (this.formGroup && !this.formGroup.valid) {
+            return;
+        }
+
+        this.saveRow();
+    }
+
     private saveRow(): void {
-        
+        if (this.isInEditingMode) {
+            if (this.formGroup)
+                this.invoiceProduct.save(this.formGroup.value, this.isNew)
+                    .subscribe(result => this.load());
+        }
+
+        this.closeEditor(this.grid);
+    }
+
+    load() {
+        this.invoiceProduct.getAll(this.invoice.id)
+            .subscribe(result => this.gridProducts = result);
+    }
+
+    public get isInEditingMode(): boolean {
+        return this.editedRowIndex !== undefined || this.isNew;
     }
 
     private closeEditor(grid: GridComponent, rowIndex: number | undefined = this.editedRowIndex): void {
-        this.isNew = false;
-        grid.closeRow(rowIndex);
-        this.editedRowIndex = undefined;
-        this.formGroup = undefined;
-    }
-
-    public cellClickHandler({ sender, rowIndex, columnIndex, dataItem, isEdited }: any) {
-        if (!isEdited) {
-            sender.editCell(rowIndex, columnIndex, this.createFormGroup(dataItem));
+        if (this.formGroup != undefined) {
+            this.isNew = false;
+            grid.closeRow(rowIndex);
+            this.editedRowIndex = undefined;
+            this.formGroup = undefined;
         }
     }
 
@@ -182,13 +213,14 @@ export class InvoiceComponent implements OnInit {
     public createFormGroup(dataItem: any): FormGroup {
         return this.formBuilder.group({
             'Position': dataItem.productPosition,
-            'CountryOfOrigin': dataItem.product.countryOfOrigin.id,
+            'CountryOfOrigin': dataItem.product!.countryOfOrigin!.id,
             'CodeNo': [dataItem.product.codeNo],
-            'Description': [dataItem.product.descriptionEn],
+            'Product': new FormControl(dataItem.product, Validators.required),
             'Unit': [dataItem.product.unit],
             'UnitPrice': dataItem.unitPrice,
             'Quantity': [dataItem.quantity],
-            'Amount': dataItem.unitPrice * dataItem.quantity
+            'Amount': dataItem.unitPrice * dataItem.quantity,
+            'Invoice': this.invoice
         });
     }
 }

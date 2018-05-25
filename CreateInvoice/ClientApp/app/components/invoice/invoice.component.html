@@ -5,19 +5,19 @@
             <p>Invoice date</p>
         </div>
         <div class="col-lg-2">
-            <kendo-datepicker [format]="'dd-MM-yyyy'" [value]="invoice.date"></kendo-datepicker>
+            <kendo-datepicker [format]="'dd-MM-yyyy'" [(value)]="invoice.date" (valueChange)="onDateChange($event)"></kendo-datepicker>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2">Seller</div>
         <div class="col-lg-2">
-            <kendo-dropdownlist [data]="organizations" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+            <kendo-dropdownlist [data]="organizations" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.seller"></kendo-dropdownlist>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2">Buyer</div>
         <div class="col-lg-2">
-            <kendo-dropdownlist [data]="organizations" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+            <kendo-dropdownlist [data]="organizations" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.buyer"></kendo-dropdownlist>
         </div>
     </div>
     <div class="row">
@@ -29,19 +29,19 @@
     <div class="row">
         <div class="col-lg-2">Delivery type</div>
         <div class="col-lg-2">
-            <kendo-dropdownlist [data]="deliveryTypes" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+            <kendo-dropdownlist [data]="deliveryTypes" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.deliveryType"></kendo-dropdownlist>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2">Terms of payment</div>
         <div class="col-lg-2">
-            <kendo-dropdownlist [data]="termsOfPayment" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+            <kendo-dropdownlist [data]="termsOfPayment" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.termOfPayment"></kendo-dropdownlist>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2">Terms of delivery</div>
         <div class="col-lg-2">
-            <kendo-dropdownlist [data]="termsOfDelivery" [textField]="'name'" [valueField]="'id'"></kendo-dropdownlist>
+            <kendo-dropdownlist [data]="termsOfDelivery" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.termsOfDelivery"></kendo-dropdownlist>
         </div>
     </div>
     <div class="row">
@@ -71,19 +71,19 @@
             <ng-template kendoGridToolbarTemplate>
                 <button kendoGridAddCommand>Add new</button>
             </ng-template>
-            <kendo-grid-column field="Position" title="Position" width="40" [editable]="false">
+            <kendo-grid-column field="Position" title="Position" width="60" [editable]="false">
             </kendo-grid-column>
-            <kendo-grid-column field="CountryOfOrigin" title="Country of origin" width="40">
+            <kendo-grid-column field="CountryOfOrigin" title="Country of origin" width="60" [editable]="false">
             </kendo-grid-column>
-            <kendo-grid-column field="CodeNo" title="Code No." width="40">
+            <kendo-grid-column field="CodeNo" title="Code No." width="60" [editable]="false">
             </kendo-grid-column>
-            <kendo-grid-column field="DescriptionEn" title="Description" width="250">
+            <kendo-grid-column field="Product" title="Description" width="250">
                 <ng-template kendoGridEditTemplate let-dataItem="dataItem">
                     <kendo-combobox [data]="products" 
                                     [textField]="'descriptionEn'" 
-                                    [valueField]="'id'"
-                                    (valueChange)="valueChange($event)"
+                                    [valueField]="dataItem"
                                     [filterable]="true"
+                                    (valueChange)="handleValueChange($event)"
                                     (filterChange)="productHandleFilter($event)">
                     </kendo-combobox>
                 </ng-template>
