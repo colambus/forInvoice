@@ -1,0 +1,34 @@
+﻿<h1>Products</h1>
+<div>
+    <kendo-grid #grid
+                [selectable]="true"
+                [data]="products"
+                [height]="410"
+                (add)="addHandler($event, myForm)"
+                (remove)="removeHandler($event)"
+                (dblclick)="editInvoice(grid, $event)"
+                (selectionChange)="onSelectionRowChange($event)">
+        <ng-template kendoGridToolbarTemplate>
+            <button kendoGridAddCommand>Add new</button>
+        </ng-template>
+        <kendo-grid-column field="codeNo" title="Code" width="40" [editable]="true">
+        </kendo-grid-column>
+        <kendo-grid-column field="descriptionEn" title="Description English" width="40">
+        </kendo-grid-column>
+        <kendo-grid-column field="descriptionUa" title="Description Ukrainian" width="40">
+        </kendo-grid-column>
+        <kendo-grid-column field="certificate" title="Certificate" width="40">
+        </kendo-grid-column>
+        <kendo-grid-column field="countryOfOrigin" title="Country of origin" width="40">
+        </kendo-grid-column>
+        <kendo-grid-column field="descriptionUa" title="Description Ukrainian" width="40" [editable]="false">
+        </kendo-grid-column>
+        <kendo-grid-command-column title="Command" width="20">
+            <ng-template kendoGridCellTemplate>
+                <button kendoGridRemoveCommand [iconClass]="'k-icon k-i-close'"
+                        style="color: red;"></button>
+            </ng-template>
+        </kendo-grid-command-column>
+    </kendo-grid>
+    <div kendoDialogContainer></div>
+</div>

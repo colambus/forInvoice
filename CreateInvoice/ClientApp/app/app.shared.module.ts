@@ -13,6 +13,8 @@ import { CounterComponent } from './components/counter/counter.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { InvoiceListComponent } from './components/invoice/invoiceList/invoiceList.component';
 
+//Directives
+
 //Kendo UI modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';

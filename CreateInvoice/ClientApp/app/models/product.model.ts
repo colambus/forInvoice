@@ -11,5 +11,8 @@ export class ProductModel {
 
     constructor() {
         this.countryOfOrigin = new CountryOfOriginModel();
+        this.descriptionEn = "";
+        this.descriptionUa = "";
+        this.codeNo = "";
     }
 }

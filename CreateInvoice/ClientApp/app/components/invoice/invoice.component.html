@@ -64,38 +64,48 @@
         <kendo-grid #grid
                     [data]="gridProducts"
                     [height]="410"
+                    [navigable]="true"
                     (add)="addHandler($event)"
                     (save)="saveHandler($event)"
-                    (cellClick)="editClick($event)"
-                    >
+                    (remove)="removeHandler($event)"
+                    (cellClick)="editClick($event)">
             <ng-template kendoGridToolbarTemplate>
                 <button kendoGridAddCommand>Add new</button>
             </ng-template>
-            <kendo-grid-column field="Position" title="Position" width="60" [editable]="false">
+            <kendo-grid-column field="productPosition" title="Position" width="20" [editable]="false">
             </kendo-grid-column>
-            <kendo-grid-column field="CountryOfOrigin" title="Country of origin" width="60" [editable]="false">
+            <kendo-grid-column field="product.countryOfOrigin.id" title="Country of origin" width="40" [editable]="false">
             </kendo-grid-column>
-            <kendo-grid-column field="CodeNo" title="Code No." width="60" [editable]="false">
+            <kendo-grid-column field="product.codeNo" title="Code No." width="40" [editable]="false">
             </kendo-grid-column>
-            <kendo-grid-column field="Product" title="Description" width="250">
-                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                    <kendo-combobox [data]="products" 
-                                    [textField]="'descriptionEn'" 
-                                    [valueField]="dataItem"
+            <kendo-grid-column field="product.descriptionEn" title="Description" width="230">
+                <ng-template kendoGridEditTemplate let-dataItem="product">
+                    <kendo-combobox [data]="products"
+                                    [textField] ="'descriptionEn'"
+                                    [valueField] ="'id'"
                                     [filterable]="true"
                                     (valueChange)="handleValueChange($event)"
                                     (filterChange)="productHandleFilter($event)">
                     </kendo-combobox>
                 </ng-template>
             </kendo-grid-column>
-            <kendo-grid-column field="Unit" title="Unit/Pack" width="40">
+            <kendo-grid-column field="unit" title="Unit/Pack" width="40">
             </kendo-grid-column>
-            <kendo-grid-column field="Quantity" title="Unit Qty" editor="numeric" width="80">
+            <kendo-grid-column field="quantity" title="Unit Qty" kendoGridFocusable width="40">
             </kendo-grid-column>
-            <kendo-grid-column field="UnitPrice" title="Unit Price" editor="" width="80" [editable]="false">
+            <kendo-grid-column field="unitPrice" title="Unit Price" width="40">
             </kendo-grid-column>
-            <kendo-grid-column field="Amount" title="Amount" width="80" [editable]="false">
+            <kendo-grid-column field="amount" title="Amount" width="40" [editable]="false">
             </kendo-grid-column>
+            <kendo-grid-command-column title="Command" width="40">
+                <ng-template kendoGridCellTemplate>
+                    <button kendoGridRemoveCommand
+                        [iconClass]="'k-icon k-i-close'"
+                            [look] ="'bare'"
+                        style="color: red;">
+                    </button>
+                </ng-template>
+            </kendo-grid-command-column>
         </kendo-grid>
     </div>
 </div>
