@@ -25,4 +25,11 @@ export class ProductService {
                 return <ProductModel[]>response.json();
             });
     }
+
+    getAll(): Observable<ProductModel[]> {
+        return this.http.get(this.actionUrl + 'GetAll')
+            .map((response: Response) => {
+                return <ProductModel[]>response.json();
+            });
+    }
 }

@@ -18,7 +18,10 @@
         </kendo-grid-column>
         <kendo-grid-command-column title="Command" width="20">
             <ng-template kendoGridCellTemplate>
-                <button kendoGridRemoveCommand type="button">Remove</button>
+                <button kendoGridRemoveCommand [iconClass]="'k-icon k-i-close'" 
+                        style="color: red;"
+                        >
+                </button>
             </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>

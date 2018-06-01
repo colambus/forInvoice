@@ -45,4 +45,8 @@ export class InvoiceProductService {
                 });
         }   
     }
+
+    remove(id: number) {
+        return this.http.delete(this.actionUrl + '/' + id);
+    }
 }

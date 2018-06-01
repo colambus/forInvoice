@@ -15,9 +15,11 @@ import { State, process } from '@progress/kendo-data-query';
 import { map } from 'rxjs/operators/map';
 import { ProductService } from '../../services/products.service';
 import { InvoiceProductService } from '../../services/invoiceProduct.service';
+import { DialogService, DialogCloseResult } from '@progress/kendo-angular-dialog';
+import { DialogAction } from '@progress/kendo-angular-dialog/dist/es2015/dialog/dialog-settings';
 
-
-const hasClass = (el: any, className: any) => new RegExp(className).test(el.className);
+// common constants
+const hasClass = (el: any, className: any) => new RegExp(className).test(el.className)
 
 const isChildOf = (el: any, className: any) => {
     while (el && el.parentElement) {
@@ -28,6 +30,16 @@ const isChildOf = (el: any, className: any) => {
     }
     return false;
 };
+
+const createFormGroup = (dataItem: any) => new FormGroup({
+    'Position': new FormControl(dataItem.productPosition),
+    'CountryOfOrigin': new FormControl(dataItem.product!.countryOfOrigin!.id),
+    'CodeNo': new FormControl(dataItem!.product!.codeNo),
+    'Product': new FormControl(dataItem!.product, Validators.required),
+    'Unit': new FormControl(dataItem!.product!.unit),
+    'UnitPrice': new FormControl(dataItem!.unitPrice),
+    'Quantity': new FormControl(dataItem!.quantity)
+});
 
 @Component({
     selector: 'invoice',
@@ -62,10 +74,12 @@ export class InvoiceComponent implements OnInit {
     public formGroup: FormGroup | undefined;
     @ViewChild(GridComponent) private grid: GridComponent;
 
+
     constructor(private dataNamedService: DataNamedService,
         private formBuilder: FormBuilder,
         public editService: EditService,
         private productService: ProductService,
+        private dialogService: DialogService,
         private renderer: Renderer2,
         private invoiceProduct: InvoiceProductService) {
     }
@@ -94,13 +108,13 @@ export class InvoiceComponent implements OnInit {
         this.dataNamedService.getAll('TermsOfDelivery')
             .subscribe(
             resultArray => this.termsOfPayment = resultArray,
-            error => console.log("Error :: " + error));     
+            error => console.log("Error :: " + error));
 
         this.renderer.listen(
-            'document',
-            'click',
+            "document",
+            "click",
             ({ target }) => {
-                if (!isChildOf(target, 'k-grid-content') && !isChildOf(target, 'k-grid-toolbar')) {
+                if (!isChildOf(target, "k-grid-content") && !isChildOf(target, "k-grid-toolbar")) {
                     this.saveClick();
                 }
             });
@@ -129,6 +143,7 @@ export class InvoiceComponent implements OnInit {
     public addHandler({ sender }: any) {
         this.closeEditor(sender);
         this.formGroup = this.createFormGroup(new InvoiceProductModel());
+        //this.formGroup = createFormGroup(new InvoiceProductModel());
         sender.addRow(this.formGroup);
         this.isNew = true;
     }
@@ -154,8 +169,6 @@ export class InvoiceComponent implements OnInit {
                 sender: this.grid,
                 isNew: this.isNew
             });
-        } else {
-
         }
     }
 
@@ -177,12 +190,46 @@ export class InvoiceComponent implements OnInit {
 
     private saveRow(): void {
         if (this.isInEditingMode) {
-            if (this.formGroup)
+            if (this.formGroup ) {
+                this.formGroup.value.invoice = this.invoice;
                 this.invoiceProduct.save(this.formGroup.value, this.isNew)
                     .subscribe(result => this.load());
+                this.isNew = false;
+            }
         }
 
         this.closeEditor(this.grid);
+    }
+
+    public removeHandler({ dataItem }: any) {
+        const dialogRef = this.dialogService.open({
+            title: 'Confirmation',
+
+            // Show component
+            content: 'Are you sure?',
+
+            actions: [
+                { text: 'Yes' },
+                { text: 'No', primary: true }
+            ]
+        });
+
+        dialogRef.result.subscribe((result) => {
+            if (result instanceof DialogCloseResult) {
+                console.log('close');
+            } else {
+                if ((result as DialogAction).text === 'Yes')
+                    this.onDeleteData(dataItem.id);
+                else
+                    console.log('Action close');
+                ;
+            }
+        });
+    }
+
+    onDeleteData(id: number) {
+        this.invoiceProduct.remove(id)
+            .subscribe(data => this.load());
     }
 
     load() {
@@ -194,6 +241,13 @@ export class InvoiceComponent implements OnInit {
         return this.editedRowIndex !== undefined || this.isNew;
     }
 
+    public productHandleFilter(value: any) {
+        this.productService.getBySeq(value)
+            .subscribe(
+            resultArray => this.products = resultArray,
+            error => console.log("Error :: " + error));
+    }
+
     private closeEditor(grid: GridComponent, rowIndex: number | undefined = this.editedRowIndex): void {
         if (this.formGroup != undefined) {
             this.isNew = false;
@@ -203,24 +257,16 @@ export class InvoiceComponent implements OnInit {
         }
     }
 
-    public productHandleFilter(value: any) {
-        this.productService.getBySeq(value)
-            .subscribe(
-            resultArray => this.products = resultArray,
-            error => console.log("Error :: " + error));
-    }
-
-    public createFormGroup(dataItem: any): FormGroup {
+    private createFormGroup(dataItem: any): FormGroup {
         return this.formBuilder.group({
-            'Position': dataItem.productPosition,
-            'CountryOfOrigin': dataItem.product!.countryOfOrigin!.id,
-            'CodeNo': [dataItem.product.codeNo],
-            'Product': new FormControl(dataItem.product, Validators.required),
-            'Unit': [dataItem.product.unit],
-            'UnitPrice': dataItem.unitPrice,
-            'Quantity': [dataItem.quantity],
-            'Amount': dataItem.unitPrice * dataItem.quantity,
-            'Invoice': this.invoice
+            'Position': new FormControl(dataItem.productPosition),
+            'CountryOfOrigin': new FormControl(dataItem.product!.countryOfOrigin!.id),
+            'CodeNo': new FormControl(dataItem!.product!.codeNo, Validators.required),
+            'Product': new FormControl(dataItem!.product, Validators.required),
+            'unit': new FormControl(dataItem!.product!.unit),
+            'unitPrice': new FormControl(dataItem!.unitPrice),
+            'quantity': new FormControl(dataItem!.quantity),
+            'id': dataItem.id
         });
     }
 }

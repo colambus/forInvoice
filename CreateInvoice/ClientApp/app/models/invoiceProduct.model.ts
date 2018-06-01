@@ -7,6 +7,7 @@ import { UnitModel } from './unit.model';
 
 export class InvoiceProductModel {
     id: number;
+    position: number;
     invoice: InvoiceModel;
     unitPrice: number;
     quantity: number;

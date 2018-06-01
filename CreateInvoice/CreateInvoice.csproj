@@ -28,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\dictionaries\product\product-list.component.ts" />
+    <None Remove="ClientApp\app\components\dictionaries\product\product.component.ts" />
     <None Remove="ClientApp\app\components\invoice\invoice.component.ts" />
     <None Remove="ClientApp\app\components\invoice\invoiceList\invoiceList.component.ts" />
     <None Remove="ClientApp\app\models\countryOfOrigin.model.ts" />
@@ -46,6 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\dictionaries\product\product-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dictionaries\product\product.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoice.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoiceList\invoiceList.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\countryOfOrigin.model.ts" />

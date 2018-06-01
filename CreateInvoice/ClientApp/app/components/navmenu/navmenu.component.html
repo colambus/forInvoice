@@ -27,10 +27,15 @@
                         <span class='glyphicon glyphicon-th-list'></span> Invoices
                     </a>
                 </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/invoice']">
-                        <span class='glyphicon glyphicon-file'></span> Invoice
-                    </a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dictionaries<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a [routerLink]="['/products']">
+                                <span class='glyphicon glyphicon-th-list'></span> Products
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/fetch-data']">

@@ -29,5 +29,14 @@ namespace CreateInvoice.Controllers
                 .Where(p=>p.CodeNo.Contains(queryStr))
                 .ToList();
         }
+
+        [HttpGet("[action]")]
+        public IEnumerable<Product> GetAll()
+        {
+            return _context.Products
+                .Include(p => p.CountryOfOrigin)
+                .Include(p=>p.Certificate)
+                .Include(p=>p.CountryOfOrigin);
+        }
     }
 }
