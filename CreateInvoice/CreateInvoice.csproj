@@ -28,10 +28,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\dictionaries\certificate\certificate-list.component.ts" />
+    <None Remove="ClientApp\app\components\dictionaries\country\countries-list.component.ts" />
     <None Remove="ClientApp\app\components\dictionaries\product\product-list.component.ts" />
     <None Remove="ClientApp\app\components\dictionaries\product\product.component.ts" />
     <None Remove="ClientApp\app\components\invoice\invoice.component.ts" />
     <None Remove="ClientApp\app\components\invoice\invoiceList\invoiceList.component.ts" />
+    <None Remove="ClientApp\app\models\certificate.model.ts" />
     <None Remove="ClientApp\app\models\countryOfOrigin.model.ts" />
     <None Remove="ClientApp\app\models\deliveryType.model.ts" />
     <None Remove="ClientApp\app\models\invoice.model.ts" />
@@ -41,6 +44,8 @@
     <None Remove="ClientApp\app\models\product.model.ts" />
     <None Remove="ClientApp\app\models\termsOfDelivery.model.ts" />
     <None Remove="ClientApp\app\models\unit.model.ts" />
+    <None Remove="ClientApp\app\services\certificate.service.ts" />
+    <None Remove="ClientApp\app\services\country.service.ts" />
     <None Remove="ClientApp\app\services\dataNamed.service.ts" />
     <None Remove="ClientApp\app\services\edit.service.ts" />
     <None Remove="ClientApp\app\services\invoice.service.ts" />
@@ -48,10 +53,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\dictionaries\certificate\certificate-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dictionaries\country\countries-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dictionaries\product\product-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dictionaries\product\product.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoice.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoiceList\invoiceList.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\certificate.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\countryOfOrigin.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\deliveryType.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\invoice.model.ts" />
@@ -61,6 +69,8 @@
     <TypeScriptCompile Include="ClientApp\app\models\product.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\termsOfDelivery.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\unit.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\certificate.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\country.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\dataNamed.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\edit.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\invoice.service.ts" />

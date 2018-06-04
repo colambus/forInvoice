@@ -75,9 +75,7 @@ namespace CreateInvoice.Controllers
         {
             Invoice currInvoice = _context.Invoices.Where(i => i.Id == invoice.Id).FirstOrDefault();
             SetNewValues(ref currInvoice, invoice);
-            //currInvoice.Seller = _context.Organizations.GetById(invoice.Seller.Id);
 
-            //_context.Entry(currInvoice).CurrentValues.SetValues(invoice);
             currInvoice.InvoiceNo = InvoiceHelper.CreateNewNo(invoice.Date, GetInvoiceCount(invoice.Date));
             _context.SaveChanges();
             return invoice;

@@ -25,13 +25,15 @@ namespace CreateInvoice.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("EndDate");
+
                     b.Property<string>("Name");
 
                     b.Property<DateTime>("StartDate");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Certificate");
+                    b.ToTable("Certificates");
                 });
 
             modelBuilder.Entity("CreateInvoice.Entities.ContactDetails", b =>

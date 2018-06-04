@@ -1,13 +1,12 @@
 ﻿<h1>Products</h1>
 <div>
     <kendo-grid #grid
-                [selectable]="true"
                 [data]="products"
-                [height]="410"
+                [height]="600"
                 (add)="addHandler($event, myForm)"
                 (remove)="removeHandler($event)"
                 (dblclick)="editInvoice(grid, $event)"
-                (selectionChange)="onSelectionRowChange($event)">
+                (cellClick)="editClick($event)">
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
         </ng-template>
@@ -17,11 +16,24 @@
         </kendo-grid-column>
         <kendo-grid-column field="descriptionUa" title="Description Ukrainian" width="40">
         </kendo-grid-column>
-        <kendo-grid-column field="certificate" title="Certificate" width="40">
+        <kendo-grid-column field="countryOfOrigin.name" title="Country of origin" width="40">
+            <ng-template kendoGridEditTemplate let-dataItem="countryOfOrigin">
+                <kendo-combobox [data]="countries"
+                                [textField]="'name'"
+                                [valueField]="'id'">
+                </kendo-combobox>
+            </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="countryOfOrigin" title="Country of origin" width="40">
-        </kendo-grid-column>
-        <kendo-grid-column field="descriptionUa" title="Description Ukrainian" width="40" [editable]="false">
+        <kendo-grid-column field="certificate.name" title="Certificate" width="40">
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem"
+                         let-column="column"
+                         let-formGroup="formGroup">
+                <kendo-combobox [data]="certificates"
+                                [textField] ="'name'"
+                                [valueField] ="'id'"
+                                [valuePrimitive] ="true">
+                </kendo-combobox>
+            </ng-template>
         </kendo-grid-column>
         <kendo-grid-command-column title="Command" width="20">
             <ng-template kendoGridCellTemplate>
