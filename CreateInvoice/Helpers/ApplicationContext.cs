@@ -25,6 +25,7 @@ namespace CreateInvoice.Helpers
         public DbSet<Country> Countries { get; set; }
         public DbSet<ContactType> ContactTypes { get; set; }
         public DbSet<ContactDetails> ContactDetails { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

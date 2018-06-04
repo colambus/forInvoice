@@ -32,4 +32,22 @@ export class ProductService {
                 return <ProductModel[]>response.json();
             });
     }
+
+    save(product: ProductModel, isNew: boolean): Observable<ProductModel> {
+        if (isNew) {
+            return this.http.put(this.actionUrl + 'Add', product)
+                .map((response: Response) => {
+                    return <ProductModel>response.json();
+                });
+        } else {
+            return this.http.post(this.actionUrl + 'Save', product)
+                .map((response: Response) => {
+                    return <ProductModel>response.json();
+                });
+        }   
+    }
+
+    deleteItem(id: number) {
+        return this.http.delete(this.actionUrl + '/' + id);
+    };
 }

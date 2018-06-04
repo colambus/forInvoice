@@ -143,7 +143,6 @@ export class InvoiceComponent implements OnInit {
     public addHandler({ sender }: any) {
         this.closeEditor(sender);
         this.formGroup = this.createFormGroup(new InvoiceProductModel());
-        //this.formGroup = createFormGroup(new InvoiceProductModel());
         sender.addRow(this.formGroup);
         this.isNew = true;
     }

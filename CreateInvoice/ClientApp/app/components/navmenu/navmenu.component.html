@@ -31,17 +31,22 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dictionaries<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a [routerLink]="['/products']">
+                            <a [routerLink]="['/product-list']">
                                 <span class='glyphicon glyphicon-th-list'></span> Products
                             </a>
                         </li>
+                        <li>
+                            <a [routerLink]="['/certificate-list']">
+                                <span class='glyphicon glyphicon-th-list'></span> Certificates
+                            </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/countries-list']">
+                                <span class='glyphicon glyphicon-th-list'></span> Countries
+                            </a>
+                        </li>
                     </ul>
-                </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/fetch-data']">
-                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
-                    </a>
-                </li>
+                </li>              
             </ul>
         </div>
     </div>

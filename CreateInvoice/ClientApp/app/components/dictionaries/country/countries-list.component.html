@@ -1,0 +1,29 @@
+﻿<h1>Countries</h1>
+<div>
+    <kendo-grid #grid
+                [data]="countries"
+                [height]="600"
+                (add)="addHandler($event, myForm)"
+                (remove)="removeHandler($event)"
+                (dblclick)="editCertificate(grid, $event)"
+                (cellClick)="editClick($event)">
+        <ng-template kendoGridToolbarTemplate>
+            <button kendoGridAddCommand>Add new</button>
+        </ng-template>
+        <kendo-grid-column field="id" title="Code" width="30" [editable]="false">
+        </kendo-grid-column>
+        <kendo-grid-column field="certificate.name" title="Certificate" width="80">
+            <ng-template kendoGridEditTemplate let-dataItem="certificate">
+                <kendo-combobox [data]="certificates"
+                                [textField]="'name'"
+                                [valueField]="'id'">
+                </kendo-combobox>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="descriptionEn" title="Description English" width="150" [editable]="true">
+        </kendo-grid-column>
+        <kendo-grid-column field="descriptionUa" title="Description Ukrainian" [editable]="true" width="150">
+        </kendo-grid-column>
+    </kendo-grid>
+    <div kendoDialogContainer></div>
+</div>

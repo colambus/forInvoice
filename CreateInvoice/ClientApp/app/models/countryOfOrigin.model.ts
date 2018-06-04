@@ -1,4 +1,9 @@
-﻿import { NamedIdObject } from './NamedIdObject.model';
-export class CountryOfOriginModel extends NamedIdObject
+﻿import { CerticateModel} from '../models/certificate.model'
+
+export class CountryOfOriginModel
 {
+    id: number;
+    descriptionEn: string;
+    description: string;
+    certificate: CerticateModel;
 }

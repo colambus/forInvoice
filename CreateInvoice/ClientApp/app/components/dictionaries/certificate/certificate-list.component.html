@@ -1,0 +1,21 @@
+﻿<h1>Certificate</h1>
+<div>
+    <kendo-grid #grid
+                [data]="certificates"
+                [height]="600"
+                (add)="addHandler($event, myForm)"
+                (remove)="removeHandler($event)"
+                (dblclick)="editCertificate(grid, $event)"
+                (cellClick)="editClick($event)">
+        <ng-template kendoGridToolbarTemplate>
+            <button kendoGridAddCommand>Add new</button>
+        </ng-template>
+        <kendo-grid-column field="name" title="Name" width="150" [editable]="true">
+        </kendo-grid-column>
+        <kendo-grid-column field="startDate" title="Start date" editor="date" width="40">
+        </kendo-grid-column>
+        <kendo-grid-column field="endDate" title="End date" editor="date" width="40">
+        </kendo-grid-column>     
+    </kendo-grid>
+    <div kendoDialogContainer></div>
+</div>

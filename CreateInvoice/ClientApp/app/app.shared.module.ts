@@ -12,6 +12,9 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { InvoiceListComponent } from './components/invoice/invoiceList/invoiceList.component';
+import { ProductListComponent } from './components/dictionaries/product/product-list.component';
+import { CertificateListComponent } from './components/dictionaries/certificate/certificate-list.component';
+import { CountryListComponent } from './components/dictionaries/country/countries-list.component';
 
 //Directives
 
@@ -34,7 +37,10 @@ import '@progress/kendo-angular-intl/locales/uk/all';
         FetchDataComponent,
         HomeComponent,
         InvoiceComponent,
-        InvoiceListComponent
+        InvoiceListComponent,
+        ProductListComponent,
+        CertificateListComponent,
+        CountryListComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +56,9 @@ import '@progress/kendo-angular-intl/locales/uk/all';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'invoiceList', component: InvoiceListComponent },
-            { path: 'invoice', component: InvoiceComponent },
+            { path: 'product-list', component: ProductListComponent },
+            { path: 'certificate-list', component: CertificateListComponent },
+            { path: 'countries-list', component: CountryListComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
