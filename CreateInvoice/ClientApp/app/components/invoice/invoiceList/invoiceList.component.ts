@@ -130,8 +130,6 @@ export class InvoiceListComponent implements OnInit {
     }
 
     public removeHandler({ dataItem }: any) {
-        //this.confirmDelete = true;
-
         const dialogRef = this.dialogService.open({
             title: 'Confirmation',
 

@@ -26,8 +26,15 @@ export class ProductService {
             });
     }
 
-    getAll(): Observable<ProductModel[]> {
-        return this.http.get(this.actionUrl + 'GetAll')
+    getAll(skip?: number, take?: number): Observable<ProductModel[]> {
+        let request_data = new URLSearchParams();
+        if (skip != undefined)
+            request_data.append('skip', skip.toString()); 
+        if (take != undefined)
+            request_data.append('take', take.toString());
+        let request_option = new RequestOptions();
+        request_option.search = request_data;
+        return this.http.get(this.actionUrl + 'GetAll', request_option)
             .map((response: Response) => {
                 return <ProductModel[]>response.json();
             });

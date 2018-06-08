@@ -10,6 +10,8 @@ import { DataNamedService } from '../../../services/dataNamed.service';
 import { CerticateModel } from '../../../models/certificate.model';
 import { CertificateService } from '../../../services/certificate.service';
 import { EditEvent, GridComponent } from '@progress/kendo-angular-grid';
+import { UploadEvent, RemoveEvent } from '@progress/kendo-angular-upload';
+import { saveAs } from 'file-saver';
 
 // common constants
 const hasClass = (el: any, className: any) => new RegExp(className).test(el.className)
@@ -36,10 +38,13 @@ export class CertificateListComponent implements OnInit {
     public formGroup: FormGroup | undefined;
     private isNew = false;
     private editedRowIndex: number | undefined;
+    uploadSaveUrl = 'api/Certificate/Upload'; // should represent an actual API endpoint
+    uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
 
     constructor(private certificateService: CertificateService,
         private formBuilder: FormBuilder,
-        private renderer: Renderer2) {
+        private renderer: Renderer2,
+        private dialogService: DialogService) {
     }
 
     ngOnInit() {
@@ -64,9 +69,9 @@ export class CertificateListComponent implements OnInit {
 
     public createFormGroup(dataItem: any): FormGroup {
         return this.formBuilder.group({
-            'name': dataItem.name,
-            'descriptionEn': dataItem.startDate,
-            'descriptionUa': dataItem.endDate,
+            'name': [dataItem.name, Validators.required],
+            'startDate': [dataItem.startDate, Validators.required],
+            'endDate': dataItem.endDate,
             'id': dataItem.id
         });
     }
@@ -136,6 +141,63 @@ export class CertificateListComponent implements OnInit {
         }
     }
 
+    public removeHandler({ dataItem }: any) {
+
+        const dialogRef = this.dialogService.open({
+            title: 'Confirmation',
+
+            // Show component
+            content: 'Are you sure?',
+
+            actions: [
+                { text: 'Yes' },
+                { text: 'No', primary: true }
+            ]
+        });
+
+        dialogRef.result.subscribe((result) => {
+            if (result instanceof DialogCloseResult) {
+                console.log('close');
+            } else {
+                if ((result as DialogAction).text === 'Yes')
+                    this.onDeleteData(dataItem.id);
+                else
+                    console.log('Action close');
+                ;
+            }
+        });
+    }
+
+    private onDeleteData(id: number) {
+        this.certificateService.deleteItem(id)
+            .subscribe(data =>
+                this.load(),
+            error => {
+                if (error == 547)
+                    alert("Item has foreign keys");
+            }
+            );
+    }
+
+    uploadEventHandler(e: UploadEvent) {
+        e.data = {
+            description: 'File upload'
+        };
+    }
+
+    removeEventHandler(e: RemoveEvent) {
+        e.data = {
+            description: 'File remove'
+        };
+    }
+
+    getCertificateTemplate() {
+        let file: any;
+        this.certificateService.getImportTemplate()
+            .subscribe(res => {
+                saveAs(res.data, res.filename);
+            });
+    }
 }
 
 

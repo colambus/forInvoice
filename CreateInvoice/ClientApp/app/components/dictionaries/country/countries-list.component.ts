@@ -38,7 +38,7 @@ export class CountryListComponent implements OnInit {
     private certificates: CerticateModel[];
     public formGroup: FormGroup | undefined;
     private isNew = false;
-    private product: ProductModel;
+    private country: CountryOfOriginModel;
     private editedRowIndex: number | undefined;
     @ViewChild(GridComponent) private grid: GridComponent;
 
@@ -78,9 +78,10 @@ export class CountryListComponent implements OnInit {
 
     public createFormGroup(dataItem: any): FormGroup {
         return this.formBuilder.group({
-            'descriptionEn': dataItem.descriptionEn,
-            'descriptionUa': dataItem.descriptionUa,
-            'certificate': dataItem.certificate
+            'name': [dataItem.name, Validators.required],
+            'descriptionEn': [dataItem.descriptionEn, Validators.required],
+            'descriptionUa': [dataItem.descriptionUa],
+            'certificateId': [dataItem.certificateId, [Validators.required]]
         });
     }
 
@@ -109,7 +110,6 @@ export class CountryListComponent implements OnInit {
             return;
         }
 
-        this.load();
         this.saveRow();
     }
 
@@ -130,7 +130,8 @@ export class CountryListComponent implements OnInit {
 
     private saveRow(): void {
         if (this.isInEditingMode) {
-            if (this.formGroup) {
+            if (this.formGroup != undefined) {
+                this.country = new CountryOfOriginModel
                 this.countryService.save(this.formGroup.value, this.isNew)
                     .subscribe(result => this.load());
                 this.isNew = false;
@@ -147,6 +148,56 @@ export class CountryListComponent implements OnInit {
             this.editedRowIndex = undefined;
             this.formGroup = undefined;
         }
+    }
+
+    public removeHandler({ dataItem }: any) {
+
+        const dialogRef = this.dialogService.open({
+            title: 'Confirmation',
+
+            // Show component
+            content: 'Are you sure?',
+
+            actions: [
+                { text: 'Yes' },
+                { text: 'No', primary: true }
+            ]
+        });
+
+        dialogRef.result.subscribe((result) => {
+            if (result instanceof DialogCloseResult) {
+                console.log('close');
+            } else {
+                if ((result as DialogAction).text === 'Yes')
+                    this.onDeleteData(dataItem.countryId);
+                else
+                    console.log('Action close');
+                ;
+            }
+        });
+    }
+
+    onDeleteData(id: number) {
+        this.countryService.deleteItem(id)
+            .subscribe(data =>
+                this.load(),
+            error => {
+                if (error == 547)
+                    alert("Item has foreign keys");
+            }
+            );
+    }
+
+    handleValueChange(value: any) {
+        if (value) {
+            this.formGroup!.get('certificate')!.setValue(value);
+        }
+    }
+
+    public certificate(id: number): any {
+        if (this.certificates)
+            return this.certificates.find(x => x.id === id);
+        return "";
     }
 }
 

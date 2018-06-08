@@ -25,7 +25,7 @@ namespace CreateInvoice.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("EndDate");
+                    b.Property<DateTime?>("EndDate");
 
                     b.Property<string>("Name");
 
@@ -33,7 +33,24 @@ namespace CreateInvoice.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
+
                     b.ToTable("Certificates");
+                });
+
+            modelBuilder.Entity("CreateInvoice.Entities.CertificateCountry", b =>
+                {
+                    b.Property<int>("CertificateId");
+
+                    b.Property<int>("CountryId");
+
+                    b.HasKey("CertificateId", "CountryId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("CertificateCountry");
                 });
 
             modelBuilder.Entity("CreateInvoice.Entities.ContactDetails", b =>
@@ -93,15 +110,13 @@ namespace CreateInvoice.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CertificateId");
-
                     b.Property<string>("DescriptionEn");
 
                     b.Property<string>("DescriptionUa");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Name");
 
-                    b.HasIndex("CertificateId");
+                    b.HasKey("Id");
 
                     b.ToTable("Countries");
                 });
@@ -258,6 +273,19 @@ namespace CreateInvoice.Migrations
                     b.ToTable("Units");
                 });
 
+            modelBuilder.Entity("CreateInvoice.Entities.CertificateCountry", b =>
+                {
+                    b.HasOne("CreateInvoice.Entities.Certificate", "Certificate")
+                        .WithMany("CertificateCountries")
+                        .HasForeignKey("CertificateId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CreateInvoice.Entities.Country", "Country")
+                        .WithMany("CountryCertificates")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("CreateInvoice.Entities.ContactDetails", b =>
                 {
                     b.HasOne("CreateInvoice.Entities.ContactType", "ContactType")
@@ -278,13 +306,6 @@ namespace CreateInvoice.Migrations
                     b.HasOne("CreateInvoice.Entities.Organization", "Seller")
                         .WithMany()
                         .HasForeignKey("SellerId");
-                });
-
-            modelBuilder.Entity("CreateInvoice.Entities.Country", b =>
-                {
-                    b.HasOne("CreateInvoice.Entities.Certificate", "Certificate")
-                        .WithMany()
-                        .HasForeignKey("CertificateId");
                 });
 
             modelBuilder.Entity("CreateInvoice.Entities.Invoice", b =>

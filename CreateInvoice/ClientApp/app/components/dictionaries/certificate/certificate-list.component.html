@@ -9,13 +9,25 @@
                 (cellClick)="editClick($event)">
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
+            <button (click)="getCertificateTemplate()">Save template</button>
+            <kendo-upload [saveUrl]="uploadSaveUrl"
+                          [removeUrl]="uploadRemoveUrl"
+                          (upload)="uploadEventHandler($event)"
+                          (remove)="removeEventHandler($event)">
+            </kendo-upload>
         </ng-template>
         <kendo-grid-column field="name" title="Name" width="150" [editable]="true">
         </kendo-grid-column>
-        <kendo-grid-column field="startDate" title="Start date" editor="date" width="40">
+        <kendo-grid-column field="startDate" format="{0:dd-MM-yyyy}" title="Start date" editor="date" width="40">
         </kendo-grid-column>
-        <kendo-grid-column field="endDate" title="End date" editor="date" width="40">
-        </kendo-grid-column>     
+        <kendo-grid-column field="endDate" format="{0:dd-MM-yyyy}" title="End date" editor="date" width="40">
+        </kendo-grid-column>
+        <kendo-grid-command-column title="Command" width="20">
+            <ng-template kendoGridCellTemplate>
+                <button kendoGridRemoveCommand [iconClass]="'k-icon k-i-close'"
+                        style="color: red;"></button>
+            </ng-template>
+        </kendo-grid-command-column>
     </kendo-grid>
     <div kendoDialogContainer></div>
 </div>

@@ -26,6 +26,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { WindowModule } from '@progress/kendo-angular-dialog';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { UploadModule } from '@progress/kendo-angular-upload';
 
 import '@progress/kendo-angular-intl/locales/uk/all';
 
@@ -52,6 +53,7 @@ import '@progress/kendo-angular-intl/locales/uk/all';
         GridModule,
         DialogsModule,
         DropDownsModule,
+        UploadModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
