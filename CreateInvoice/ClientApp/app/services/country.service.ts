@@ -24,19 +24,17 @@ export class CountryService {
         return this.http.delete(this.actionUrl + '/' + id);
     };
 
-    save(certificate: CountryOfOriginModel, isNew: boolean): Observable<CountryOfOriginModel> {
+    save(countryOfOrigin: CountryOfOriginModel, isNew: boolean): Observable<CountryOfOriginModel> {
         if (isNew) {
-            return this.http.put(this.actionUrl + 'Add', certificate)
+            return this.http.put(this.actionUrl + '/Add', countryOfOrigin)
                 .map((response: Response) => {
                     return <CountryOfOriginModel>response.json();
                 });
         } else {
-            return this.http.post(this.actionUrl + 'Save', certificate)
+            return this.http.post(this.actionUrl + '/Save', countryOfOrigin)
                 .map((response: Response) => {
                     return <CountryOfOriginModel>response.json();
                 });
         }
     }
-
-
 }

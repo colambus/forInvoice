@@ -5,10 +5,21 @@
                 [height]="600"
                 (add)="addHandler($event, myForm)"
                 (remove)="removeHandler($event)"
+                [pageSize]="pageSize"
+                [pageable]="{
+                    buttonCount: buttonCount,
+                    info: info,
+                    type: type,
+                    pageSizes: pageSizes,
+                    previousNext: previousNext
+                }"
+                [skip]="skip"
+                (pageChange)="pageChange($event)"
                 (dblclick)="editInvoice(grid, $event)"
                 (cellClick)="editClick($event)">
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
+            
         </ng-template>
         <kendo-grid-column field="codeNo" title="Code" width="40" [editable]="true">
         </kendo-grid-column>

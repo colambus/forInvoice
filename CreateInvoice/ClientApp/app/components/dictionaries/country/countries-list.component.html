@@ -9,21 +9,32 @@
                 (cellClick)="editClick($event)">
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
+            <button (click)="getCountry()">Import template</button>
         </ng-template>
-        <kendo-grid-column field="id" title="Code" width="30" [editable]="false">
-        </kendo-grid-column>
-        <kendo-grid-column field="certificate.name" title="Certificate" width="80">
+        <kendo-grid-column field="certificateId" title="Certificate" width="80">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{certificate(dataItem.certificateId)?.name}}
+            </ng-template>
             <ng-template kendoGridEditTemplate let-dataItem="certificate">
                 <kendo-combobox [data]="certificates"
                                 [textField]="'name'"
-                                [valueField]="'id'">
+                                [valueField]="'id'"
+                                (valueChange)="handleValueChange($event)">
                 </kendo-combobox>
             </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="descriptionEn" title="Description English" width="150" [editable]="true">
+        <kendo-grid-column width="50" field="name" title="Country">
         </kendo-grid-column>
-        <kendo-grid-column field="descriptionUa" title="Description Ukrainian" [editable]="true" width="150">
+        <kendo-grid-column width="150" field="descriptionEn" title="Description English">
         </kendo-grid-column>
+        <kendo-grid-column width="150" field="descriptionUa" title="Description Ukrainian">
+        </kendo-grid-column>
+        <kendo-grid-command-column title="Command" width="20">
+            <ng-template kendoGridCellTemplate>
+                <button kendoGridRemoveCommand [iconClass]="'k-icon k-i-close'"
+                        style="color: red;"></button>
+            </ng-template>
+        </kendo-grid-command-column>
     </kendo-grid>
     <div kendoDialogContainer></div>
 </div>

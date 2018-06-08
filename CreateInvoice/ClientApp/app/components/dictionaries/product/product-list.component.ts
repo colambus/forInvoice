@@ -9,7 +9,7 @@ import { NamedIdObject } from '../../../models/NamedIdObject.model';
 import { DataNamedService } from '../../../services/dataNamed.service';
 import { CerticateModel } from '../../../models/certificate.model';
 import { CertificateService } from '../../../services/certificate.service';
-import { EditEvent, GridComponent } from '@progress/kendo-angular-grid';
+import { EditEvent, GridComponent, PageChangeEvent } from '@progress/kendo-angular-grid';
 
 // common constants
 const hasClass = (el: any, className: any) => new RegExp(className).test(el.className)
@@ -39,6 +39,15 @@ export class ProductListComponent implements OnInit {
     private product: ProductModel;
     private editedRowIndex: number | undefined;
     @ViewChild(GridComponent) private grid: GridComponent;
+
+    public buttonCount = 5;
+    public info = true;
+    public type: 'numeric' | 'input' = 'numeric';
+    public pageSizes = true;
+    public previousNext = true;
+
+    public pageSize = 10;
+    public skip = 0;
 
 
     constructor(private productService: ProductService,
@@ -74,7 +83,7 @@ export class ProductListComponent implements OnInit {
     }
 
     load() {
-        this.productService.getAll().subscribe(
+        this.productService.getAll(this.skip, this.pageSize).subscribe(
             resultArray => this.products = resultArray,
             error => console.log("Error :: " + error));
     }
@@ -153,6 +162,16 @@ export class ProductListComponent implements OnInit {
             this.editedRowIndex = undefined;
             this.formGroup = undefined;
         }
+    }
+
+    protected pageChange({ skip, take }: PageChangeEvent): void {
+        this.skip = skip;
+        this.pageSize = take;
+        this.load();
+    }
+
+    private loadFromFile() {
+
     }
 }
 

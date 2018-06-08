@@ -1,6 +1,6 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response } from '@angular/http';
+import { Http, Response, ResponseContentType } from '@angular/http';
 import { CerticateModel } from '../models/certificate.model';
 import 'rxjs/Rx';
 
@@ -10,13 +10,18 @@ export class CertificateService {
     private actionUrl: string;
 
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) {
-        this.actionUrl = baseUrl + '/api/Certificate';
+        this.actionUrl = baseUrl + '/api/Certificate/';
     }
 
     getAll(): Observable<CerticateModel[]> {
-        return this.http.get(this.actionUrl +'/getAll')
+        return this.http.get(this.actionUrl + '/getAll')
             .map((response: Response) => {
-                return <CerticateModel[]>response.json();
+                let result = <CerticateModel[]>response.json();
+                result.forEach(function (item) {
+                    item.endDate = new Date(item.endDate);
+                    item.startDate = new Date(item.startDate);
+                });
+                return result;
             });
     }
 
@@ -36,7 +41,16 @@ export class CertificateService {
                     return <CerticateModel>response.json();
                 });
         }
+    };
+
+    getImportTemplate() {
+        return this.http.get(this.actionUrl + 'DownloadTemplate', {
+            responseType: ResponseContentType.Blob
+        }).map(result => {
+            return {
+                filename: 'Certificate template.xlsx',
+                data: result.blob()
+            }
+        });
     }
-
-
 }

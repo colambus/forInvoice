@@ -31,12 +31,19 @@ namespace CreateInvoice.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<Product> GetAll([FromQuery]string skip, [FromQuery]string take)
         {
-            return _context.Products
+            var result = _context.Products
                 .Include(p => p.CountryOfOrigin)
-                .Include(p=>p.Certificate)
-                .Include(p=>p.CountryOfOrigin);
+                .Include(p => p.Certificate)
+                .Include(p => p.CountryOfOrigin);
+
+            if (skip != null)
+                result.Skip(int.Parse(skip));
+            if (take != null)
+                result.Take(int.Parse(take));
+
+            return result;
         }
 
         [HttpPut("[action]")]
@@ -44,11 +51,11 @@ namespace CreateInvoice.Controllers
         {
             Product newProduct = new Product()
             {
-                CodeNo = product.CodeNo,
-                DescriptionEn = product.DescriptionEn,
-                DescriptionUa = product.DescriptionUa,
-                Certificate = _context.Certificates.GetById(product.Certificate?.Id),
-                CountryOfOrigin = _context.Countries.GetById(product.CountryOfOrigin?.Id)
+                CodeNo = product?.CodeNo,
+                DescriptionEn = product?.DescriptionEn,
+                DescriptionUa = product?.DescriptionUa,
+                Certificate = _context.Certificates.GetById(product?.Certificate?.Id),
+                CountryOfOrigin = _context.Countries.GetById(product?.CountryOfOrigin?.Id)
             };
 
             _context.Products.Add(newProduct);

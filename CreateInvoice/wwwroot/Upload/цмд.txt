@@ -1,0 +1,844 @@
+Microsoft Windows [Version 10.0.16299.371]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\WINDOWS\system32>npm install npm@latest -g
+C:\Users\eovcharenko\AppData\Roaming\npm\npx -> C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\npm\bin\npx-cli.jsC:\Users\eovcharenko\AppData\Roaming\npm\npm -> C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js+ npm@5.8.0
+added 177 packages, removed 65 packages and updated 100 packages in 57.533s
+
+C:\WINDOWS\system32>cd C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @angular/animations@latest @angular/common@latest @angular/compiler@latest @angular/core@latest @angular/forms@latest @angular/http @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/platform-server@latest @angular/router@latest
+npm WARN @angular/compiler-cli@4.2.5 requires a peer of @angular/compiler@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/compiler-cli@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of rxjs@^5.5.0 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/platform-browser@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/core@5.2.10 requires a peer of rxjs@^5.5.0 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of rxjs@^5.5.0 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/common@5.2.10 requires a peer of rxjs@^5.5.0 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/platform-browser-dynamic@5.2.10
++ @angular/platform-browser@5.2.10
++ @angular/platform-server@5.2.10
++ @angular/forms@5.2.10
++ @angular/animations@5.2.10
++ @angular/http@4.2.5
++ @angular/core@5.2.10
++ @angular/router@5.2.10
++ @angular/common@5.2.10
++ @angular/compiler@5.2.10
+added 1 package from 1 contributor, removed 2 packages and updated 11 packages in 22.559s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save rsjs@5.5.10
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for rsjs@5.5.10
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\eovcharenko\AppData\Roaming\npm-cache\_logs\2018-04-18T13_37_57_046Z-debug.log
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save rxjs@5.5.10
+npm WARN @angular/compiler-cli@4.2.5 requires a peer of @angular/compiler@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/compiler-cli@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/platform-browser@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ rxjs@5.5.10
+updated 2 packages in 16.578s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @angular/compiler@4.2.5
+npm WARN @angular/compiler-cli@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/platform-browser@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/compiler@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/compiler@4.2.5
+updated 1 package in 12.709s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/core@4.2.5
+npm WARN @angular/animations@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/common@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/platform-browser@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/core@4.2.5
+updated 1 package in 12.159s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @angular/core@5.2.10
+npm WARN @angular/compiler@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/compiler-cli@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/platform-browser@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/core@5.2.10
+updated 1 package in 12.486s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @angular/platform-browser@4.2.5
+npm WARN @angular/compiler@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/compiler-cli@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/http@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser@4.2.5 requires a peer of @angular/core@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser@4.2.5 requires a peer of @angular/common@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/platform-browser@4.2.5
+updated 1 package in 11.446s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @angular/core@4.2.5
+npm WARN @angular/animations@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/common@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser@4.2.5 requires a peer of @angular/common@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/core@4.2.5
+updated 1 package in 12.131s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/animations@4.2.5
+npm WARN @angular/common@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser@4.2.5 requires a peer of @angular/common@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/animations@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/animations@4.2.5
+updated 1 package in 12.026s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/common@5.2.10
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser@4.2.5 requires a peer of @angular/common@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/animations@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/common@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: delegates@1.0.0 (node_modules\fsevents\node_modules\delegates):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\delegates\package.json.3027141535' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\delegates\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: jodid25519@1.0.2 (node_modules\fsevents\node_modules\jodid25519):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\jodid25519\package.json.331904427' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\jodid25519\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: is-typedarray@1.0.0 (node_modules\fsevents\node_modules\is-typedarray):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\is-typedarray\package.json.2803087477' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\is-typedarray\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: jsonify@0.0.0 (node_modules\fsevents\node_modules\jsonify):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\jsonify\package.json.1067558169' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\jsonify\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: ecc-jsbn@0.1.1 (node_modules\fsevents\node_modules\ecc-jsbn):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\ecc-jsbn\package.json.4231206494' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\ecc-jsbn\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: json-stringify-safe@5.0.1 (node_modules\fsevents\node_modules\json-stringify-safe):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\json-stringify-safe\package.json.2379137741' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\json-stringify-safe\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: ajv@4.11.8 (node_modules\fsevents\node_modules\ajv):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\ajv\package.json.1703806171' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\ajv\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: json-stable-stringify@1.0.1 (node_modules\fsevents\node_modules\json-stable-stringify):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\json-stable-stringify\package.json.1755515705' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\json-stable-stringify\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: detect-libc@1.0.2 (node_modules\fsevents\node_modules\detect-libc):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\detect-libc\package.json.3828560286' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\detect-libc\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: json-schema@0.2.3 (node_modules\fsevents\node_modules\json-schema):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Error: EPERM: operation not permitted, rename 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\json-schema\package.json.522785722' -> 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\fsevents\node_modules\json-schema\package.json'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/common@5.2.10
+updated 1 package in 16.91s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/common@4.2.5
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/forms@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/animations@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/common@4.2.5
+updated 1 package in 13.965s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/forms@4.2.5
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-browser-dynamic@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/animations@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/forms@4.2.5
+updated 1 package in 11.779s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/platform-browser-dynamic@4.2.5
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/animations@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/compiler@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/platform-server@5.2.10 requires a peer of @angular/platform-browser-dynamic@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/platform-browser-dynamic@4.2.5
+updated 1 package in 11.099s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/platform-server@4.2.5
+npm WARN @angular/router@5.2.10 requires a peer of @angular/core@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/common@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/router@5.2.10 requires a peer of @angular/platform-browser@5.2.10 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/platform-server@4.2.5
+added 2 packages from 24 contributors, removed 1 package and updated 1 package in 13.151s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/router@4.2.5
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/router@4.2.5
+updated 1 package in 11.164s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @progress/kendo-angular-buttons @progress/kendo-angular-l10n @angular/animations
+npm WARN @angular/platform-server@4.2.5 requires a peer of @angular/animations@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/animations@4.4.7 requires a peer of @angular/core@4.4.7 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/animations@4.4.7
++ @progress/kendo-angular-buttons@4.0.0
++ @progress/kendo-angular-l10n@1.1.0
+added 4 packages from 1 contributor and updated 1 package in 13.433s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/animations@4.2.5
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/animations@4.2.5
+updated 1 package in 11.592s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @progress/kendo-angular-buttons @progress/kendo-angular-l10n @angular/animations
+npm WARN @angular/platform-server@4.2.5 requires a peer of @angular/animations@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/animations@4.4.7 requires a peer of @angular/core@4.4.7 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @progress/kendo-angular-l10n@1.1.0
++ @angular/animations@4.4.7
++ @progress/kendo-angular-buttons@4.0.0
+updated 3 packages in 13.717s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/animations@4.2.5
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/animations@4.2.5
+updated 1 package in 12.804s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @progress/kendo-angular-grid @progress/kendo-angular-dropdowns @progress/kendo-angular-inputs @progress/kendo-angular-dateinputs @progress/kendo-data-query @progress/kendo-angular-intl @progress/kendo-angular-l10n @progress/kendo-drawing @progress/kendo-angular-excel-export @angular/animations
+npm WARN @angular/platform-server@4.2.5 requires a peer of @angular/animations@4.2.5 but none is installed. You must install peer dependencies yourself.
+npm WARN @angular/animations@4.4.7 requires a peer of @angular/core@4.4.7 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @progress/kendo-data-query@1.2.2
++ @progress/kendo-angular-inputs@2.2.0
++ @progress/kendo-angular-dateinputs@2.2.0
++ @angular/animations@4.4.7
++ @progress/kendo-angular-l10n@1.1.0
++ @progress/kendo-angular-dropdowns@2.1.0
++ @progress/kendo-angular-excel-export@1.0.7
++ @progress/kendo-angular-intl@1.4.0
++ @progress/kendo-drawing@1.5.2
++ @progress/kendo-angular-grid@3.0.0
+added 25 packages from 18 contributors and updated 2 packages in 26.043s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  @angular/animations@4.2.5
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @angular/animations@4.2.5
+updated 1 package in 11.831s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install -S @progress/kendo-theme-default@2.38.1
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @progress/kendo-theme-default@2.38.1
+added 1 package from 1 contributor in 12.718s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>webpack --config webpack.config.vendor.js
+TypeError: dep.getResourceIdentifier is not a function
+    at addDependency (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:402:30)
+    at iterationOfArrayCallback (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:88:3)
+    at addDependenciesBlock (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:422:5)
+    at Compilation.processModuleDependencies (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:433:4)
+    at afterBuild (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:701:13)
+    at buildModule.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:729:8)
+    at callback (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:357:35)
+    at module.build.error (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:393:12)
+    at DllModule.build (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllModule.js:36:10)
+    at Compilation.buildModule (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:361:10)
+    at moduleFactory.create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:717:12)
+    at DllModuleFactory.create (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllModuleFactory.js:16:3)
+    at semaphore.acquire (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:664:18)
+    at Semaphore.acquire (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\util\Semaphore.js:16:4)
+    at Compilation._addModuleChain (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:663:18)
+    at Compilation.addEntry (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:747:8)
+    at compiler.plugin (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllEntryPlugin.js:28:16)
+    at AsyncParallelHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:7:1)
+    at AsyncParallelHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at hooks.beforeCompile.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:474:20)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:6:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at Compiler.compile (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:467:28)
+    at readRecords.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:218:11)
+    at Compiler.readRecords (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:340:11)
+    at hooks.run.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:215:10)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:6:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at hooks.beforeRun.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:212:19)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:15:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at Compiler.run (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:209:24)
+    at runWithDependencies (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\MultiCompiler.js:251:15)
+    at asyncLib.map (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\MultiCompiler.js:175:6)
+    at arrayEachIndex (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\neo-async\async.js:2539:9)
+    at Object.map (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\neo-async\async.js:2890:9)
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  webpack@3.0.0
+
+> uglifyjs-webpack-plugin@0.4.6 postinstall C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\uglifyjs-webpack-plugin
+> node lib/post_install.js
+
+npm WARN aspnet-webpack@2.0.1 requires a peer of webpack@^1.13.2 || ^2.1.0-beta but none is installed. You must install peer dependencies yourself.
+npm WARN extract-text-webpack-plugin@2.1.2 requires a peer of webpack@^2.2.0 but none is installed. You must install peer dependencies yourself.
+npm WARN karma-webpack@2.0.3 requires a peer of webpack@^1.1.0 || ^2 || ^2.1.0-beta.0 || ^2.2.0-rc.0 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ webpack@3.0.0
+added 51 packages from 44 contributors, removed 4 packages, updated 41 packages and moved 2 packages in 34.514s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>webpack --config webpack.config.vendor.js
+TypeError: dep.getResourceIdentifier is not a function
+    at addDependency (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:402:30)
+    at iterationOfArrayCallback (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:88:3)
+    at addDependenciesBlock (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:422:5)
+    at Compilation.processModuleDependencies (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:433:4)
+    at afterBuild (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:701:13)
+    at buildModule.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:729:8)
+    at callback (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:357:35)
+    at module.build.error (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:393:12)
+    at DllModule.build (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllModule.js:36:10)
+    at Compilation.buildModule (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:361:10)
+    at moduleFactory.create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:717:12)
+    at DllModuleFactory.create (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllModuleFactory.js:16:3)
+    at semaphore.acquire (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:664:18)
+    at Semaphore.acquire (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\util\Semaphore.js:16:4)
+    at Compilation._addModuleChain (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:663:18)
+    at Compilation.addEntry (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:747:8)
+    at compiler.plugin (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllEntryPlugin.js:28:16)
+    at AsyncParallelHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:7:1)
+    at AsyncParallelHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at hooks.beforeCompile.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:474:20)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:6:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at Compiler.compile (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:467:28)
+    at readRecords.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:218:11)
+    at Compiler.readRecords (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:340:11)
+    at hooks.run.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:215:10)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:6:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at hooks.beforeRun.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:212:19)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:15:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at Compiler.run (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:209:24)
+    at runWithDependencies (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\MultiCompiler.js:251:15)
+    at asyncLib.map (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\MultiCompiler.js:175:6)
+    at arrayEachIndex (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\neo-async\async.js:2539:9)
+    at Object.map (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\neo-async\async.js:2890:9)
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  webpack@3.11.0
+npm WARN aspnet-webpack@2.0.1 requires a peer of webpack@^1.13.2 || ^2.1.0-beta but none is installed. You must install peer dependencies yourself.
+npm WARN extract-text-webpack-plugin@2.1.2 requires a peer of webpack@^2.2.0 but none is installed. You must install peer dependencies yourself.
+npm WARN karma-webpack@2.0.3 requires a peer of webpack@^1.1.0 || ^2 || ^2.1.0-beta.0 || ^2.2.0-rc.0 but none is installed. You must install peer dependencies yourself.
+npm WARN ajv-keywords@3.1.0 requires a peer of ajv@^6.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ webpack@3.11.0
+added 32 packages from 12 contributors, removed 3 packages and updated 18 packages in 37.112s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save aspnet-webpack@3.11.0
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for aspnet-webpack@3.11.0
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\eovcharenko\AppData\Roaming\npm-cache\_logs\2018-04-18T14_47_27_613Z-debug.log
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save aspnet-webpack@3.0.0
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for aspnet-webpack@3.0.0
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\eovcharenko\AppData\Roaming\npm-cache\_logs\2018-04-18T14_47_38_142Z-debug.log
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>webpack --config webpack.config.vendor.js
+TypeError: dep.getResourceIdentifier is not a function
+    at addDependency (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:402:30)
+    at iterationOfArrayCallback (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:88:3)
+    at addDependenciesBlock (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:422:5)
+    at Compilation.processModuleDependencies (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:433:4)
+    at afterBuild (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:701:13)
+    at buildModule.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:729:8)
+    at callback (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:357:35)
+    at module.build.error (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:393:12)
+    at DllModule.build (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllModule.js:36:10)
+    at Compilation.buildModule (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:361:10)
+    at moduleFactory.create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:717:12)
+    at DllModuleFactory.create (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllModuleFactory.js:16:3)
+    at semaphore.acquire (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:664:18)
+    at Semaphore.acquire (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\util\Semaphore.js:16:4)
+    at Compilation._addModuleChain (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:663:18)
+    at Compilation.addEntry (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:747:8)
+    at compiler.plugin (C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\lib\DllEntryPlugin.js:28:16)
+    at AsyncParallelHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:7:1)
+    at AsyncParallelHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at hooks.beforeCompile.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:474:20)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:6:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at Compiler.compile (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:467:28)
+    at readRecords.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:218:11)
+    at Compiler.readRecords (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:340:11)
+    at hooks.run.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:215:10)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:6:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at hooks.beforeRun.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:212:19)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:15:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at Compiler.run (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:209:24)
+    at runWithDependencies (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\MultiCompiler.js:251:15)
+    at asyncLib.map (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\MultiCompiler.js:175:6)
+    at arrayEachIndex (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\neo-async\async.js:2539:9)
+    at Object.map (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\neo-async\async.js:2890:9)
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>cd C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2\
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>webpack --config webpack.config.vendor.js
+C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\webpack.js:242
+                                throw err;
+                                ^
+
+Error: Cannot find module 'webpack'
+    at Function.Module._resolveFilename (module.js:538:15)
+    at Function.Module._load (module.js:468:25)
+    at Module.require (module.js:587:17)
+    at require (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\node_modules\v8-compile-cache\v8-compile-cache.js:159:20)
+    at Object.<anonymous> (C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2\webpack.config.vendor.js:2:17)
+    at Module._compile (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\node_modules\v8-compile-cache\v8-compile-cache.js:178:30)
+    at Object.Module._extensions..js (module.js:654:10)
+    at Module.load (module.js:556:32)
+    at tryModuleLoad (module.js:499:12)
+    at Function.Module._load (module.js:491:3)
+    at Module.require (module.js:587:17)
+    at require (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\node_modules\v8-compile-cache\v8-compile-cache.js:159:20)
+    at WEBPACK_OPTIONS (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\convert-argv.js:133:13)
+    at requireConfig (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\convert-argv.js:135:6)
+    at C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\convert-argv.js:142:17
+    at Array.forEach (<anonymous>)
+    at module.exports (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\convert-argv.js:140:15)
+    at yargs.parse (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\webpack.js:239:39)
+    at Object.parse (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\node_modules\yargs\yargs.js:552:18)
+    at C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\webpack.js:217:8
+    at Object.<anonymous> (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\webpack.js:514:3)
+    at Module._compile (module.js:643:30)
+    at Object.Module._extensions..js (module.js:654:10)
+    at Module.load (module.js:556:32)
+    at tryModuleLoad (module.js:499:12)
+    at Function.Module._load (module.js:491:3)
+    at Module.require (module.js:587:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\bin\webpack.js:80:2)
+    at Module._compile (module.js:643:30)
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>webpack --config webpack.config.vendor.js
+C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\webpack.js:242
+                                throw err;
+                                ^
+
+Error: Cannot find module 'webpack'
+    at Function.Module._resolveFilename (module.js:538:15)
+    at Function.Module._load (module.js:468:25)
+    at Module.require (module.js:587:17)
+    at require (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\node_modules\v8-compile-cache\v8-compile-cache.js:159:20)
+    at Object.<anonymous> (C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2\webpack.config.vendor.js:2:17)
+    at Module._compile (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\node_modules\v8-compile-cache\v8-compile-cache.js:178:30)
+    at Object.Module._extensions..js (module.js:654:10)
+    at Module.load (module.js:556:32)
+    at tryModuleLoad (module.js:499:12)
+    at Function.Module._load (module.js:491:3)
+    at Module.require (module.js:587:17)
+    at require (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\node_modules\v8-compile-cache\v8-compile-cache.js:159:20)
+    at WEBPACK_OPTIONS (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\convert-argv.js:133:13)
+    at requireConfig (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\convert-argv.js:135:6)
+    at C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\convert-argv.js:142:17
+    at Array.forEach (<anonymous>)
+    at module.exports (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\convert-argv.js:140:15)
+    at yargs.parse (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\webpack.js:239:39)
+    at Object.parse (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\node_modules\yargs\yargs.js:552:18)
+    at C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\webpack.js:217:8
+    at Object.<anonymous> (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack-cli\bin\webpack.js:514:3)
+    at Module._compile (module.js:643:30)
+    at Object.Module._extensions..js (module.js:654:10)
+    at Module.load (module.js:556:32)
+    at tryModuleLoad (module.js:499:12)
+    at Function.Module._load (module.js:491:3)
+    at Module.require (module.js:587:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\bin\webpack.js:80:2)
+    at Module._compile (module.js:643:30)
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>webpack --config webpack.config.vendor.js
+TypeError: dep.getResourceIdentifier is not a function
+    at addDependency (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:402:30)
+    at iterationOfArrayCallback (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:88:3)
+    at addDependenciesBlock (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:422:5)
+    at Compilation.processModuleDependencies (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:433:4)
+    at afterBuild (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:701:13)
+    at buildModule.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:729:8)
+    at callback (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:357:35)
+    at module.build.error (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:393:12)
+    at DllModule.build (C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2\node_modules\webpack\lib\DllModule.js:36:10)
+    at Compilation.buildModule (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:361:10)
+    at moduleFactory.create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:717:12)
+    at DllModuleFactory.create (C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2\node_modules\webpack\lib\DllModuleFactory.js:16:3)
+    at semaphore.acquire (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:664:18)
+    at Semaphore.acquire (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\util\Semaphore.js:16:4)
+    at Compilation._addModuleChain (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:663:18)
+    at Compilation.addEntry (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compilation.js:747:8)
+    at compiler.plugin (C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2\node_modules\webpack\lib\DllEntryPlugin.js:28:16)
+    at AsyncParallelHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:7:1)
+    at AsyncParallelHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at hooks.beforeCompile.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:474:20)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:6:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at Compiler.compile (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:467:28)
+    at readRecords.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:218:11)
+    at Compiler.readRecords (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:340:11)
+    at hooks.run.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:215:10)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:6:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at hooks.beforeRun.callAsync.err (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:212:19)
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:24:12), <anonymous>:15:1)
+    at AsyncSeriesHook.lazyCompileHook [as _callAsync] (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\tapable\lib\Hook.js:35:21)
+    at Compiler.run (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\Compiler.js:209:24)
+    at runWithDependencies (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\MultiCompiler.js:251:15)
+    at asyncLib.map (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\lib\MultiCompiler.js:175:6)
+    at arrayEachIndex (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\neo-async\async.js:2539:9)
+    at Object.map (C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\node_modules\neo-async\async.js:2890:9)
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>npm install --save  webpack@2.0..0
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for webpack@2.0..0
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\eovcharenko\AppData\Roaming\npm-cache\_logs\2018-04-18T15_03_45_565Z-debug.log
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>npm install --save  webpack@2.0.0
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for webpack@2.0.0
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\eovcharenko\AppData\Roaming\npm-cache\_logs\2018-04-18T15_03_51_981Z-debug.log
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>webpack -v
+4.5.0
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>npm install --save-dev webpack@2.5.1
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ webpack@2.5.1
+added 37 packages from 42 contributors, removed 1 package and updated 40 packages in 18.951s
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>webpack -v
+4.5.0
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>npm install -g --save  webpack@2.0.0
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for webpack@2.0.0
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\eovcharenko\AppData\Roaming\npm-cache\_logs\2018-04-18T15_10_59_685Z-debug.log
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>npm install -g --save  webpack@2.5.1
+C:\Users\eovcharenko\AppData\Roaming\npm\webpack -> C:\Users\eovcharenko\AppData\Roaming\npm\node_modules\webpack\bin\webpack.js
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\webpack\node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ webpack@2.5.1
+added 72 packages from 103 contributors, removed 70 packages and updated 17 packages in 15.632s
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>webpack -v
+2.5.1
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>webpack --config webpack.config.vendor.js
+Hash: 4adf5b975b06d7f766a2316997213570377444fe
+Version: webpack 2.5.1
+Child
+    Hash: 4adf5b975b06d7f766a2
+    Time: 4716ms
+                                   Asset     Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg   109 kB          [emitted]
+                               vendor.js  3.26 MB       0  [emitted]  [big]  vendor
+                              vendor.css   315 kB       0  [emitted]  [big]  vendor
+Child
+    Hash: 316997213570377444fe
+    Time: 4691ms
+                                   Asset     Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg   109 kB          [emitted]
+                               vendor.js  3.43 MB       0  [emitted]  [big]  vendor
+
+C:\Users\eovcharenko\source\repos\WebApplication2\WebApplication2>cd C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  webpack@2.5.1
+npm ERR! path C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\node_modules
+npm ERR! code EPERM
+npm ERR! errno -4048
+npm ERR! syscall mkdir
+npm ERR! Error: EPERM: operation not permitted, mkdir 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\node_modules'
+npm ERR!  { Error: EPERM: operation not permitted, mkdir 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\node_modules'
+npm ERR!   cause:
+npm ERR!    { Error: EPERM: operation not permitted, mkdir 'C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice\node_modules\webpack\node_modules'
+npm ERR!      errno: -4048,
+npm ERR!      code: 'EPERM',
+npm ERR!      syscall: 'mkdir',
+npm ERR!      path: 'C:\\Users\\eovcharenko\\source\\repos\\CreateInvoice\\CreateInvoice\\node_modules\\webpack\\node_modules' },
+npm ERR!   stack: 'Error: EPERM: operation not permitted, mkdir \'C:\\Users\\eovcharenko\\source\\repos\\CreateInvoice\\CreateInvoice\\node_modules\\webpack\\node_modules\'',
+npm ERR!   errno: -4048,
+npm ERR!   code: 'EPERM',
+npm ERR!   syscall: 'mkdir',
+npm ERR!   path: 'C:\\Users\\eovcharenko\\source\\repos\\CreateInvoice\\CreateInvoice\\node_modules\\webpack\\node_modules',
+npm ERR!   parent: 'CreateInvoice' }
+npm ERR!
+npm ERR! The operation was rejected by your operating system.
+npm ERR! It's possible that the file was already in use (by a text editor or antivirus),
+npm ERR! or that you lack permissions to access it.
+npm ERR!
+npm ERR! If you believe this might be a permissions issue, please double-check the
+npm ERR! permissions of the file and its containing directories, or try running
+npm ERR! the command again as root/Administrator (though this is not recommended).
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\eovcharenko\AppData\Roaming\npm-cache\_logs\2018-04-18T15_13_42_291Z-debug.log
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save  webpack@2.5.1
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ webpack@2.5.1
+added 24 packages from 9 contributors, updated 1 package and moved 2 packages in 17.809s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>webpack --config webpack.config.vendor.js
+Hash: 5a6bb987761b5009711ade7d069f96fbca79dc14
+Version: webpack 2.5.1
+Child
+    Hash: 5a6bb987761b5009711a
+    Time: 4873ms
+                                   Asset    Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg  109 kB          [emitted]
+                               vendor.js  3.3 MB       0  [emitted]  [big]  vendor
+                              vendor.css  315 kB       0  [emitted]  [big]  vendor
+Child
+    Hash: de7d069f96fbca79dc14
+    Time: 4859ms
+                                   Asset     Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg   109 kB          [emitted]
+                               vendor.js  3.48 MB       0  [emitted]  [big]  vendor
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>webpack --config webpack.config.vendor.js
+Hash: 5a6bb987761b5009711ade7d069f96fbca79dc14
+Version: webpack 2.5.1
+Child
+    Hash: 5a6bb987761b5009711a
+    Time: 4599ms
+                                   Asset    Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg  109 kB          [emitted]
+                               vendor.js  3.3 MB       0  [emitted]  [big]  vendor
+                              vendor.css  315 kB       0  [emitted]  [big]  vendor
+Child
+    Hash: de7d069f96fbca79dc14
+    Time: 4584ms
+                                   Asset     Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg   109 kB          [emitted]
+                               vendor.js  3.48 MB       0  [emitted]  [big]  vendor
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>webpack --config webpack.config.vendor.js
+Hash: b5e2a5b59af66fbc37152e4b6203d5a4dc235a5d
+Version: webpack 2.5.1
+Child
+    Hash: b5e2a5b59af66fbc3715
+    Time: 5778ms
+                                   Asset    Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg  109 kB          [emitted]
+                               vendor.js  3.3 MB       0  [emitted]  [big]  vendor
+                              vendor.css  684 kB       0  [emitted]  [big]  vendor
+Child
+    Hash: 2e4b6203d5a4dc235a5d
+    Time: 5766ms
+                                   Asset     Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg   109 kB          [emitted]
+                               vendor.js  3.85 MB       0  [emitted]  [big]  vendor
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>webpack --config webpack.config.vendor.js
+Hash: b5e2a5b59af66fbc37152e4b6203d5a4dc235a5d
+Version: webpack 2.5.1
+Child
+    Hash: b5e2a5b59af66fbc3715
+    Time: 5745ms
+                                   Asset    Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg  109 kB          [emitted]
+                               vendor.js  3.3 MB       0  [emitted]  [big]  vendor
+                              vendor.css  684 kB       0  [emitted]  [big]  vendor
+Child
+    Hash: 2e4b6203d5a4dc235a5d
+    Time: 5733ms
+                                   Asset     Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg   109 kB          [emitted]
+                               vendor.js  3.85 MB       0  [emitted]  [big]  vendor
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install -S @progress/kendo-angular-dialog
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @progress/kendo-angular-dialog@3.4.0
+added 1 package from 1 contributor in 19.569s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install -S @telerik/kendo-theme-default
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @telerik/kendo-theme-default@1.33.4
+added 1 package from 1 contributor in 27.468s
+
+
+   ?-------------------------------------?
+   ¦                                     ¦
+   ¦   Update available 5.6.0 > 6.0.1    ¦
+   ¦     Run npm i -g npm to update      ¦
+   ¦                                     ¦
+   ?-------------------------------------?
+
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>webpack --config webpack.config.vendor.js
+Hash: b5e2a5b59af66fbc37152e4b6203d5a4dc235a5d
+Version: webpack 2.5.1
+Child
+    Hash: b5e2a5b59af66fbc3715
+    Time: 8379ms
+                                   Asset    Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg  109 kB          [emitted]
+                               vendor.js  3.3 MB       0  [emitted]  [big]  vendor
+                              vendor.css  684 kB       0  [emitted]  [big]  vendor
+Child
+    Hash: 2e4b6203d5a4dc235a5d
+    Time: 8352ms
+                                   Asset     Size  Chunks                    Chunk Names
+    89889688147bd7575d6327160d64e760.svg   109 kB          [emitted]
+                               vendor.js  3.85 MB       0  [emitted]  [big]  vendor
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @progress/kendo-angular-popup
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @progress/kendo-angular-popup@2.3.0
+added 1 package from 1 contributor and updated 1 package in 18.004s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>npm install --save @progress/kendo-angular-dialog @progress/kendo-angular-buttons @progress/kendo-angular-l10n
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.1.3 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @progress/kendo-angular-l10n@1.2.0
++ @progress/kendo-angular-buttons@4.1.0
++ @progress/kendo-angular-dialog@3.6.0
+updated 3 packages in 17.571s
+
+C:\Users\eovcharenko\source\repos\CreateInvoice\CreateInvoice>

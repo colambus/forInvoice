@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
@@ -35,6 +36,7 @@
     <None Remove="ClientApp\app\components\invoice\invoice.component.ts" />
     <None Remove="ClientApp\app\components\invoice\invoiceList\invoiceList.component.ts" />
     <None Remove="ClientApp\app\models\certificate.model.ts" />
+    <None Remove="ClientApp\app\models\country.model.ts" />
     <None Remove="ClientApp\app\models\countryOfOrigin.model.ts" />
     <None Remove="ClientApp\app\models\deliveryType.model.ts" />
     <None Remove="ClientApp\app\models\invoice.model.ts" />
@@ -48,6 +50,7 @@
     <None Remove="ClientApp\app\services\country.service.ts" />
     <None Remove="ClientApp\app\services\dataNamed.service.ts" />
     <None Remove="ClientApp\app\services\edit.service.ts" />
+    <None Remove="ClientApp\app\services\exportFile.service.ts" />
     <None Remove="ClientApp\app\services\invoice.service.ts" />
     <None Remove="ClientApp\app\services\products.service.ts" />
   </ItemGroup>
@@ -60,6 +63,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoice.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoiceList\invoiceList.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\certificate.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\country.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\countryOfOrigin.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\deliveryType.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\invoice.model.ts" />
@@ -73,6 +77,7 @@
     <TypeScriptCompile Include="ClientApp\app\services\country.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\dataNamed.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\edit.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\exportFile.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\invoice.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\products.service.ts" />
   </ItemGroup>

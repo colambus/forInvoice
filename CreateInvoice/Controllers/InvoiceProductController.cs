@@ -28,7 +28,6 @@ namespace CreateInvoice.Controllers
                 .Include(p => p.Invoice)
                 .Include(p => p.Product)
                 .ThenInclude(p => p.CountryOfOrigin)
-                .ThenInclude(p => p.Certificate)
                 .Where(p => p.Invoice.Id == id)
                 .ToList();
         }

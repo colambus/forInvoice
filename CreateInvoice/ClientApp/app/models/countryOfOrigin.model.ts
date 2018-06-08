@@ -1,9 +1,8 @@
-﻿import { CerticateModel} from '../models/certificate.model'
-
-export class CountryOfOriginModel
+﻿export class CountryOfOriginModel
 {
-    id: number;
+    name: string;
     descriptionEn: string;
-    description: string;
-    certificate: CerticateModel;
+    descriptionUa: string;
+    countryId: number;
+    certificateId: number;
 }

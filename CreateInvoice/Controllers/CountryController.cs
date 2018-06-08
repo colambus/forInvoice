@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using CreateInvoice.Entities;
 using CreateInvoice.Helpers;
+using CreateInvoice.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,9 +24,15 @@ namespace CreateInvoice.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<Country> GetAll()
+        public IEnumerable<CountryDTO> GetAll()
         {
-            return _context.Countries.Include(p => p.Certificate);
+            var result = _context.CertificateCountry
+                .Include(c => c.Country)
+                .Include(c => c.Certificate)
+                .Select(p => ModelToDTO(p.Country, p.Certificate))
+                .ToList();
+
+            return result;
         }
 
         [HttpPost]
@@ -35,29 +43,51 @@ namespace CreateInvoice.Controllers
         }
 
         [HttpPut("[action]")]
-        public Country Add([FromBody]Country country)
+        public IActionResult Add([FromBody]CountryDTO country)
         {
-            Country newCountry = new Country()
-            {
-                DescriptionEn = country.DescriptionEn,
-                DescriptionUa = country.DescriptionUa,
-                Certificate = _context.Certificates.GetById(country.Certificate?.Id)
-            };
+            Country newCountry = _context.Countries
+                .FirstOrDefault(p => p.DescriptionEn == country.DescriptionEn);
 
-            _context.Countries.Add(newCountry);
+            if (newCountry == null)
+            {
+                newCountry = new Country()
+                {
+                    Name = country.Name,
+                    DescriptionEn = country.DescriptionEn,
+                    DescriptionUa = country.DescriptionUa
+                };
+                _context.Countries.Add(newCountry);
+            }
+
+
+            if(!newCountry.CountryCertificates.Any(p=>p.CertificateId == country.CertificateId))
+            newCountry.CountryCertificates.Add(new CertificateCountry
+            {
+                Country = newCountry,
+                Certificate = _context.Certificates.GetById(country.CertificateId)
+            }
+            );
+
             _context.SaveChanges();
-            return newCountry;
+
+            return Ok();
         }
 
         [HttpPost("[action]")]
-        public Country Save([FromBody]Country country)
+        public Country Save([FromBody]CountryDTO country)
         {
-            Country currCountry = _context.Countries.GetById(country.Id);
-            if (currCountry != null)
+            Country currCountry = _context.Countries.GetById(country.CountryId);
+            Certificate currCertificate = _context.Certificates.GetById(country.CertificateId);
+            CertificateCountry certificateCountry = currCountry?.CountryCertificates
+                .Where(p => p.Country == currCountry)
+                .FirstOrDefault();
+
+            if (currCountry != null && currCertificate != null)
             {
-                currCountry.DescriptionEn = country.DescriptionEn;
-                currCountry.DescriptionUa = country.DescriptionUa;
-                currCountry.Certificate = _context.Certificates.GetById(country.Certificate?.Id);
+                currCountry.DescriptionEn = country?.DescriptionEn;
+                currCountry.DescriptionUa = country?.DescriptionUa;
+                if (certificateCountry == null)
+                    currCountry.CountryCertificates.Add(certificateCountry);
                 _context.SaveChanges();
             }
 
@@ -68,12 +98,31 @@ namespace CreateInvoice.Controllers
         public IActionResult Delete(int id)
         {
             Country country = _context.Countries.FirstOrDefault(x => x.Id == id);
-            if (country != null)
+            try
             {
-                _context.Countries.Remove(country);
-                _context.SaveChanges();
+                if (country != null)
+                {
+                    _context.Countries.Remove(country);
+                    _context.SaveChanges();
+                }
+                return Ok(country);
             }
-            return Ok(country);
+            catch (SqlException ex)
+            {
+                return StatusCode(ex.ErrorCode);
+            }
+        }
+
+        private CountryDTO ModelToDTO(Country country, Certificate certificate)
+        {
+            return new CountryDTO
+            {
+                Name = country.Name,
+                DescriptionEn = country.DescriptionEn,
+                DescriptionUa = country.DescriptionUa,
+                CertificateId = certificate.Id,
+                CountryId = country.Id
+            };
         }
     }
 }

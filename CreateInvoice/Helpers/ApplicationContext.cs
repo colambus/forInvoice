@@ -26,11 +26,28 @@ namespace CreateInvoice.Helpers
         public DbSet<ContactType> ContactTypes { get; set; }
         public DbSet<ContactDetails> ContactDetails { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<CertificateCountry> CertificateCountry { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()
-                .HasIndex(p => new { p.CodeNo});
+                .HasIndex(p => new { p.CodeNo });
+
+            modelBuilder.Entity<Certificate>()
+                .HasIndex(p => new { p.Name }).IsUnique();
+
+            modelBuilder.Entity<CertificateCountry>()
+                .HasKey(k => new { k.CertificateId, k.CountryId });
+
+            modelBuilder.Entity<CertificateCountry>()
+               .HasOne(x => x.Country)
+               .WithMany(x => x.CountryCertificates)
+               .HasForeignKey(x => x.CountryId);
+
+            modelBuilder.Entity<CertificateCountry>()
+               .HasOne(x => x.Certificate)
+               .WithMany(x => x.CertificateCountries)
+               .HasForeignKey(x => x.CertificateId);
         }
     }
 }
