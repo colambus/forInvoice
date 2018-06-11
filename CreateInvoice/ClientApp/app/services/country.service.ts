@@ -1,6 +1,6 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response } from '@angular/http';
+import { Http, Response, ResponseContentType } from '@angular/http';
 import { CountryOfOriginModel } from '../models/countryOfOrigin.model';
 import 'rxjs/Rx';
 
@@ -36,5 +36,16 @@ export class CountryService {
                     return <CountryOfOriginModel>response.json();
                 });
         }
+    }
+
+    getImportTemplate() {
+        return this.http.get(this.actionUrl + 'DownloadTemplate', {
+            responseType: ResponseContentType.Blob
+        }).map(result => {
+            return {
+                filename: 'Country template.xlsx',
+                data: result.blob()
+            }
+        });
     }
 }

@@ -13,6 +13,7 @@ import { CountryOfOriginModel } from '../../../models/countryOfOrigin.model';
 import { CountryService } from '../../../services/country.service';
 
 import { EditEvent, GridComponent } from '@progress/kendo-angular-grid';
+import { FileRestrictions, UploadEvent, RemoveEvent } from '@progress/kendo-angular-upload';
 
 // common constants
 const hasClass = (el: any, className: any) => new RegExp(className).test(el.className)
@@ -41,6 +42,11 @@ export class CountryListComponent implements OnInit {
     private country: CountryOfOriginModel;
     private editedRowIndex: number | undefined;
     @ViewChild(GridComponent) private grid: GridComponent;
+    uploadSaveUrl = 'api/Country/Upload'; // should represent an actual API endpoint
+    uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
+    fileRestrictions: FileRestrictions = {
+        allowedExtensions: ['xls', 'xlsx']
+    };
 
 
     constructor(private countryService: CountryService,
@@ -198,6 +204,26 @@ export class CountryListComponent implements OnInit {
         if (this.certificates)
             return this.certificates.find(x => x.id === id);
         return "";
+    }
+
+    uploadEventHandler(e: UploadEvent) {
+        e.data = {
+            description: 'File upload'
+        };
+    }
+
+    removeEventHandler(e: RemoveEvent) {
+        e.data = {
+            description: 'File remove'
+        };
+    }
+
+    getCountryTemplate() {
+        let file: any;
+        this.countryService.getImportTemplate()
+            .subscribe(res => {
+                saveAs(res.data, res.filename);
+            });
     }
 }
 

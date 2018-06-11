@@ -5,15 +5,18 @@
                 [height]="600"
                 (add)="addHandler($event, myForm)"
                 (remove)="removeHandler($event)"
-                (dblclick)="editCertificate(grid, $event)"
                 (cellClick)="editClick($event)">
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
-            <button (click)="getCertificateTemplate()">Save template</button>
-            <kendo-upload [saveUrl]="uploadSaveUrl"
+            <button (click)="getCertificateTemplate()">Save template for import</button>
+            <br />
+            <label [for]="'exportTemplate'">Files to upload:</label>
+            <kendo-upload id="exportTemplate"
+                          [saveUrl]="uploadSaveUrl"
                           [removeUrl]="uploadRemoveUrl"
                           (upload)="uploadEventHandler($event)"
-                          (remove)="removeEventHandler($event)">
+                          (remove)="removeEventHandler($event)"
+                          [restrictions]="fileRestrictions">
             </kendo-upload>
         </ng-template>
         <kendo-grid-column field="name" title="Name" width="150" [editable]="true">

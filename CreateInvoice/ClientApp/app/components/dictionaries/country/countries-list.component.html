@@ -9,8 +9,18 @@
                 (cellClick)="editClick($event)">
         <ng-template kendoGridToolbarTemplate>
             <button kendoGridAddCommand>Add new</button>
-            <button (click)="getCountry()">Import template</button>
+            <button (click)="getCountryTemplate()">Save template to upload</button>
+            <br />
+            <label [for]="'exportTemplate'">Files to upload:</label>
+            <kendo-upload id="exportTemplate"
+                          [saveUrl]="uploadSaveUrl"
+                          [removeUrl]="uploadRemoveUrl"
+                          (upload)="uploadEventHandler($event)"
+                          (remove)="removeEventHandler($event)"
+                          [restrictions]="fileRestrictions">
+            </kendo-upload>
         </ng-template>
+
         <kendo-grid-column field="certificateId" title="Certificate" width="80">
             <ng-template kendoGridCellTemplate let-dataItem>
                 {{certificate(dataItem.certificateId)?.name}}
