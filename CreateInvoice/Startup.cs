@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CreateInvoice.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,13 @@ namespace CreateInvoice
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("InvoiceDatabase")));
+
+            services.Configure<FormOptions>(x =>
+            {
+                x.ValueLengthLimit = int.MaxValue;
+                x.MultipartBodyLengthLimit = int.MaxValue; // In case of multipart
+                x.MemoryBufferThreshold = int.MaxValue; 
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

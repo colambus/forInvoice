@@ -10,7 +10,7 @@ import { DataNamedService } from '../../../services/dataNamed.service';
 import { CerticateModel } from '../../../models/certificate.model';
 import { CertificateService } from '../../../services/certificate.service';
 import { EditEvent, GridComponent } from '@progress/kendo-angular-grid';
-import { UploadEvent, RemoveEvent } from '@progress/kendo-angular-upload';
+import { UploadEvent, RemoveEvent, FileRestrictions } from '@progress/kendo-angular-upload';
 import { saveAs } from 'file-saver';
 
 // common constants
@@ -40,6 +40,9 @@ export class CertificateListComponent implements OnInit {
     private editedRowIndex: number | undefined;
     uploadSaveUrl = 'api/Certificate/Upload'; // should represent an actual API endpoint
     uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
+    fileRestrictions: FileRestrictions = {
+        allowedExtensions: ['xls', 'xlsx']
+    };
 
     constructor(private certificateService: CertificateService,
         private formBuilder: FormBuilder,

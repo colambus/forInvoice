@@ -113,6 +113,37 @@ namespace CreateInvoice.Controllers
             }
         }
 
+        [HttpPost("[action]")]
+        [DisableRequestSizeLimit]
+        public IActionResult Upload()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                if (file.Length > 0)
+                {
+
+                    List<Tuple<Country, List<Certificate>>> countries = ConvertHelper.CountryFromXLSToList(file.OpenReadStream(), _context.Certificates);
+                    if (countries.Count() == 0)
+                    {
+                        return BadRequest();
+                    }
+                    foreach (var el in countries)
+                    {
+                        if (!_context.Countries.Any(p => p.Name == el.Item1.Name))
+                            _context.Countries.Add(el.Item1);
+                    }
+                    //_context.SaveChanges();
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Json("Upload Failed: " + ex.Message);
+            }
+
+        }
+
         private CountryDTO ModelToDTO(Country country, Certificate certificate)
         {
             return new CountryDTO

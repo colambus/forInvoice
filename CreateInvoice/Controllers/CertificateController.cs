@@ -96,7 +96,7 @@ namespace CreateInvoice.Controllers
         public IActionResult Upload()
         {
             try
-            {
+            {              
                 var file = Request.Form.Files[0];
                 if (file.Length > 0)
                 {
@@ -105,7 +105,11 @@ namespace CreateInvoice.Controllers
                     {
                         return BadRequest();
                     }
-                    _context.Certificates.AddRange(certificates);
+                    foreach (var el in certificates)
+                    {
+                        if (!_context.Certificates.Any(p => p.Name == el.Name))
+                            _context.Certificates.Add(el);
+                    }
                     _context.SaveChanges();
                 }
                 return Ok();
@@ -116,7 +120,6 @@ namespace CreateInvoice.Controllers
             }
 
         }
-
 
         private CertificateDTO ModelToDTO(Certificate certificate)
         {
