@@ -14,6 +14,7 @@ import { CountryService } from '../../../services/country.service';
 
 import { EditEvent, GridComponent } from '@progress/kendo-angular-grid';
 import { FileRestrictions, UploadEvent, RemoveEvent } from '@progress/kendo-angular-upload';
+import { GroupDescriptor, DataResult, process } from '@progress/kendo-data-query';
 
 // common constants
 const hasClass = (el: any, className: any) => new RegExp(className).test(el.className)
@@ -45,9 +46,10 @@ export class CountryListComponent implements OnInit {
     uploadSaveUrl = 'api/Country/Upload'; // should represent an actual API endpoint
     uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
     fileRestrictions: FileRestrictions = {
-        allowedExtensions: ['xls', 'xlsx']
+        allowedExtensions: ['xlsx']
     };
-
+    public groups: GroupDescriptor[] = [];
+    public gridView: DataResult;
 
     constructor(private countryService: CountryService,
         private dialogService: DialogService,
@@ -78,8 +80,11 @@ export class CountryListComponent implements OnInit {
 
     load() {
         this.countryService.getAll().subscribe(
-            resultArray => this.countries = resultArray,
-            error => console.log("Error :: " + error));
+            resultArray => {
+                this.countries = resultArray,
+                this.gridView = process(this.countries, { group: this.groups });
+            },
+            error => console.log("Error :: " + error));     
     }
 
     public createFormGroup(dataItem: any): FormGroup {
@@ -210,6 +215,7 @@ export class CountryListComponent implements OnInit {
         e.data = {
             description: 'File upload'
         };
+        this.load();
     }
 
     removeEventHandler(e: RemoveEvent) {
@@ -224,6 +230,11 @@ export class CountryListComponent implements OnInit {
             .subscribe(res => {
                 saveAs(res.data, res.filename);
             });
+    }
+
+    public groupChange(groups: GroupDescriptor[]): void {
+        this.groups = groups;
+        this.load();
     }
 }
 

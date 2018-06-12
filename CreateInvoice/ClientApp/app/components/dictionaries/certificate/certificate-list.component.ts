@@ -41,7 +41,7 @@ export class CertificateListComponent implements OnInit {
     uploadSaveUrl = 'api/Certificate/Upload'; // should represent an actual API endpoint
     uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
     fileRestrictions: FileRestrictions = {
-        allowedExtensions: ['xls', 'xlsx']
+        allowedExtensions: ['xlsx']
     };
 
     constructor(private certificateService: CertificateService,
@@ -186,6 +186,8 @@ export class CertificateListComponent implements OnInit {
         e.data = {
             description: 'File upload'
         };
+        console.log("File upload");
+        this.load();
     }
 
     removeEventHandler(e: RemoveEvent) {

@@ -60,13 +60,13 @@ namespace CreateInvoice.Controllers
             }
 
 
-            if(!newCountry.CountryCertificates.Any(p=>p.CertificateId == country.CertificateId))
-            newCountry.CountryCertificates.Add(new CertificateCountry
-            {
-                Country = newCountry,
-                Certificate = _context.Certificates.GetById(country.CertificateId)
-            }
-            );
+            if (!newCountry.CountryCertificates.Any(p => p.CertificateId == country.CertificateId))
+                newCountry.CountryCertificates.Add(new CertificateCountry
+                {
+                    Country = newCountry,
+                    Certificate = _context.Certificates.GetById(country.CertificateId)
+                }
+                );
 
             _context.SaveChanges();
 
@@ -130,10 +130,33 @@ namespace CreateInvoice.Controllers
                     }
                     foreach (var el in countries)
                     {
-                        if (!_context.Countries.Any(p => p.Name == el.Item1.Name))
-                            _context.Countries.Add(el.Item1);
+                        Country newCountry = _context.Countries
+                                .FirstOrDefault(p => p.DescriptionEn == el.Item1.Name);
+
+                        if (newCountry == null)
+                        {
+                            newCountry = new Country
+                            {
+                                DescriptionEn = el.Item1.DescriptionEn,
+                                Name = el.Item1.Name
+                            };
+                            _context.Countries.Add(newCountry);
+                        }
+
+                        foreach (var cert in el.Item2)
+                        {
+                            if (!newCountry.CountryCertificates.Any(p => p.CertificateId == cert.Id))
+                            {
+                                newCountry.CountryCertificates.Add(new CertificateCountry
+                                {
+                                    Country = newCountry,
+                                    Certificate = _context.Certificates.FirstOrDefault(p => p.Id == cert.Id)
+                                }
+                                      );
+                            }
+                        }
                     }
-                    //_context.SaveChanges();
+                    _context.SaveChanges();
                 }
                 return Ok();
             }
