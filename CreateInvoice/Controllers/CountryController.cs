@@ -115,7 +115,7 @@ namespace CreateInvoice.Controllers
 
         [HttpPost("[action]")]
         [DisableRequestSizeLimit]
-        public IActionResult Upload()
+        public async Task<IActionResult> Upload()
         {
             try
             {
@@ -123,7 +123,7 @@ namespace CreateInvoice.Controllers
                 if (file.Length > 0)
                 {
 
-                    List<Tuple<Country, List<Certificate>>> countries = ConvertHelper.CountryFromXLSToList(file.OpenReadStream(), _context.Certificates);
+                    List<Tuple<Country, List<Certificate>>> countries = await Task.FromResult(ConvertHelper.CountryFromXLSToList(file.OpenReadStream(), _context.Certificates));
                     if (countries.Count() == 0)
                     {
                         return BadRequest();

@@ -10,6 +10,7 @@ import { DataNamedService } from '../../../services/dataNamed.service';
 import { CerticateModel } from '../../../models/certificate.model';
 import { CertificateService } from '../../../services/certificate.service';
 import { EditEvent, GridComponent, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { FileRestrictions } from '@progress/kendo-angular-upload';
 
 // common constants
 const hasClass = (el: any, className: any) => new RegExp(className).test(el.className)
@@ -39,6 +40,11 @@ export class ProductListComponent implements OnInit {
     private product: ProductModel;
     private editedRowIndex: number | undefined;
     @ViewChild(GridComponent) private grid: GridComponent;
+    uploadSaveUrl = 'api/Product/Upload'; // should represent an actual API endpoint
+    uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
+    fileRestrictions: FileRestrictions = {
+        allowedExtensions: ['xlsx']
+    };
 
     public buttonCount = 5;
     public info = true;
@@ -168,6 +174,44 @@ export class ProductListComponent implements OnInit {
         this.skip = skip;
         this.pageSize = take;
         this.load();
+    }
+
+    public removeHandler({ dataItem }: any) {
+
+        const dialogRef = this.dialogService.open({
+            title: 'Confirmation',
+
+            // Show component
+            content: 'Are you sure?',
+
+            actions: [
+                { text: 'Yes' },
+                { text: 'No', primary: true }
+            ]
+        });
+
+        dialogRef.result.subscribe((result) => {
+            if (result instanceof DialogCloseResult) {
+                console.log('close');
+            } else {
+                if ((result as DialogAction).text === 'Yes')
+                    this.onDeleteData(dataItem.id);
+                else
+                    console.log('Action close');
+                ;
+            }
+        });
+    }
+
+    onDeleteData(id: number) {
+        this.productService.deleteItem(id)
+            .subscribe(data =>
+                this.load(),
+            error => {
+                if (error == 547)
+                    alert("Item has foreign keys");
+            }
+            );
     }
 
     private loadFromFile() {
