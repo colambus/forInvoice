@@ -70,7 +70,7 @@ namespace CreateInvoice.Helpers
         {
             List<Country> countries = new List<Country>();
             List<Tuple<Country, List<Certificate>>> result = new List<Tuple<Country, List<Certificate>>>();
-            //= new Tuple<Country, List<Certificate>>(new Country(), new List<Certificate>());
+            
 
             List<CountryDTO> countrieDTOs = new List<CountryDTO>();
             try
@@ -80,6 +80,7 @@ namespace CreateInvoice.Helpers
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.First();
                     var start = worksheet.Dimension.Start;
                     var end = worksheet.Dimension.End;
+                    List<CertificateCountry> certCountry = GetInvoiceCountryCert(worksheet, certificates);
 
                     var countriesStartRange = from cell in worksheet.Cells
                                               where cell.Value?.ToString().Trim() == "Country of origin"
@@ -88,7 +89,8 @@ namespace CreateInvoice.Helpers
                     ExcelCellAddress countriesStart = null;
                     ExcelCellAddress countriesTableStart = null;
                     foreach (var cell in countriesStartRange)
-                        if (worksheet.Cells[cell.Row, cell.Column + 2].Value?.ToString().Trim() == "Manufacturing")
+                        if (worksheet.Cells[cell.Row, cell.Column + 2].Value?.ToString().Trim() == "Manufacturing" ||
+                            worksheet.Cells[cell.Row, cell.Column + 2].Value?.ToString().Trim() == "Manufacturer")
                         {
                             countriesStart = cell;
                             break;
@@ -113,8 +115,10 @@ namespace CreateInvoice.Helpers
                             if (worksheet.Cells[countriesStart.Row + 1, countriesStart.Column].Value != null)
                             {
                                 int countryId = int.Parse(worksheet.Cells[countriesStart.Row + 1, countriesStart.Column].Value.ToString());
-                                result.Add(new Tuple<Country, List<Certificate>>(newCountry, FindCertificatesInFile(worksheet, countryId, certificates, countriesTableStart)));
+                                result.Add(new Tuple<Country, List<Certificate>>(newCountry, new List<Certificate>(certCountry.Where(p => p.CountryId == countryId).Select(p => p.Certificate).Distinct())));
                             }
+
+                            countriesStart = worksheet.Cells[countriesStart.Row + 1, countriesStart.Column].Start;
                         }
                     }                  
                 }
@@ -128,52 +132,55 @@ namespace CreateInvoice.Helpers
             return result;
         }
 
-        public static List<Certificate> FindCertificatesInFile(ExcelWorksheet worksheet, int countryId, IEnumerable<Certificate> certificates, ExcelCellAddress countriesTableStart)
+        public static List<CertificateCountry> GetInvoiceCountryCert(ExcelWorksheet worksheet, IEnumerable<Certificate> certificates)
         {
-            List<Certificate> countryCertIds = new List<Certificate>();
-
-            var certColumn = worksheet.Cells.Where(p=>p.Value!=null).Select(p=>p.Start)
-                .FirstOrDefault(p => p.ToString().Contains("Amount")).Column + 1;
-            var posRange = worksheet.Cells.FirstOrDefault(p => p.Value.ToString().Contains("Pos. No."));
-            worksheet.Cells.Where(p => p.Value != null).Select(p => p.Start)
-                .FirstOrDefault(p => p.ToString().Contains("Pos. No."));
-            int startRow = 0, endRow = 0;
-
-            if (posRange != null)
-            {
-                endRow = posRange.Start.Row;
-                startRow = posRange.Start.Row;
-                while (worksheet.Cells[endRow + 1, 1].Value != null &&
-                worksheet.Cells[endRow + 1, 1].Value?.ToString().Trim() != "")
-                {
-                    endRow++;
-                }
-            }
-
             List<CertificateCountry> certCountry = new List<CertificateCountry>();
-            for (int i = startRow + 1; i <= endRow; i++)
-            {
-                if (worksheet.Cells[startRow, 2].Value != null &&
-                    worksheet.Cells[startRow, 2].Value?.ToString().Trim() != "" &&
-                    worksheet.Cells[startRow, certColumn].Value != null &&
-                    worksheet.Cells[startRow, certColumn].Value?.ToString().Trim() != "")
-                {
-                    var certId = certificates.FirstOrDefault(p => p.Name == worksheet.Cells[startRow, certColumn].Value?.ToString().Trim());
 
-                    if (certId != null)
+            try
+            {
+                var certColumn = (from column in worksheet.Cells
+                                  where (column.Value != null && column.Value.ToString().Contains("Amount"))
+                                  select column)
+                                     .FirstOrDefault().Start.Column + 1;
+
+                var posRange = (from column in worksheet.Cells
+                                where (column.Value != null && column.Value.ToString().Contains("Pos. No."))
+                                select column)
+                                     .FirstOrDefault().Start;
+
+                int startRow = 0, endRow = 0;
+
+                if (posRange != null)
+                {
+                    endRow = posRange.Row;
+                    startRow = posRange.Row;
+                    while (worksheet.Cells[endRow + 1, 1].Value != null &&
+                    worksheet.Cells[endRow + 1, 1].Value?.ToString().Trim() != "")
+                    {
+                        endRow++;
+                    }
+                }
+
+                for (int i = startRow + 1; i <= endRow; i++)
+                {
+                    var cert = certificates.FirstOrDefault(p => p.Name == worksheet.Cells[i, certColumn].Value?.ToString().Trim());
+
+                    if (cert != null)
                         certCountry.Add(new CertificateCountry
                         {
-                            CountryId = int.Parse(worksheet.Cells[startRow, 2].Value.ToString()),
-                            CertificateId = certId.Id
+                            CountryId = int.Parse(worksheet.Cells[i, 2].Value.ToString()),
+                            CertificateId = cert.Id,
+                            Certificate = cert
                         });
                 }
-
-                startRow++;
+            }
+            catch
+            {
+                certCountry.Clear();
+                return certCountry;
             }
 
-            countryCertIds.AddRange(certCountry.Where(p => p.CountryId == countryId).Select(p => p.Certificate).Distinct());
-
-            return countryCertIds;
+            return certCountry;
         }
     }
 }

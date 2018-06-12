@@ -1,8 +1,11 @@
 ﻿<h1>Countries</h1>
 <div>
     <kendo-grid #grid
-                [data]="countries"
+                [data]="gridView"
                 [height]="600"
+                [groupable]="true"
+                [group]="groups"
+                (groupChange)="groupChange($event)"
                 (add)="addHandler($event, myForm)"
                 (remove)="removeHandler($event)"
                 (dblclick)="editCertificate(grid, $event)"
