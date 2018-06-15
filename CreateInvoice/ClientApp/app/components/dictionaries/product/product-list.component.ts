@@ -11,6 +11,7 @@ import { CerticateModel } from '../../../models/certificate.model';
 import { CertificateService } from '../../../services/certificate.service';
 import { EditEvent, GridComponent, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { FileRestrictions } from '@progress/kendo-angular-upload';
+import { saveAs } from 'file-saver';
 
 // common constants
 const hasClass = (el: any, className: any) => new RegExp(className).test(el.className)
@@ -40,6 +41,7 @@ export class ProductListComponent implements OnInit {
     private product: ProductModel;
     private editedRowIndex: number | undefined;
     @ViewChild(GridComponent) private grid: GridComponent;
+    importFromInvoiceValue: boolean;
     uploadSaveUrl = 'api/Product/Upload'; // should represent an actual API endpoint
     uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
     fileRestrictions: FileRestrictions = {
@@ -212,6 +214,21 @@ export class ProductListComponent implements OnInit {
                     alert("Item has foreign keys");
             }
             );
+    }
+
+    getProductTemplate() {
+        let file: any;
+        this.productService.getImportTemplate()
+            .subscribe(res => {
+                saveAs(res.data, res.filename);
+            });
+    }
+
+    importCheckBoxChange() {
+        if (this.importFromInvoiceValue)
+            this.uploadSaveUrl = 'api/Product/UploadFromInvoice';
+        else
+            this.uploadSaveUrl = 'api/Product/Upload';
     }
 
     private loadFromFile() {

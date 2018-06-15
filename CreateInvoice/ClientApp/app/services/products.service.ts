@@ -1,6 +1,6 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Http, Response, RequestOptions, ResponseContentType } from '@angular/http';
 import { ProductModel } from '../models/product.model';
 import 'rxjs/Rx';
 import { Headers, URLSearchParams } from '@angular/http';
@@ -57,4 +57,15 @@ export class ProductService {
     deleteItem(id: number) {
         return this.http.delete(this.actionUrl + '/' + id);
     };
+
+    getImportTemplate() {
+        return this.http.get(this.actionUrl + 'DownloadTemplate', {
+            responseType: ResponseContentType.Blob
+        }).map(result => {
+            return {
+                filename: 'Products template.xlsx',
+                data: result.blob()
+            }
+        });
+    }
 }

@@ -71,7 +71,6 @@ namespace CreateInvoice.Helpers
             List<Country> countries = new List<Country>();
             List<Tuple<Country, List<Certificate>>> result = new List<Tuple<Country, List<Certificate>>>();
             
-
             List<CountryDTO> countrieDTOs = new List<CountryDTO>();
             try
             {
@@ -132,7 +131,7 @@ namespace CreateInvoice.Helpers
             return result;
         }
 
-        public static List<CertificateCountry> GetInvoiceCountryCert(ExcelWorksheet worksheet, IEnumerable<Certificate> certificates)
+        private static List<CertificateCountry> GetInvoiceCountryCert(ExcelWorksheet worksheet, IEnumerable<Certificate> certificates)
         {
             List<CertificateCountry> certCountry = new List<CertificateCountry>();
 
@@ -181,6 +180,126 @@ namespace CreateInvoice.Helpers
             }
 
             return certCountry;
+        }
+
+        public static List<ProductDTO> GetProductsListFromUpload(Stream file)
+        {
+            List<ProductDTO> products = new List<ProductDTO>();
+            try
+            {
+                using (ExcelPackage package = new ExcelPackage(file))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.First();
+                    var start = worksheet.Dimension.Start;
+                    var end = worksheet.Dimension.End;
+
+                    for(int row = 2; row<= end.Row; row++)
+                    {
+                        ProductDTO newProduct = new ProductDTO
+                        {
+                            CodeNo = worksheet.Cells[row, 1].Value?.ToString().Trim(),
+                            DescriptionEn = worksheet.Cells[row, 2].Value?.ToString().Trim(),
+                            DescriptionUa = worksheet.Cells[row, 3].Value?.ToString().Trim(),
+                            CertificateName = worksheet.Cells[row, 4].Value?.ToString().Trim(),
+                            CertificateStartDate = DateTime.Parse(worksheet.Cells[row, 5].Value?.ToString().Trim()),
+                            CertificateEndDate = DateTime.Parse(worksheet.Cells[row, 6].Value?.ToString().Trim()),
+                            CountryDescriptionEn = worksheet.Cells[row, 7].Value?.ToString().Trim(),
+                            CountryName = worksheet.Cells[row, 8].Value?.ToString().Trim()
+                        };
+                        products.Add(newProduct);
+                    }
+
+                }
+            }
+            catch
+            {
+                products.Clear();
+            }            
+
+                return products;
+        }
+
+        public static List<ProductDTO> GetProductsListFromInvoiceUpload(Stream file)
+        {
+            List<ProductDTO> products = new List<ProductDTO>();
+            try
+            {
+                using (ExcelPackage package = new ExcelPackage(file))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.First();
+                    var start = worksheet.Dimension.Start;
+                    var end = worksheet.Dimension.End;
+
+                    ExcelCellAddress productsStartCell = (from cell in worksheet.Cells
+                                              where cell.Value?.ToString().Trim() == "Pos. No."
+                                              select cell.Start).FirstOrDefault();
+
+                    ExcelCellAddress countriesStartCell = (from cell in worksheet.Cells
+                                              where cell.Value?.ToString().Trim() == "Country of origin"
+                                              select cell.Start).LastOrDefault();
+
+                    ExcelCellAddress amountCell = (from column in worksheet.Cells
+                                                   where (column.Value != null && column.Value.ToString().Contains("Amount"))
+                                                   select column)
+                                                    .FirstOrDefault().Start;
+
+                    ExcelCellAddress countryIdCell = (from column in worksheet.Cells
+                                                   where (column.Value != null && column.Value.ToString().Contains("Country of origin"))
+                                                   select column)
+                                                    .FirstOrDefault().Start;
+
+                    ExcelCellAddress productNameCell = (from column in worksheet.Cells
+                                                        where (column.Value != null && column.Value.ToString().Contains("Description"))
+                                                        select column)
+                                                    .FirstOrDefault().Start;
+
+                    ExcelCellAddress productCodeCell = (from column in worksheet.Cells
+                                                        where (column.Value != null && column.Value.ToString().Contains("Code No."))
+                                                        select column)
+                                                    .FirstOrDefault().Start;
+
+                    if (productsStartCell != null && amountCell != null && countryIdCell != null && productNameCell != null && productCodeCell != null)
+                    {
+                        productsStartCell = worksheet.Cells[productsStartCell.Row+1, productsStartCell.Column].Start;
+                        while (worksheet.Cells[productsStartCell.Row, productsStartCell.Column].Value != null &&
+                              worksheet.Cells[productsStartCell.Row, productsStartCell.Column].Value?.ToString().Trim() != "")
+                        {
+                            ProductDTO newproduct = new ProductDTO
+                            {
+                                CodeNo = worksheet.Cells[productsStartCell.Row, productCodeCell.Column].Value?.ToString().Trim(),
+                                DescriptionEn = worksheet.Cells[productsStartCell.Row, productNameCell.Column].Value?.ToString().Trim(),
+                                CertificateName = worksheet.Cells[productsStartCell.Row, amountCell.Column + 1].Value?.ToString().Trim()                              
+                            };
+
+                            ExcelCellAddress currCountryCell = worksheet.Cells[countriesStartCell.Row + 1, countriesStartCell.Column].Start;
+
+                            if (countriesStartCell != null)
+                            {
+                                while (worksheet.Cells[currCountryCell.Row, currCountryCell.Column].Value != null &&
+                                worksheet.Cells[currCountryCell.Row, currCountryCell.Column].Value?.ToString().Trim() != "")
+                                {
+                                    if (worksheet.Cells[currCountryCell.Row, currCountryCell.Column].Value?.ToString() ==
+                                        worksheet.Cells[productsStartCell.Row, countryIdCell.Column].Value?.ToString())
+                                    {
+                                        newproduct.CountryDescriptionEn = worksheet.Cells[currCountryCell.Row, currCountryCell.Column + 2].Value?.ToString().Trim();
+                                        newproduct.CountryName = worksheet.Cells[currCountryCell.Row, currCountryCell.Column + 1].Value?.ToString().Trim();
+                                        break;
+                                    }
+                                    currCountryCell = worksheet.Cells[currCountryCell.Row + 1, currCountryCell.Column].Start;
+                                }
+                            }
+
+                            products.Add(newproduct);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                products.Clear();
+            }
+
+            return products;
         }
     }
 }

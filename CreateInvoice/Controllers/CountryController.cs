@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CreateInvoice.Entities;
@@ -177,6 +178,15 @@ namespace CreateInvoice.Controllers
                 CertificateId = certificate.Id,
                 CountryId = country.Id
             };
+        }
+
+        [HttpGet("[action]")]
+        public IActionResult DownloadTemplate()
+        {
+            var locatedFile = System.IO.File.OpenRead(Path.Combine(Environment.CurrentDirectory, @"Templates\Country import template.xlsx"));
+            var response = File(locatedFile, "application/octet-stream");
+
+            return response;
         }
     }
 }
