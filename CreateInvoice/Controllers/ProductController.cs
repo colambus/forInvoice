@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CreateInvoice.Entities;
 using CreateInvoice.Helpers;
+using CreateInvoice.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -90,6 +92,175 @@ namespace CreateInvoice.Controllers
                 _context.SaveChanges();
             }
             return Ok(product);
+        }
+
+        [HttpGet("[action]")]
+        public IActionResult DownloadTemplate()
+        {
+            var locatedFile = System.IO.File.OpenRead(Path.Combine(Environment.CurrentDirectory, @"Templates\Product import template.xlsx"));
+            var response = File(locatedFile, "application/octet-stream");
+
+            return response;
+        }
+
+        [HttpPost("[action]")]
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> Upload()
+        {
+            try
+            {
+                var file = Request.Form.Files.FirstOrDefault();
+
+                if (file?.Length > 0)
+                {
+                    List<ProductDTO> products = await Task.FromResult(ConvertHelper.GetProductsListFromUpload(file.OpenReadStream()));
+                    if (products.Count() == 0)
+                    {
+                        return BadRequest();
+                    }
+                    foreach (var el in products)
+                    {
+                        Product newProduct = _context.Products
+                                .FirstOrDefault(p => p.DescriptionEn == el.DescriptionEn);
+
+                        if (newProduct == null)
+                        {
+                            newProduct = new Product
+                            {
+                                CodeNo = el.CodeNo,
+                                DescriptionEn = el.DescriptionEn,
+                                DescriptionUa = el.DescriptionUa,
+                                Certificate = _context.Certificates.FirstOrDefault(p=>p.Name == el.CertificateName),
+                                CountryOfOrigin = _context.Countries.FirstOrDefault(p=>p.DescriptionEn == el.DescriptionEn)
+                            };
+
+                            if(newProduct.Certificate==null)
+                            {
+                                if (el.CertificateName != "" && el.CertificateStartDate != null)
+                                {
+                                    Certificate newCertificate = new Certificate
+                                    {
+                                        Name = el.CertificateName,
+                                        StartDate = el.CertificateStartDate ?? DateTime.MinValue,
+                                        EndDate = el.CertificateEndDate
+                                    };
+
+                                    _context.Certificates.Add(newCertificate);
+                                }
+                            }
+
+                            if (newProduct.Certificate != null && newProduct.CountryOfOrigin == null)
+                            {
+                                if (el.CountryDescriptionEn != "")
+                                {
+                                    Country newCountry = new Country
+                                    {
+                                        DescriptionEn = el.DescriptionEn,
+                                        Name = el.CountryName
+                                    };
+
+                                    newCountry.CountryCertificates.Add(
+                                        new CertificateCountry
+                                        {
+                                            Country = newCountry,
+                                            Certificate = newProduct.Certificate
+                                        });
+                                    _context.Countries.Add(newCountry);
+                                }
+                            }
+
+                                if (newProduct.Certificate!=null && newProduct.CountryOfOrigin != null)
+                                    _context.Products.Add(newProduct);
+                        }                        
+                    }
+                    _context.SaveChanges();
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Json("Upload Failed: " + ex.Message);
+            }
+        }
+
+        [HttpPost("[action]")]
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> UploadFromInvoice()
+        {
+            try
+            {
+                var file = Request.Form.Files.FirstOrDefault();
+
+                if (file?.Length > 0)
+                {
+                    List<ProductDTO> products = await Task.FromResult(ConvertHelper.GetProductsListFromUpload(file.OpenReadStream()));
+                    if (products.Count() == 0)
+                    {
+                        return BadRequest();
+                    }
+                    foreach (var el in products)
+                    {
+                        Product newProduct = _context.Products
+                                .FirstOrDefault(p => p.DescriptionEn == el.DescriptionEn);
+
+                        if (newProduct == null)
+                        {
+                            newProduct = new Product
+                            {
+                                CodeNo = el.CodeNo,
+                                DescriptionEn = el.DescriptionEn,
+                                DescriptionUa = el.DescriptionUa,
+                                Certificate = _context.Certificates.FirstOrDefault(p => p.Name == el.CertificateName),
+                                CountryOfOrigin = _context.Countries.FirstOrDefault(p => p.DescriptionEn == el.DescriptionEn)
+                            };
+
+                            if (newProduct.Certificate == null)
+                            {
+                                if (el.CertificateName != "")
+                                {
+                                    Certificate newCertificate = new Certificate
+                                    {
+                                        Name = el.CertificateName,
+                                        StartDate = el.CertificateStartDate ?? DateTime.MinValue,
+                                        EndDate = el.CertificateEndDate
+                                    };
+
+                                    _context.Certificates.Add(newCertificate);
+                                }
+                            }
+
+                            if (newProduct.Certificate != null && newProduct.CountryOfOrigin == null)
+                            {
+                                if (el.CountryDescriptionEn != "")
+                                {
+                                    Country newCountry = new Country
+                                    {
+                                        DescriptionEn = el.DescriptionEn,
+                                        Name = el.CountryName
+                                    };
+
+                                    newCountry.CountryCertificates.Add(
+                                        new CertificateCountry
+                                        {
+                                            Country = newCountry,
+                                            Certificate = newProduct.Certificate
+                                        });
+                                    _context.Countries.Add(newCountry);
+                                }
+                            }
+
+                            if (newProduct.Certificate != null && newProduct.CountryOfOrigin != null)
+                                _context.Products.Add(newProduct);
+                        }
+                    }
+                    _context.SaveChanges();
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Json("Upload Failed: " + ex.Message);
+            }
         }
     }
 }

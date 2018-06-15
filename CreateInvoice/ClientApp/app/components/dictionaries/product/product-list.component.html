@@ -15,11 +15,13 @@
                 }"
                 [skip]="skip"
                 (pageChange)="pageChange($event)"
-                (dblclick)="editInvoice(grid, $event)"
                 (cellClick)="editClick($event)">
         <ng-template kendoGridToolbarTemplate>
-            <button kendoGridAddCommand>Add new</button>
-            <button (click)="getCountryTemplate()">Save template to upload</button>
+            <div>
+                <input type="checkbox" id="importFromInvoice" class="k-checkbox" checked="checked" [(ngModel)]="importFromInvoiceValue" (change)="importCheckBoxChange()">
+                <label class="k-checkbox-label" for="importFromInvoice">Import from invoice</label>
+                <button class="k-button colo pull-right" style="color: #0000ff" (click)="getProductTemplate()">Save template to upload</button>
+            </div>
             <br />
             <label [for]="'exportTemplate'">Files to upload:</label>
             <kendo-upload id="exportTemplate"
@@ -29,6 +31,7 @@
                           (remove)="removeEventHandler($event)"
                           [restrictions]="fileRestrictions">
             </kendo-upload>
+            <button kendoGridAddCommand class="k-icon k-i-plus-outline">Add new</button>
         </ng-template>
         <kendo-grid-column field="codeNo" title="Code" width="40" [editable]="true">
         </kendo-grid-column>
@@ -49,9 +52,9 @@
                          let-column="column"
                          let-formGroup="formGroup">
                 <kendo-combobox [data]="certificates"
-                                [textField] ="'name'"
-                                [valueField] ="'id'"
-                                [valuePrimitive] ="true">
+                                [textField]="'name'"
+                                [valueField]="'id'"
+                                [valuePrimitive]="true">
                 </kendo-combobox>
             </ng-template>
         </kendo-grid-column>
