@@ -174,7 +174,8 @@ export class InvoiceComponent implements OnInit {
     handleValueChange(value: any) {
         if (value) {
             this.formGroup!.get('Product')!.setValue(value);
-            this.formGroup!.get('CountryOfOrigin')!.setValue(value.countryOfOrigin.id);
+            if (value.countryOfOrigin != null)
+                this.formGroup!.get('CountryOfOrigin')!.setValue(value.countryOfOrigin.id);
             this.formGroup!.get('CodeNo')!.setValue(value.codeNo);
         }
     }
@@ -259,7 +260,7 @@ export class InvoiceComponent implements OnInit {
     private createFormGroup(dataItem: any): FormGroup {
         return this.formBuilder.group({
             'Position': new FormControl(dataItem.productPosition),
-            'CountryOfOrigin': new FormControl(dataItem.product!.countryOfOrigin!.id),
+            'CountryOfOrigin': new FormControl(dataItem.product.countryOfOrigin == null ? dataItem.product.countryOfOrigin.id : ''),
             'CodeNo': new FormControl(dataItem!.product!.codeNo, Validators.required),
             'Product': new FormControl(dataItem!.product, Validators.required),
             'unit': new FormControl(dataItem!.product!.unit),

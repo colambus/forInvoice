@@ -4,6 +4,7 @@ import { Http, Response, RequestOptions, ResponseContentType } from '@angular/ht
 import { ProductModel } from '../models/product.model';
 import 'rxjs/Rx';
 import { Headers, URLSearchParams } from '@angular/http';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Injectable()
 export class ProductService {
@@ -22,7 +23,11 @@ export class ProductService {
         return this.http.get(this.actionUrl + 'GetBySeq',
             request_option)
             .map((response: Response) => {
-                return <ProductModel[]>response.json();
+                let result = <ProductModel[]>response.json();
+                result.forEach(function (item) {
+                    item.descriptionEn = item.id + " " + item.descriptionEn;
+                });    
+                return result;
             });
     }
 
@@ -52,6 +57,13 @@ export class ProductService {
                     return <ProductModel>response.json();
                 });
         }   
+    }
+
+    getProductsCount() {
+        return this.http.get(this.actionUrl + "GetProductsCount")
+            .map(result => {
+                return Number(result.text());
+            });
     }
 
     deleteItem(id: number) {

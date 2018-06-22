@@ -27,8 +27,9 @@ import { WindowModule } from '@progress/kendo-angular-dialog';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { UploadModule } from '@progress/kendo-angular-upload';
-
 import '@progress/kendo-angular-intl/locales/uk/all';
+
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import '@progress/kendo-angular-intl/locales/uk/all';
         DialogsModule,
         DropDownsModule,
         UploadModule,
+        AngularFontAwesomeModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -68,7 +70,11 @@ import '@progress/kendo-angular-intl/locales/uk/all';
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'uk-UK'}
+    ],
+    entryComponents: [
+        InvoiceComponent
     ]
+
 })
 export class AppModuleShared {
 }

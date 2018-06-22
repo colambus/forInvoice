@@ -24,12 +24,25 @@ namespace CreateInvoice.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<Product> GetBySeq([FromQuery]string queryStr)
+        public async Task<IEnumerable<Product>> GetBySeq([FromQuery]string queryStr)
         {
-            return _context.Products
+            IEnumerable<Product> res = new List<Product>();
+            res = await Task.FromResult(_context.Products
                 .Include("CountryOfOrigin")
-                .Where(p=>p.CodeNo.Contains(queryStr))
-                .ToList();
+                .Where(p => p.CodeNo.Contains(queryStr)));
+
+            if (res.Count() > 10)
+                return res;
+
+            return res;
+        }
+
+        [HttpGet("[action]")]
+        public int GetProductsCount()
+        {
+            if(_context.Products.Any())
+                return _context.Products.Count();
+            return 0;
         }
 
         [HttpGet("[action]")]
@@ -38,12 +51,12 @@ namespace CreateInvoice.Controllers
             var result = _context.Products
                 .Include(p => p.CountryOfOrigin)
                 .Include(p => p.Certificate)
-                .Include(p => p.CountryOfOrigin);
+                .Include(p => p.CountryOfOrigin).ToList();
 
             if (skip != null)
-                result.Skip(int.Parse(skip));
+                result = result.Skip(int.Parse(skip)).ToList();
             if (take != null)
-                result.Take(int.Parse(take));
+                result = result.Take(int.Parse(take)).ToList();
 
             return result;
         }
@@ -107,6 +120,7 @@ namespace CreateInvoice.Controllers
         [DisableRequestSizeLimit]
         public async Task<IActionResult> Upload()
         {
+            int count = 1;
             try
             {
                 var file = Request.Form.Files.FirstOrDefault();
@@ -121,6 +135,8 @@ namespace CreateInvoice.Controllers
                     foreach (var el in products)
                     {
                         Product newProduct = _context.Products
+                            .Include(p => p.Certificate)
+                            .Include(p => p.CountryOfOrigin)
                                 .FirstOrDefault(p => p.DescriptionEn == el.DescriptionEn);
 
                         if (newProduct == null)
@@ -130,11 +146,11 @@ namespace CreateInvoice.Controllers
                                 CodeNo = el.CodeNo,
                                 DescriptionEn = el.DescriptionEn,
                                 DescriptionUa = el.DescriptionUa,
-                                Certificate = _context.Certificates.FirstOrDefault(p=>p.Name == el.CertificateName),
-                                CountryOfOrigin = _context.Countries.FirstOrDefault(p=>p.DescriptionEn == el.DescriptionEn)
+                                Certificate = _context.Certificates.FirstOrDefault(p => p.Name == el.CertificateName),
+                                CountryOfOrigin = _context.Countries.FirstOrDefault(p => p.DescriptionEn == el.DescriptionEn)
                             };
 
-                            if(newProduct.Certificate==null)
+                            if (newProduct.Certificate == null)
                             {
                                 if (el.CertificateName != "" && el.CertificateStartDate != null)
                                 {
@@ -146,12 +162,14 @@ namespace CreateInvoice.Controllers
                                     };
 
                                     _context.Certificates.Add(newCertificate);
+                                    _context.SaveChanges();
+                                    newProduct.Certificate = newCertificate;
                                 }
                             }
 
                             if (newProduct.Certificate != null && newProduct.CountryOfOrigin == null)
                             {
-                                if (el.CountryDescriptionEn != "")
+                                if (el.CountryDescriptionEn != "" && el.CountryDescriptionEn != null)
                                 {
                                     Country newCountry = new Country
                                     {
@@ -166,12 +184,59 @@ namespace CreateInvoice.Controllers
                                             Certificate = newProduct.Certificate
                                         });
                                     _context.Countries.Add(newCountry);
+                                    _context.SaveChanges();
+                                    newProduct.CountryOfOrigin = newCountry;
                                 }
                             }
 
-                                if (newProduct.Certificate!=null && newProduct.CountryOfOrigin != null)
-                                    _context.Products.Add(newProduct);
-                        }                        
+                            if (newProduct.Certificate != null)
+                                _context.Products.Add(newProduct);
+                        }
+                        else
+                        {
+                            if (newProduct.Certificate == null)
+                            {
+                                if (el.CertificateName != "" && el.CertificateStartDate != null)
+                                {
+                                    Certificate newCertificate = new Certificate
+                                    {
+                                        Name = el.CertificateName,
+                                        StartDate = el.CertificateStartDate ?? DateTime.MinValue,
+                                        EndDate = el.CertificateEndDate
+                                    };
+
+                                    _context.Certificates.Add(newCertificate);
+                                    _context.SaveChanges();
+                                    newProduct.Certificate = newCertificate; 
+                                }
+                            }
+
+                            if (newProduct.Certificate != null && newProduct.CountryOfOrigin == null)
+                            {
+                                if (el.CountryDescriptionEn != "" && el.CountryDescriptionEn != null)
+                                {
+                                    Country newCountry = new Country
+                                    {
+                                        DescriptionEn = el.DescriptionEn,
+                                        Name = el.CountryName
+                                    };
+
+                                    newCountry.CountryCertificates.Add(
+                                        new CertificateCountry
+                                        {
+                                            Country = newCountry,
+                                            Certificate = newProduct.Certificate
+                                        });
+                                    _context.Countries.Add(newCountry);
+                                    _context.SaveChanges();
+                                    newProduct.CountryOfOrigin = newCountry;
+                                }
+                            }
+
+
+                        }
+
+                        count++;
                     }
                     _context.SaveChanges();
                 }
@@ -193,7 +258,7 @@ namespace CreateInvoice.Controllers
 
                 if (file?.Length > 0)
                 {
-                    List<ProductDTO> products = await Task.FromResult(ConvertHelper.GetProductsListFromUpload(file.OpenReadStream()));
+                    List<ProductDTO> products = await Task.FromResult(ConvertHelper.GetProductsListFromInvoiceUpload(file.OpenReadStream()));
                     if (products.Count() == 0)
                     {
                         return BadRequest();
@@ -201,6 +266,8 @@ namespace CreateInvoice.Controllers
                     foreach (var el in products)
                     {
                         Product newProduct = _context.Products
+                            .Include(p => p.Certificate)
+                            .Include(p => p.CountryOfOrigin)
                                 .FirstOrDefault(p => p.DescriptionEn == el.DescriptionEn);
 
                         if (newProduct == null)
@@ -224,8 +291,8 @@ namespace CreateInvoice.Controllers
                                         StartDate = el.CertificateStartDate ?? DateTime.MinValue,
                                         EndDate = el.CertificateEndDate
                                     };
-
                                     _context.Certificates.Add(newCertificate);
+                                    newProduct.Certificate = newCertificate;
                                 }
                             }
 
@@ -246,11 +313,50 @@ namespace CreateInvoice.Controllers
                                             Certificate = newProduct.Certificate
                                         });
                                     _context.Countries.Add(newCountry);
+                                    newProduct.CountryOfOrigin = newCountry;
                                 }
                             }
 
                             if (newProduct.Certificate != null && newProduct.CountryOfOrigin != null)
                                 _context.Products.Add(newProduct);
+                        }
+                        else
+                        {
+                            if (newProduct.Certificate == null)
+                            {
+                                if (el.CertificateName != "")
+                                {
+                                    Certificate newCertificate = new Certificate
+                                    {
+                                        Name = el.CertificateName,
+                                        StartDate = el.CertificateStartDate ?? DateTime.MinValue,
+                                        EndDate = el.CertificateEndDate
+                                    };
+                                    _context.Certificates.Add(newCertificate);
+                                    newProduct.Certificate = newCertificate;
+                                }
+                            }
+
+                            if (newProduct.Certificate != null && newProduct.CountryOfOrigin == null)
+                            {
+                                if (el.CountryDescriptionEn != "")
+                                {
+                                    Country newCountry = new Country
+                                    {
+                                        DescriptionEn = el.DescriptionEn,
+                                        Name = el.CountryName
+                                    };
+
+                                    newCountry.CountryCertificates.Add(
+                                        new CertificateCountry
+                                        {
+                                            Country = newCountry,
+                                            Certificate = newProduct.Certificate
+                                        });
+                                    _context.Countries.Add(newCountry);
+                                    newProduct.CountryOfOrigin = newCountry;
+                                }
+                            }
                         }
                     }
                     _context.SaveChanges();

@@ -1,10 +1,11 @@
 ﻿<h1>Products</h1>
 <div>
     <kendo-grid #grid
-                [data]="products"
-                [height]="600"
+                [data]="gridView"
+                [height]="680"
                 (add)="addHandler($event, myForm)"
                 (remove)="removeHandler($event)"
+                (cancel)="cancelHandler($event)"
                 [pageSize]="pageSize"
                 [pageable]="{
                     buttonCount: buttonCount,
@@ -19,7 +20,7 @@
         <ng-template kendoGridToolbarTemplate>
             <div>
                 <input type="checkbox" id="importFromInvoice" class="k-checkbox" checked="checked" [(ngModel)]="importFromInvoiceValue" (change)="importCheckBoxChange()">
-                <label class="k-checkbox-label" for="importFromInvoice">Import from invoice</label>
+                <label class="k-checkbox-label" for="importFromInvoice" title="Choose to load data from invoice">Import from invoice</label>
                 <button class="k-button colo pull-right" style="color: #0000ff" (click)="getProductTemplate()">Save template to upload</button>
             </div>
             <br />
@@ -31,15 +32,16 @@
                           (remove)="removeEventHandler($event)"
                           [restrictions]="fileRestrictions">
             </kendo-upload>
-            <button kendoGridAddCommand class="k-icon k-i-plus-outline">Add new</button>
+            <button kendoGridAddCommand [iconClass]="'fa fa-plus-circle fa-fw'" title="Add product" style="color:green; font-size:24px;"></button>
+            <button kendoButton (click)="onRefresh()" [iconClass]="'fa fa-refresh fa-fw'" title="Refresh" style="color:green; font-size:24px;"></button>
         </ng-template>
-        <kendo-grid-column field="codeNo" title="Code" width="40" [editable]="true">
+        <kendo-grid-column field="codeNo" title="Code" width="30" [editable]="true">
         </kendo-grid-column>
-        <kendo-grid-column field="descriptionEn" title="Description English" width="40">
+        <kendo-grid-column field="descriptionEn" title="Description English" width="80">
         </kendo-grid-column>
-        <kendo-grid-column field="descriptionUa" title="Description Ukrainian" width="40">
+        <kendo-grid-column field="descriptionUa" title="Description Ukrainian" width="80">
         </kendo-grid-column>
-        <kendo-grid-column field="countryOfOrigin.name" title="Country of origin" width="40">
+        <kendo-grid-column field="countryOfOrigin.name" title="Country of origin" width="20">
             <ng-template kendoGridEditTemplate let-dataItem="countryOfOrigin">
                 <kendo-combobox [data]="countries"
                                 [textField]="'name'"
@@ -47,7 +49,7 @@
                 </kendo-combobox>
             </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="certificate.name" title="Certificate" width="40">
+        <kendo-grid-column field="certificate.name" title="Certificate" width="60">
             <ng-template kendoGridEditTemplate let-dataItem="dataItem"
                          let-column="column"
                          let-formGroup="formGroup">
@@ -62,6 +64,7 @@
             <ng-template kendoGridCellTemplate>
                 <button kendoGridRemoveCommand [iconClass]="'k-icon k-i-close'"
                         style="color: red;"></button>
+                <button kendoGridCancelCommand type="button" style="color:red">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
             </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>
