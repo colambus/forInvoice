@@ -10,7 +10,8 @@ import { DialogAction } from '@progress/kendo-angular-dialog/dist/es2015/dialog/
 @Component({
     selector: 'invoiceList',
     templateUrl: './invoiceList.component.html',
-    providers: [InvoiceService, EditService]
+    providers: [InvoiceService, EditService],
+    entryComponents: [InvoiceComponent]
 })
 
 export class InvoiceListComponent implements OnInit {

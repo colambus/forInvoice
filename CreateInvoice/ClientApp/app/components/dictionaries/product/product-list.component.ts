@@ -9,8 +9,8 @@ import { NamedIdObject } from '../../../models/NamedIdObject.model';
 import { DataNamedService } from '../../../services/dataNamed.service';
 import { CerticateModel } from '../../../models/certificate.model';
 import { CertificateService } from '../../../services/certificate.service';
-import { EditEvent, GridComponent, PageChangeEvent } from '@progress/kendo-angular-grid';
-import { FileRestrictions } from '@progress/kendo-angular-upload';
+import { EditEvent, GridComponent, PageChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
+import { FileRestrictions, UploadEvent, RemoveEvent } from '@progress/kendo-angular-upload';
 import { saveAs } from 'file-saver';
 
 // common constants
@@ -47,13 +47,13 @@ export class ProductListComponent implements OnInit {
     fileRestrictions: FileRestrictions = {
         allowedExtensions: ['xlsx']
     };
-
+    public gridView: GridDataResult;
     public buttonCount = 5;
     public info = true;
     public type: 'numeric' | 'input' = 'numeric';
     public pageSizes = true;
     public previousNext = true;
-
+    private total = 0;
     public pageSize = 10;
     public skip = 0;
 
@@ -91,18 +91,28 @@ export class ProductListComponent implements OnInit {
     }
 
     load() {
-        this.productService.getAll(this.skip, this.pageSize).subscribe(
-            resultArray => this.products = resultArray,
-            error => console.log("Error :: " + error));
+        this.productService.getProductsCount().subscribe(
+            res => {
+            this.total = res;
+                this.productService.getAll(this.skip, this.pageSize).subscribe(
+                    resultArray => {
+                        this.products = resultArray;
+                        this.gridView = {
+                            data: this.products,
+                            total: this.total
+                        };
+                    },
+                    error => console.log("Error :: " + error));}
+        );        
     }
 
     public createFormGroup(dataItem: any): FormGroup {
         return this.formBuilder.group({
-            'codeNo': dataItem.codeNo,
-            'descriptionEn': dataItem.descriptionEn,
+            'codeNo': [dataItem.codeNo, Validators.required],
+            'descriptionEn': [dataItem.descriptionEn, Validators.required],
             'descriptionUa': dataItem.descriptionUa,
-            'certificate': dataItem.certificate,
-            'countryOfOrigin': dataItem.countryOfOrigin,
+            'certificate': [dataItem.certificate, Validators.required],
+            'countryOfOrigin': [dataItem.countryOfOrigin, Validators.required],
             'id': dataItem.id
         });
     }
@@ -233,6 +243,32 @@ export class ProductListComponent implements OnInit {
 
     private loadFromFile() {
 
+    }
+
+    cancelEditClick({ sender, rowIndex }: any) {
+        sender.closeRow(rowIndex);
+    }
+
+    uploadEventHandler(e: UploadEvent) {
+        e.data = {
+            description: 'File upload'
+        };
+        console.log("File upload");
+        this.load();
+    }
+
+    removeEventHandler(e: RemoveEvent) {
+        e.data = {
+            description: 'File remove'
+        };
+    }
+
+    onRefresh() {
+        this.load();
+    }
+
+    public cancelHandler({ sender, rowIndex }: any) {
+        this.closeEditor(sender, rowIndex);
     }
 }
 

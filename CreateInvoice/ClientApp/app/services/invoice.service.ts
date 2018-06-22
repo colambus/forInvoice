@@ -17,11 +17,7 @@ export class InvoiceService {
     getAll(): Observable<InvoiceModel[]> {
         return this.http.get(this.actionUrl + 'GetAll')
             .map((response: Response) => {
-                let result = <InvoiceModel[]>response.json();
-                result.forEach(function (item) {
-                    item.date = new Date(item.date);
-                });
-                return result;
+                return <InvoiceModel[]>response.json();
             });
     }
 

@@ -202,7 +202,7 @@ namespace CreateInvoice.Helpers
                             DescriptionUa = worksheet.Cells[row, 3].Value?.ToString().Trim(),
                             CertificateName = worksheet.Cells[row, 4].Value?.ToString().Trim(),
                             CertificateStartDate = DateTime.Parse(worksheet.Cells[row, 5].Value?.ToString().Trim()),
-                            CertificateEndDate = DateTime.Parse(worksheet.Cells[row, 6].Value?.ToString().Trim()),
+                            CertificateEndDate = worksheet.Cells[row, 6].Value == null ? (DateTime?)null : DateTime.Parse(worksheet.Cells[row, 6].Value?.ToString().Trim()),
                             CountryDescriptionEn = worksheet.Cells[row, 7].Value?.ToString().Trim(),
                             CountryName = worksheet.Cells[row, 8].Value?.ToString().Trim()
                         };
@@ -269,7 +269,7 @@ namespace CreateInvoice.Helpers
                                 CodeNo = worksheet.Cells[productsStartCell.Row, productCodeCell.Column].Value?.ToString().Trim(),
                                 DescriptionEn = worksheet.Cells[productsStartCell.Row, productNameCell.Column].Value?.ToString().Trim(),
                                 CertificateName = worksheet.Cells[productsStartCell.Row, amountCell.Column + 1].Value?.ToString().Trim()                              
-                            };
+                            };                           
 
                             ExcelCellAddress currCountryCell = worksheet.Cells[countriesStartCell.Row + 1, countriesStartCell.Column].Start;
 
@@ -288,6 +288,8 @@ namespace CreateInvoice.Helpers
                                     currCountryCell = worksheet.Cells[currCountryCell.Row + 1, currCountryCell.Column].Start;
                                 }
                             }
+
+                            productsStartCell = worksheet.Cells[productsStartCell.Row + 1, productsStartCell.Column].Start;
 
                             products.Add(newproduct);
                         }

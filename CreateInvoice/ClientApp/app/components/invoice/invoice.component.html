@@ -81,11 +81,11 @@
             <kendo-grid-column field="product.descriptionEn" title="Description" width="230">
                 <ng-template kendoGridEditTemplate let-dataItem="product">
                     <kendo-combobox [data]="products"
-                                    [textField] ="'descriptionEn'"
-                                    [valueField] ="'id'"
+                                    [textField]="'descriptionEn'"
+                                    [valueField]="'id'"
                                     [filterable]="true"
                                     (valueChange)="handleValueChange($event)"
-                                    (filterChange)="productHandleFilter($event)">
+                                    (filterChange)="productHandleFilter($event)">                       
                     </kendo-combobox>
                 </ng-template>
             </kendo-grid-column>
