@@ -19,5 +19,12 @@ export class DataNamedService {
                 return <NamedIdObject[]>response.json();
         });
     }
+
+    addNewNamedObject(apiName: string, namedObject: NamedIdObject): Observable<NamedIdObject> {
+        return this.http.post(this.actionUrl + apiName + '/Insert', namedObject)
+            .map((response: Response) => {
+                return <NamedIdObject>response.json();
+            });
+    }
 }
 

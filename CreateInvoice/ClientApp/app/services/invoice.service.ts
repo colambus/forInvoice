@@ -1,6 +1,6 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Http, Response, RequestOptions, ResponseContentType } from '@angular/http';
 import { InvoiceModel } from '../models/invoice.model';
 import 'rxjs/Rx';
 import { Headers, URLSearchParams } from '@angular/http';
@@ -49,6 +49,22 @@ export class InvoiceService {
                 if (result.date)
                     result.date = new Date(result.date);
                 return <InvoiceModel>result;
+            });
+    }
+
+    print(invoice: InvoiceModel) {
+        let request_data = new URLSearchParams();
+        request_data.append('id', invoice.id.toString());
+        let request_option = new RequestOptions();
+        request_option.search = request_data;
+        request_option.responseType = ResponseContentType.Blob;
+
+        return this.http.get(this.actionUrl + 'Download', request_option)
+            .map(result => {
+                return {
+                    filename: 'Invoice.xlsx',
+                    data: result.blob()
+                }
             });
     }
 }

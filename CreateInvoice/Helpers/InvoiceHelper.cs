@@ -1,5 +1,6 @@
 ﻿using CreateInvoice.Entities;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,6 @@ namespace CreateInvoice.Helpers
         public static T GetById<T>(this IEnumerable<T> source, int? id) where T: IHaveId
         {
             return source.FirstOrDefault(p => p.Id == id);
-        }
+        }       
     }
 }

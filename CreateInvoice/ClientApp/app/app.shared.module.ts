@@ -15,6 +15,7 @@ import { InvoiceListComponent } from './components/invoice/invoiceList/invoiceLi
 import { ProductListComponent } from './components/dictionaries/product/product-list.component';
 import { CertificateListComponent } from './components/dictionaries/certificate/certificate-list.component';
 import { CountryListComponent } from './components/dictionaries/country/countries-list.component';
+import { NamedObjectComponent } from './components/dictionaries/namedObject/namedObject.component';
 
 //Directives
 
@@ -27,6 +28,7 @@ import { WindowModule } from '@progress/kendo-angular-dialog';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { UploadModule } from '@progress/kendo-angular-upload';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 import '@progress/kendo-angular-intl/locales/uk/all';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -42,7 +44,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
         InvoiceListComponent,
         ProductListComponent,
         CertificateListComponent,
-        CountryListComponent
+        CountryListComponent,
+        NamedObjectComponent
     ],
     imports: [
         CommonModule,
@@ -55,6 +58,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
         DialogsModule,
         DropDownsModule,
         UploadModule,
+        InputsModule,
         AngularFontAwesomeModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -72,7 +76,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
         { provide: LOCALE_ID, useValue: 'uk-UK'}
     ],
     entryComponents: [
-        InvoiceComponent
+        InvoiceComponent,
+        NamedObjectComponent
     ]
 
 })

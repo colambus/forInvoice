@@ -25,7 +25,7 @@ export class ProductService {
             .map((response: Response) => {
                 let result = <ProductModel[]>response.json();
                 result.forEach(function (item) {
-                    item.descriptionEn = item.id + " " + item.descriptionEn;
+                    item.descriptionEn = item.codeNo + " " + item.descriptionEn;
                 });    
                 return result;
             });
