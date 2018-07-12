@@ -26,10 +26,11 @@ namespace CreateInvoice.Controllers
             return _context.DeliveryTypes.ToList();
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public DeliveryType Insert([FromBody]DeliveryType entity)
         {
             _context.DeliveryTypes.Add(entity);
+            _context.SaveChanges();
             return entity;
         }
     }

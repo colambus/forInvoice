@@ -1,4 +1,7 @@
 ﻿<h1>Create new invoice</h1>
+<div class="pull-right">
+    <button kendoButton (click)="printInvoice()" [iconClass]="'fa fa-print fa-fw fa-4x'" title="Print invoice"></button>
+</div>
 <div>
     <div class="row">
         <div class="col-lg-2">
@@ -12,6 +15,7 @@
         <div class="col-lg-2">Seller</div>
         <div class="col-lg-2">
             <kendo-dropdownlist [data]="organizations" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.seller"></kendo-dropdownlist>
+            <button kendoButton (click)="addOrganiztion()" [iconClass]="'fa fa-plus-circle fa-fw'" style="color:green;" title="Add organization"></button>
         </div>
     </div>
     <div class="row">
@@ -24,24 +28,28 @@
         <div class="col-lg-2">Contract</div>
         <div class="col-lg-2">
             <kendo-dropdownlist [data]="contracts"></kendo-dropdownlist>
+            <button kendoButton (click)="addContract()" [iconClass]="'fa fa-plus-circle fa-fw'" style="color:green;" title="Add contract"></button>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2">Delivery type</div>
         <div class="col-lg-2">
             <kendo-dropdownlist [data]="deliveryTypes" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.deliveryType"></kendo-dropdownlist>
+            <button kendoButton (click)="addDeliveryType()" [iconClass]="'fa fa-plus-circle fa-fw'" style="color:green;" title="Add delivery type"></button>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2">Terms of payment</div>
         <div class="col-lg-2">
             <kendo-dropdownlist [data]="termsOfPayment" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.termOfPayment"></kendo-dropdownlist>
+            <button kendoButton (click)="addTermsOfPayment()" [iconClass]="'fa fa-plus-circle fa-fw'" style="color:green;" title="Add term of payment"></button>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2">Terms of delivery</div>
         <div class="col-lg-2">
             <kendo-dropdownlist [data]="termsOfDelivery" [textField]="'name'" [valueField]="'id'" [(ngModel)]="invoice.termsOfDelivery"></kendo-dropdownlist>
+            <button kendoButton (click)="addTermsOfDelivery()" [iconClass]="'fa fa-plus-circle fa-fw'" style="color:green;" title="Add term of delivery"></button>
         </div>
     </div>
     <div class="row">
@@ -85,7 +93,7 @@
                                     [valueField]="'id'"
                                     [filterable]="true"
                                     (valueChange)="handleValueChange($event)"
-                                    (filterChange)="productHandleFilter($event)">                       
+                                    (filterChange)="productHandleFilter($event)">
                     </kendo-combobox>
                 </ng-template>
             </kendo-grid-column>
@@ -100,10 +108,9 @@
             <kendo-grid-command-column title="Command" width="40">
                 <ng-template kendoGridCellTemplate>
                     <button kendoGridRemoveCommand
-                        [iconClass]="'k-icon k-i-close'"
-                            [look] ="'bare'"
-                        style="color: red;">
-                    </button>
+                            [iconClass]="'k-icon k-i-close'"
+                            [look]="'bare'"
+                            style="color: red;"></button>
                 </ng-template>
             </kendo-grid-command-column>
         </kendo-grid>

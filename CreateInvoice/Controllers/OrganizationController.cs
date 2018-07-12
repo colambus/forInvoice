@@ -27,10 +27,11 @@ namespace CreateInvoice.Controllers
             return _context.Organizations.ToList();
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public Organization Insert([FromBody]Organization entity)
         {
             _context.Organizations.Add(entity);
+            _context.SaveChanges();
             return entity;
         }
     }

@@ -14,9 +14,12 @@ import { GridDataResult, GridComponent, EditEvent } from '@progress/kendo-angula
 import { State, process } from '@progress/kendo-data-query';
 import { map } from 'rxjs/operators/map';
 import { ProductService } from '../../services/products.service';
+import { NamedObjectComponent } from '../dictionaries/namedObject/namedObject.component';
 import { InvoiceProductService } from '../../services/invoiceProduct.service';
 import { DialogService, DialogCloseResult } from '@progress/kendo-angular-dialog';
 import { DialogAction } from '@progress/kendo-angular-dialog/dist/es2015/dialog/dialog-settings';
+import { InvoiceService } from '../../services/invoice.service';
+import { saveAs } from 'file-saver';
 
 // common constants
 const hasClass = (el: any, className: any) => new RegExp(className).test(el.className)
@@ -44,7 +47,7 @@ const createFormGroup = (dataItem: any) => new FormGroup({
 @Component({
     selector: 'invoice',
     templateUrl: './invoice.component.html',
-    providers: [DataNamedService, EditService, ProductService, InvoiceProductService]
+    providers: [DataNamedService, EditService, ProductService, InvoiceProductService, InvoiceService]
 })
 export class InvoiceComponent implements OnInit {
 
@@ -81,7 +84,8 @@ export class InvoiceComponent implements OnInit {
         private productService: ProductService,
         private dialogService: DialogService,
         private renderer: Renderer2,
-        private invoiceProduct: InvoiceProductService) {
+        private invoiceProduct: InvoiceProductService,
+        private invoiceService: InvoiceService) {
     }
 
     ngOnInit() {
@@ -190,7 +194,7 @@ export class InvoiceComponent implements OnInit {
 
     private saveRow(): void {
         if (this.isInEditingMode) {
-            if (this.formGroup ) {
+            if (this.formGroup) {
                 this.formGroup.value.invoice = this.invoice;
                 this.invoiceProduct.save(this.formGroup.value, this.isNew)
                     .subscribe(result => this.load());
@@ -242,10 +246,11 @@ export class InvoiceComponent implements OnInit {
     }
 
     public productHandleFilter(value: any) {
-        this.productService.getBySeq(value)
-            .subscribe(
-            resultArray => this.products = resultArray,
-            error => console.log("Error :: " + error));
+        if (value.length > 4)
+            this.productService.getBySeq(value)
+                .subscribe(
+                resultArray => this.products = resultArray,
+                error => console.log("Error :: " + error));
     }
 
     private closeEditor(grid: GridComponent, rowIndex: number | undefined = this.editedRowIndex): void {
@@ -257,10 +262,82 @@ export class InvoiceComponent implements OnInit {
         }
     }
 
+    public addOrganiztion() {
+        let namedObject = new Organization();
+        this.createAddingForm(namedObject, "Organization", this.organizations);
+    }
+
+    public addDeliveryType() {
+        let namedObject = new NamedIdObject();
+        this.createAddingForm(namedObject, "DeliveryType", this.deliveryTypes);
+    }
+
+    public addTermsOfPayment() {
+        let namedObject = new NamedIdObject();
+        this.createAddingForm(namedObject, "TermOfPayment", this.termsOfPayment);
+    }
+
+    public addTermsOfDelivery() {
+        let namedObject = new NamedIdObject();
+        this.createAddingForm(namedObject, "TermsOfDelivery", this.termsOfDelivery);
+    }
+
+    public printInvoice() {
+        const dialogRef = this.dialogService.open({
+            title: 'Print invoice',
+
+            // Show component
+            content: 'Invoice wil be saved before printing. Continue?',
+
+            actions: [
+                { text: 'Yes' },
+                { text: 'No', primary: true }
+            ]
+        });
+
+        dialogRef.result.subscribe((result) => {
+            if ((result as DialogAction).text === 'Yes')
+                this.invoiceService.save(this.invoice)
+                    .subscribe(result => {
+                        this.invoiceService.print(this.invoice)
+                            .subscribe(res => {
+                                saveAs(res.data, res.filename);
+                            });
+                    });
+        })
+    }
+
+    private createAddingForm(namedObject: NamedIdObject, entityName: string, objectToLoad: any) {
+        const dialogRef = this.dialogService.open({
+            title: 'Add new ' + entityName,
+
+            // Show component
+            content: NamedObjectComponent,
+
+            actions: [
+                { text: 'Save' },
+                { text: 'Close', primary: true }
+            ]
+        });
+
+        dialogRef.content.instance.namedObject = namedObject;
+
+        dialogRef.result.subscribe((result) => {
+            if ((result as DialogAction).text === 'Save')
+                this.dataNamedService.addNewNamedObject(entityName, dialogRef.content.instance.namedObject)
+                    .subscribe(result => {
+                        this.dataNamedService.getAll(entityName)
+                            .subscribe(
+                            resultArray => objectToLoad = resultArray,
+                            error => console.log("Error :: " + error));
+                    });
+        })
+    }
+
     private createFormGroup(dataItem: any): FormGroup {
         return this.formBuilder.group({
             'Position': new FormControl(dataItem.productPosition),
-            'CountryOfOrigin': new FormControl(dataItem.product.countryOfOrigin == null ? dataItem.product.countryOfOrigin.id : ''),
+            'CountryOfOrigin': new FormControl(dataItem.product.countryOfOrigin == null ? '' : dataItem.product.countryOfOrigin.id),
             'CodeNo': new FormControl(dataItem!.product!.codeNo, Validators.required),
             'Product': new FormControl(dataItem!.product, Validators.required),
             'unit': new FormControl(dataItem!.product!.unit),

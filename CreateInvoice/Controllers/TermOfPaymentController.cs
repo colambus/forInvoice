@@ -26,10 +26,11 @@ namespace CreateInvoice.Controllers
             return _context.TermsOfPayment.ToList();
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public TermOfPayment Insert([FromBody]TermOfPayment entity)
         {
             _context.TermsOfPayment.Add(entity);
+            _context.SaveChanges();
             return entity;
         }
     }

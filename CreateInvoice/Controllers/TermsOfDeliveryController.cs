@@ -26,10 +26,11 @@ namespace CreateInvoice.Controllers
             return _context.TermsOfDelivery.ToList();
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public TermsOfDelivery Insert([FromBody]TermsOfDelivery entity)
         {
             _context.TermsOfDelivery.Add(entity);
+            _context.SaveChanges();
             return entity;
         }
     }

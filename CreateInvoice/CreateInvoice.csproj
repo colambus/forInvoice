@@ -31,6 +31,8 @@
   <ItemGroup>
     <None Remove="ClientApp\app\components\dictionaries\certificate\certificate-list.component.ts" />
     <None Remove="ClientApp\app\components\dictionaries\country\countries-list.component.ts" />
+    <None Remove="ClientApp\app\components\dictionaries\namedObject\namedObject.component.ts" />
+    <None Remove="ClientApp\app\components\dictionaries\organization\organization.component.ts" />
     <None Remove="ClientApp\app\components\dictionaries\product\product-list.component.ts" />
     <None Remove="ClientApp\app\components\dictionaries\product\product.component.ts" />
     <None Remove="ClientApp\app\components\invoice\invoice.component.ts" />
@@ -58,6 +60,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\dictionaries\certificate\certificate-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dictionaries\country\countries-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dictionaries\namedObject\namedObject.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dictionaries\organization\organization.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dictionaries\product\product-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dictionaries\product\product.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\invoice\invoice.component.ts" />
