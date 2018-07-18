@@ -67,7 +67,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
             { path: 'product-list', component: ProductListComponent },
             { path: 'certificate-list', component: CertificateListComponent },
             { path: 'countries-list', component: CountryListComponent },
-            { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])
